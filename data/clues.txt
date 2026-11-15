@@ -108,10 +108,10 @@ AGAINST|Opposed to|Leaning on, as a wall
 AGAR|Petri dish gel|Seaweed-based thickener
 AGATE|Banded gemstone|Prized marble
 AGE|Grow old|Mellow in a barrel
-AGED|Like fine wine|Like a sharp cheddar
+AGED|Like fine wine|Grew long in the tooth
 AGELESS|Timeless|Like a vampire, supposedly
 AGENT|Secret operative|Ten-percenter
-AGENTS|FBI operatives|Free ___ (sports signees)
+AGENTS|FBI operatives|Free ___ (unsigned players)
 AGES|Gets older|A really long time
 AGHAST|Horrified|Struck speechless with shock
 AGILE|Nimble|Like a scrum-based workflow
@@ -119,7 +119,7 @@ AGITATE|Make anxious|Churn, as a washer does
 AGLOW|Shining softly|Beaming with happiness
 AGO|In the past|Long, long ___
 AGOG|Eagerly excited|On the edge of one's seat
-AGORA|Ancient Greek marketplace|Athenian gathering spot
+AGORA|Ancient Greek marketplace|Hundredth of a shekel
 AGREE|See eye to eye|Sit well (with)
 AGREED|Saw eye to eye|Shook on it
 AGUE|Fever with chills|Malarial shakes
@@ -142,7 +142,7 @@ AIRED|Broadcast, as a show|Let out, as grievances
 AIREDALE|Large terrier breed|Yorkshire-born dog
 AIRHEAD|Ditzy person|Space cadet
 AIRLINE|Delta, e.g.|Major carrier
-AIRS|Puts on pretensions|Broadcasts on TV
+AIRS|Broadcasts|Snooty affectations
 AIRY|Light and breezy|Like a good souffle
 AISLE|Theater walkway|Bride's path
 AISLES|Supermarket lanes|They separate pews
@@ -161,7 +161,7 @@ ALERTS|Warns|Phone pings
 ALES|Pub pours|Some are pale
 ALGA|Single pond plant|Diatom, for one
 ALGAE|Pond scum|Things that bloom in lakes
-ALIAS|Assumed name|A.k.a
+ALIAS|Assumed name|Name on a fake passport
 ALIBI|Suspect's excuse|"I was at the movies," maybe
 ALIBIS|Suspects' excuses|Cover stories in court
 ALIEN|Visitor from space|Foreign, as a concept
@@ -247,7 +247,7 @@ ANIMAL|Zoo resident|Party ___
 ANIME|Japanese cartoons|Studio Ghibli output
 ANISE|Licorice flavor|Ouzo seasoning
 ANKLE|Joint above the foot|Shackle spot
-ANNALS|Historical records|Year-by-year chronicles
+ANNALS|Historical records|Word in many medical journal titles
 ANNOY|Bug|Get under one's skin
 ANNUITY|Yearly payment|Retirement income source
 ANODE|Cathode's counterpart|Where oxidation happens
@@ -264,7 +264,7 @@ ANTI|Not in favor of|One voting nay
 ANTIC|Playful caper|Clownish and goofy
 ANTIDOTE|Poison counteragent|Cure for boredom, say
 ANTLERS|Deer headgear|Stag's rack
-ANTS|Colony insects|Unwanted picnic guests
+ANTS|Colony insects|Carpenters and soldiers, e.g.
 ANVIL|Blacksmith's block|Bone in the middle ear
 ANVILS|Blacksmiths' blocks|Cartoon objects dropped on coyotes
 ANY|Even one|At ___ rate
@@ -385,7 +385,7 @@ ATOMIZER|Perfume sprayer|Mist maker on a vanity
 ATONAL|Lacking a key, musically|Like some Schoenberg works
 ATONE|Make amends|Settle a moral debt
 ATONED|Made amends|Did penance
-ATOP|Perched on|At the peak of
+ATOP|Perched on|On the summit of
 ATTACH|Fasten on|Include with an email
 ATTAIN|Achieve|Reach, as a summit
 ATTAINS|Achieves|Arrives at, as an age
@@ -460,7 +460,7 @@ BAGEL|Deli roll with a hole|Lox go-with
 BAGGAGE|Luggage|Emotional burdens from the past
 BAGGY|Loose-fitting|Like puffy eyes
 BAGS|Sacks|Snags, as a prize
-BAH|"___ humbug!"|Scrooge's scoff
+BAH|"___ humbug!"|Curmudgeon's dismissal
 BAHT|Thai currency|Bangkok bill
 BAIL|Jail release payment|Scoop water from a boat
 BAIT|Angler's lure|Tease or taunt
@@ -468,12 +468,12 @@ BAITS|Fishing lures|Goads into a fight
 BAKE|Make cookies|Swelter in the sun
 BAKED|Cooked in an oven|Like Alaska, in a dessert
 BALANCE|Even distribution|Remainder due
-BALD|Like an eagle, in a way|Undisguised, as a lie
+BALD|Hairless|Undisguised, as a lie
 BALE|Hay bundle|Cotton gin output
 BALL|Dance event|Great time, as in "had a ___"
 BALLETS|Tutu-wearing performances|Pointe productions
 BALLOON|Party floater|Swell rapidly
-BALMY|Pleasantly warm|Nutty, in Britain
+BALMY|Pleasantly warm|Off one's rocker
 BALSA|Light model-plane wood|Raft wood of Kon-Tiki
 BAM|Comic-book punch sound|Emeril's catchphrase
 BAN|Prohibit|Official taboo
@@ -490,7 +490,7 @@ BARB|Fishhook point|Cutting remark
 BARBERS|Hair cutters|Pole owners?
 BARD|Poet|Shakespeare, with 'the'
 BARE|Naked|Reveal, as one's soul
-BARELY|Hardly|Just squeaking by
+BARELY|Hardly|By a hair
 BARGE|Flat-bottomed boat|Intrude rudely
 BARGES|River freight boats|Butts in rudely
 BARK|Dog's sound|Speak sharply
@@ -530,7 +530,7 @@ BEANIE|Snug knit cap|___ Babies (collectible toys)
 BEAR|Grizzly or polar animal|Market pessimist
 BEARD|Facial hair|Confront boldly
 BEARDED|Having facial hair|Defied to the face
-BEARDS|Chin growths|Goatees and such
+BEARDS|Chin growths|Confronts boldly
 BEARER|One who carries|Who a bond may be payable to
 BEARS|Grizzlies|Endures patiently
 BEASTS|Wild animals|Brutish sorts
@@ -542,7 +542,7 @@ BEDROOM|Place to sleep|Kind of community
 BEDS|Places to sleep|Garden plots
 BEE|Honey maker|Spelling contest
 BEEFY|Brawny|Hefty, as a bonus
-BEEN|Past participle of "be"|Has-___ (washed-up sort)
+BEEN|"Have you ever ___ to Paris?"|Has-___ (washed-up sort)
 BEEP|Horn sound|Page, old-style
 BEEPED|Honked briefly|Paged, in the '90s
 BEER|Pub pour|Root ___ float
@@ -577,7 +577,7 @@ BEND|Curve in a road|Relax, as rules
 BENDS|Road curves|Diver's ailment, with 'the'
 BENT|Not straight|Natural inclination
 BERATE|Scold harshly|Read the riot act to
-BERRY|Blue or straw fruit|Coffee bean, botanically
+BERRY|Blue or straw fruit|Banana, botanically
 BESET|Plague|Surrounded on all sides
 BESIDE|Next to|___ oneself (frantic)
 BEST|Top-notch|Outdo in a contest
@@ -609,7 +609,7 @@ BIO|Life story, briefly|Dating profile section
 BIOME|Ecological community|Tundra or taiga
 BIRD|Robin or wren|Shuttlecock, to some
 BIRTH|Start of life|Origin, as of a nation
-BISON|Buffalo|Plains roamer
+BISON|Buffalo|National mammal of the U.S
 BISTRO|Small restaurant|Cafe with a chalkboard menu
 BIT|Small piece|Horse's mouthpiece
 BITE|Nibble|Tangy kick
@@ -670,7 +670,7 @@ BOLA|Weighted throwing cord|Gaucho's ankle-tangler
 BOLD|Daring|Like heavy type
 BOLO|Western string tie|Police alert, briefly
 BOLT|Sliding door lock|Make a dash for it
-BOLTED|Fastened with a screw|Ran off
+BOLTED|Locked, as a door|Ran off
 BOLTS|Nuts' partners|Wolfs down
 BOMB|Flop|Long pass in football
 BOND|Tie|Treasury issue
@@ -725,10 +725,10 @@ BRAVE|Courageous|Face head-on
 BRAVO|Cry of approval|Letter after Alpha
 BRAY|Donkey's call|Laugh harshly
 BREAD|Source of sandwich slices|Dough, slangily
-BREADS|Coats with crumbs|Bakery offerings
+BREADS|Bakery offerings|Coats with crumbs
 BREAK|Smash|School recess
 BREAST|White meat cut|Contend with, as waves
-BREED|Dog type|Raise, as livestock?
+BREED|Dog type|Raise, as livestock
 BREEDS|Poodle and beagle, e.g.|Fosters, as contempt
 BREW|Make tea|Beer, slangily
 BREWING|Making beer|About to happen, as a storm
@@ -747,7 +747,7 @@ BRINK|Edge of a cliff|Verge of disaster
 BRIO|Lively energy|Con ___ (spiritedly, on a score)
 BRISKLY|Quickly and energetically|In a no-nonsense way
 BRITTLE|Easily snapped|Nutty candy
-BRO|Close male pal, slangily|Fist-bumping pal
+BRO|Close male pal, slangily|Sibling, casually
 BROAD|Wide|Not detailed, as strokes
 BROADEN|Widen|Expand, as one's horizons
 BROCADE|Rich patterned fabric|Material for a fancy jacket
@@ -778,10 +778,10 @@ BUM|Lazy loafer|Mooch, as a smoke
 BUMMER|Letdown|"What a drag!"
 BUMP|Small swelling|Displace, as from a flight
 BUMPY|Rough, as a road|Turbulent, as a flight
-BUMS|Loafers|Disappoints, slangily
+BUMS|Loafers|Cadges, as a smoke
 BUN|Burger holder|Hair knot
 BUNCH|Cluster of grapes|Gather in folds
-BUNK|Camp bed|Nonsense
+BUNK|Camp bed|Total hogwash
 BUOY|Floating marker|Lift the spirits of
 BURDENS|Heavy loads|Saddles, figuratively
 BUREAU|Chest of drawers|Government agency
@@ -798,10 +798,10 @@ BUST|Sculpted head|Police raid
 BUSTS|Statues of heads|Arrests, slangily
 BUSY|Occupied|Like a line that won't connect
 BUT|However|Nothing ___ the truth
-BUTLERS|Head household servants|Jeeves and others
+BUTLERS|Head household servants|Carson and Alfred, e.g.
 BUTTS|Cigarette ends|Targets of jokes
 BUY|Purchase|Swallow, as a story
-BYE|So long!|Pass to the next round
+BYE|"So long!"|Pass to the next round
 BYES|Farewells|Free passes in a tournament
 BYLAW|Rule in a club's charter|Local ordinance, in Britain
 BYPASS|Road that skirts a town|Kind of heart operation
@@ -841,7 +841,7 @@ CANAL|Panama or Suez waterway|Root ___ (dental procedure)
 CANAPE|Small toast with toppings|Bite passed by a server
 CANDLE|Birthday cake topper|Can't hold a ___ to
 CANDY|Halloween treat|Eye ___ (pretty sight)
-CANE|Walking aid|Flog, as an old-time schoolboy?
+CANE|Walking aid|Flog, as a schoolboy of old
 CANNED|Preserved in a tin|Given the pink slip
 CANNER|One who preserves food in jars|Tuna factory worker
 CANNERY|Food-packing plant|Steinbeck's ___ Row
@@ -860,7 +860,7 @@ CARE|Concern|"Handle with ___"
 CARED|Showed concern|Gave a hoot
 CAREEN|Swerve wildly|Tip a ship for hull cleaning
 CAREER|Life's work|Rush headlong
-CARER|Caregiver, in Britain|Home nurse, perhaps
+CARER|Home aide, in Britain|Home nurse, perhaps
 CARESS|Tender stroke|Touch softly, as a breeze might
 CARET|Insertion mark|Shift-6 symbol
 CARHOP|Drive-in server|Worker on roller skates, maybe
@@ -871,7 +871,7 @@ CARP|Koi, e.g.|Gripe constantly
 CARRIED|Toted|Won, as a state
 CARRIER|Mail deliverer|Aircraft ___
 CARRY|Tote|Stock, as a store does
-CARTELS|Price-fixing groups|Drug-trafficking groups
+CARTELS|Price-fixing groups|Medellín and Cali, notoriously
 CARTON|Egg holder|Juice box's big brother
 CARTOON|Saturday morning show|Animated short
 CARTS|Supermarket wheeled baskets|Hauls by wagon
@@ -960,7 +960,7 @@ CHEF|Kitchen boss|Toque wearer
 CHERUB|Winged baby angel|Angelic-looking tot
 CHESS|Game with kings and queens|Game played with a clock
 CHEST|Treasure box|Bench press target
-CHEW|Use one's molars|Ponder, with 'on'?
+CHEW|Use one's molars|Ponder, with 'on'
 CHEWS|Grinds with the teeth|Taffy and caramel candies
 CHEWY|Like caramel or taffy|Meaty, as a tough problem
 CHI|Greek letter after phi|Life force in Eastern medicine
@@ -1052,7 +1052,7 @@ CLUNG|Held on tight|Stuck, as wet clothes
 COACH|Team leader|Economy class
 COAL|Furnace fuel|Stocking stuffer for the naughty
 COARSE|Rough|Off-color, as jokes
-COASTER|Drink holder|Roller ___
+COASTER|Mat under a glass|Roller ___
 COAT|Winter wear|Layer of paint
 COATS|Parkas and blazers|Layers of paint
 COB|Corn's core|Male swan
@@ -1060,7 +1060,7 @@ COBRA|Hooded snake|Yoga pose with a backbend
 COCA|___-Cola|Andean leaf chewed for energy
 COCO|Tropical palm with hairy nuts|Fashion's Chanel
 COCOA|Hot chocolate base|Ski lodge mugful
-COD|Fish and chips fish|Cape ___
+COD|Fish and chips fish|Scrod, when grown
 CODA|Concluding musical passage|Epilogue, of sorts
 CODER|Programmer|Medical billing specialist
 CODES|Secret ciphers|Writes software
@@ -1070,7 +1070,7 @@ COERCE|Force|Twist the arm of
 COG|Gear tooth|Replaceable worker, so to speak
 COGNAC|French brandy|Snifter filler
 COHERENT|Logical and clear|Like laser light, in physics
-COHO|Silver salmon|Fish caught in Alaska's rivers
+COHO|Silver salmon|Sockeye's cousin
 COIL|Spiral loop of rope|Part of a car's ignition system
 COILS|Spirals of wire|Wraps around, as a python
 COIN|Quarter|Make up, as a word
@@ -1140,7 +1140,7 @@ COUCH|Sofa|Phrase carefully
 COUGH|Throat clearing|Fork (up)
 COULD|Was able to|Might, hypothetically
 COUNSELOR|Legal advisor|Summer camp supervisor
-COUNT|Tally|Dracula, e.g
+COUNT|Tally|Dracula, e.g.
 COUP|Sudden government overthrow|Masterstroke
 COUPE|Two-door car|Stemmed champagne glass
 COURT|Tennis venue|Woo, old-style
@@ -1167,9 +1167,9 @@ CREAK|Rusty hinge sound|Show one's age, as joints
 CREAM|Coffee additive|Beat badly, slangily
 CREASE|Fold line in fabric|Hockey goalie's area
 CREATE|Make|Cause, as a scene
-CREATED|Made|Brought into being
-CREDIT|Plastic payment|Give ___ where it's due
-CREED|Statement of belief|Code to live by
+CREATED|Made|Originated, as a Broadway role
+CREDIT|Plastic payment|Semester-hour unit
+CREED|Statement of belief|Boxing film franchise starring Michael B. Jordan
 CREEDS|Religious beliefs|Guiding principles
 CREEK|Small stream|Place to be without a paddle?
 CREEP|Move stealthily|Gradual expansion, as of scope
@@ -1190,7 +1190,7 @@ CRISIS|Emergency|Turning point
 CRISPED|Made crunchy|Freshened in ice water, as lettuce
 CRISPER|Fridge vegetable drawer|More crunchy
 CRISS|___-cross|Cross's partner, in a pattern
-CRONE|Fairy tale old woman|Witchy figure in folklore
+CRONE|Fairy tale old woman|Third aspect of the Triple Goddess
 CRONY|Close pal|Political favorite, often
 CROP|Harvest|Trim, as a photo
 CROSS|Angry|Hybrid of two breeds
@@ -1204,7 +1204,7 @@ CRUDE|Unrefined|Raw petroleum
 CRUDER|More vulgar|Less refined, as oil
 CRUEL|Heartless|Bitterly harsh, as fate
 CRUELLY|Heartlessly|With a vicious twist
-CRUET|Vinegar bottle|Table server of oil
+CRUET|Vinegar bottle|Altar vessel for wine or water
 CRUISE|Ship vacation|Win easily, with 'to'
 CRUSH|Squash|Schoolkid's infatuation
 CRUX|Key point|Pivotal issue in a debate
@@ -1236,7 +1236,7 @@ CUTE|Adorable|Overly clever, as a remark
 CUTER|More adorable|More cloyingly clever
 CUTTER|Cookie ___ (baking tool)|Coast Guard vessel
 CYAN|Greenish-blue color|Printer ink alongside magenta
-CYCLE|Bike ride|Washing machine phase
+CYCLE|Ride a bike|Washing machine phase
 CYMBAL|Drum kit's brass disc|Crash or ride, in a band
 CYPRESS|Conifer often found in swamps|Tree in Van Gogh paintings
 CYST|Fluid-filled sac|Dermatologist's drainage target
@@ -1257,7 +1257,7 @@ DAME|Title for a knighted woman|Woman, in old gangster slang
 DAMP|Slightly wet|Deaden, as vibrations
 DAMS|River barriers|Mothers of foals
 DAMSELS|Young maidens|Ones in distress, classically
-DANCER|Ballerina, e.g.|Prancer's teammate?
+DANCER|Ballerina, e.g.|Prancer's teammate
 DANGER|Peril|Daredevil's middle name, in a boast
 DARE|Challenge to do something risky|Have the gall
 DARES|Risky challenges|Has the nerve
@@ -1362,7 +1362,7 @@ DESSERTS|After-dinner sweets|Stressed, in reverse?
 DESTINE|Preordain|Earmark for a purpose
 DETAIL|Fine point|Assign to a special task
 DETECT|Notice|Sniff out
-DETER|Discourage|Scare off
+DETER|Discourage|Make think twice
 DETOUR|Alternate route|Way around
 DETRAIN|Leave a railcar|Exit at the station
 DEUCE|Tennis tie|Two in a deck
@@ -1444,7 +1444,7 @@ DOE|Female deer|John ___
 DOERS|Go-getters|Busy bees, so to speak
 DOES|Bucks' mates|Carries out
 DOFF|Take off, as a hat|Opposite of don
-DOG|Fido|Pursue relentlessly
+DOG|Fido, for one|Pursue relentlessly
 DOGMA|Firm belief|Party line, perhaps
 DOH|Homer Simpson's exclamation|"What a dummy I am!"
 DOING|Performing|"This is all your ___!"
@@ -1531,13 +1531,13 @@ DRUM|Percussion item|Gather, with "up"
 DRUMS|Percussion set|Taps one's fingers, impatiently
 DRY|Not wet|Like deadpan humor
 DUAL|Twofold|Like some citizenships
-DUBS|Gives a nickname|Replaces the dialogue of
+DUBS|Nicknames|Replaces the dialogue of
 DUCK|Pond swimmer|Dodge, as a question
 DUCTS|Air conditioning passages|Tear passageways
 DUD|Box-office flop|Shell that doesn't go off
 DUE|Owed|Expected any day
 DUEL|Pistols at dawn event|One-on-one contest
-DUET|Two singers|Number for two
+DUET|Song for two|Pas de deux, e.g.
 DUG|Excavated|Liked, in old slang
 DUKE|Noble|Fight, with "it out"
 DULL|Not sharp|Ho-hum, as a lecture
@@ -1576,7 +1576,7 @@ EARN|Make, as wages|Merit, as trust
 EARNER|Wage worker|Profitable product, in business-speak
 EARNERS|Paycheck recipients|Ones bringing home the bacon
 EARNEST|Sincere and serious|In ___ (for real)
-EARNING|Making money|Pulling in
+EARNING|Making money|Deserving, as respect
 EARNS|Makes, as money|Wins, as a reputation
 EARS|Hearing organs|Corn units
 EARTH|Our planet|Garden soil
@@ -1584,9 +1584,9 @@ EASE|Comfort|Maneuver gently
 EASED|Lessened, as pain|Maneuvered gently, as into a space
 EASEL|Painter's stand|Flip chart holder
 EASELS|Artists' stands|Presentation board props
-EASIER|Less difficult|Like Monday crosswords
+EASIER|Less difficult|Like Monday crosswords, vis-a-vis Saturday's
 EAST|Direction of sunrise|Right side of a map
-EASTERN|Of the Orient|___ Standard Time
+EASTERN|___ Standard Time|Like the Orthodox Church
 EASY|Simple|Like a pushover
 EAT|Have lunch|Bother persistently
 EATEN|Consumed, as food|Corroded, as by acid
@@ -1644,7 +1644,7 @@ ELATED|Thrilled|Walking on air
 ELBOW|Arm joint|Pipe bend
 ELDER|Older person|Shrub bearing dark berries
 ELDERLY|Advanced in years|Getting on
-ELDEST|First-born|Senior sibling
+ELDEST|First-born|Like Charles III among his siblings
 ELECT|Vote into office|President-___
 ELEGY|Mournful poem|Gray's churchyard poem
 ELEMENTAL|Basic and fundamental|Like a fire or water spirit
@@ -1656,7 +1656,7 @@ ELIDE|Omit, as a vowel|Gloss over, as a detail
 ELIGIBLE|Qualified|Like a sought-after bachelor
 ELITE|Top tier|Like Navy SEALs
 ELITES|Top tiers of society|Front-of-the-pack racers
-ELK|Wapiti|Big game in the Rockies
+ELK|Large antlered deer|Big game in the Rockies
 ELKS|Antlered beasts|Some fraternal lodge members
 ELLIPSE|Oval shape|Planet's orbital path
 ELM|Shade tree|Dutch ___ disease
@@ -1681,7 +1681,7 @@ EMINENT|Distinguished|___ domain (land seizure power)
 EMIR|Middle Eastern ruler|Qatari bigwig
 EMIT|Give off|Utter, as a squeal
 EMO|Angsty punk rock genre|Many a brooding teen in eyeliner
-EMOS|Angsty punk rock fans|Brooding teens in black
+EMOS|Angsty punk rock fans|My Chemical Romance fans, stereotypically
 EMOTE|Overact on stage|Wave or dance in an online game
 EMOTION|Feeling|Pathos and such
 EMPIRE|Roman or Ottoman realm|Media mogul's holdings
@@ -1690,7 +1690,7 @@ EMPRESS|Catherine the Great's title|Major Arcana card III
 EMU|Flightless bird|Outback runner
 EMUS|Flightless Australian birds|Outback runners
 ENABLE|Make possible|Turn on, as a setting
-ENACT|Pass into law|Stage, as a scene?
+ENACT|Pass into law|Stage, as a scene
 ENACTED|Passed into law|Performed, as a scene
 ENAMEL|Tooth coating|Glossy paint or nail polish
 ENCASE|Surround with a shell|Seal in concrete, say
@@ -1719,7 +1719,7 @@ ENTAIL|Involve as a consequence|Limit inheritance of, as property
 ENTER|Come in|Key on a keyboard
 ENTERED|Went in|Signed up for, as a race
 ENTERS|Goes in|Keys in
-ENTIRE|Whole|In one piece
+ENTIRE|Whole|Ungelded, as a horse
 ENTITY|Distinct being|Corporation, legally speaking
 ENTOMB|Bury in a crypt|Trap in rubble, say
 ENTREAT|Beg earnestly|Go down on one's knees to
@@ -1893,7 +1893,7 @@ FELT|Hat material|Sensed, as a draft
 FELTING|Matting wool into fabric|Craft with a barbed needle
 FEMUR|Thigh bone|Longest bone in the body
 FENDS|Wards (off)|Manages alone, with "for oneself"
-FERAL|Wild|Untamed, as alley cats
+FERAL|Wild|Savage, as a grin
 FERRET|Weasel-like pet|Dig (out), as a secret
 FERRY|River crossing boat|Shuttle, as passengers
 FERRYMAN|Boat operator crossing a river|Charon, e.g.
@@ -2050,7 +2050,7 @@ FRAMED|Wrongly set up for a crime|Worded, as a question
 FRANK|Candid|Ballpark dog
 FRAT|Campus brotherhood|Toga party host, maybe
 FRAY|Unravel at the edges|Thick of the fight
-FREE|No charge|Liberate from captivity
+FREE|Costing nothing|Liberate from captivity
 FREED|Liberated|Let off the hook
 FRESH|Newly made|Sassy, as a kid
 FRESHEST|Most recently picked|Most impudent
@@ -2058,7 +2058,7 @@ FRET|Worry anxiously|Guitar neck ridge
 FRETS|Is anxious|Bars on a mandolin's neck
 FRIED|Cooked in oil|Totally exhausted, slangily
 FRIEND|Pal|Add on social media
-FRIENDS|Pals|Close allies
+FRIENDS|Pals|Sitcom set largely in Central Perk
 FRIES|Burger go-withs|Sizzles in a skillet
 FRILL|Decorative edge|Unneeded extra
 FROG|Pond jumper|Hoarseness cause, figuratively
@@ -2134,7 +2134,7 @@ GEEKS|Nerds|Squad at a tech help desk?
 GEESE|Honking birds|Gaggle members
 GEISHA|Japanese hostess|Kyoto entertainer in a kimono
 GEL|Hair-styling goo|Come together, as a team
-GELD|Neuter, as a horse|Fix, as a colt
+GELD|Neuter, as a horse|Tax levied by Anglo-Saxon kings
 GELS|Sets, as Jell-O|Stage lighting filters
 GEM|Jeweler's stone|Real treasure
 GEMS|Jewels|Real treasures
@@ -2143,7 +2143,7 @@ GENERAL|Army officer|Vague, as terms
 GENES|DNA segments|Family inheritance, biologically
 GENESIS|Origin|First book of the Bible
 GENIE|Lamp dweller|One out of the bottle?
-GENOME|Full set of DNA|Biologist's mapping project
+GENOME|Full set of DNA|Subject of a famous mapping project
 GENRE|Category of art|Western or mystery, e.g.
 GENTLE|Mild|Not steep, as a grade
 GEODE|Crystal-lined rock|Rock that's a hollow surprise
@@ -2204,7 +2204,7 @@ GOATS|Bearded farm animals|Ones blamed for losses
 GOB|Big lump, as of goo|Sailor, in old slang
 GOD|Deity|Guitar ___ (rock virtuoso)
 GOES|Heads out|Turns, in a board game
-GOLD|Medal color|Olympic champion's prize
+GOLD|Medal color|Fort Knox stash
 GOLDEN|Like a retriever's coat|Like silence, in a saying
 GOLEM|Clay creature of legend|Mindless automaton
 GOLF|Links game|Driving pursuit?
@@ -2243,7 +2243,7 @@ GREAT|Terrific|"Oh, ___" (sarcastic remark)
 GREED|Avarice|It's good, per Gordon Gekko
 GRENADE|Pin-pulled explosive|Pineapple, in army slang
 GREW|Got bigger|Cultivated, as tomatoes
-GREY|Gray, in Britain|Earl ___ tea
+GREY|Ashen, to a Brit|Earl ___ tea
 GRIEF|Deep sorrow|Good ___!
 GRILL|Backyard cooker|Interrogate intensely
 GRILLE|Car's front grating|Speaker cover
@@ -2258,7 +2258,7 @@ GRUB|Chow|Beetle larva
 GUANO|Bat droppings|Fertilizer from seabird colonies
 GUARD|Protect|Basketball ballhandler
 GUARDS|Protects|Basketball backcourt duo
-GUAVA|Tropical fruit|Pink-fleshed fruit
+GUAVA|Tropical fruit|Pastelito filling, often
 GUEST|Party attendee|Talk show booking
 GUIDE|Tour leader|TV listings magazine
 GUILD|Craftsmen's association|Screen Actors ___
@@ -2307,7 +2307,7 @@ HALVE|Cut in two|Slash, as a budget
 HAM|Easter entree|Scenery chewer
 HAMLETS|Tiny villages|Danish princes?
 HAMPER|Picnic basket|Get in the way of
-HAMS|Holiday roasts|Scenery chewers
+HAMS|Holiday roasts|Overplays a role
 HAND|Poker holding|Round of applause
 HANDLE|Door grip|CB moniker
 HANDS|Clock pointers|Ranch workers
@@ -2340,7 +2340,7 @@ HAT|Fedora|Role, figuratively
 HATCH|Emerge from an egg|Submarine door
 HATE|Detest|Deep animosity
 HATS|Fedoras and berets|Roles, figuratively
-HATTED|Wearing a fedora, say|Topped, like a chef
+HATTED|Wearing a fedora, say|Like a top Aussie restaurant, in guide-speak
 HAUL|Tow|Big catch
 HAULS|Drags heavily|Fishing catches
 HAVE|Own|Eat, as dinner
@@ -2356,7 +2356,7 @@ HEADY|Intoxicating, as wine|Exhilarating, as early success
 HEAL|Mend|Patch up, as a rift
 HEALER|Doctor, broadly|Time, so they say
 HEALS|Gets better|Knits, as a bone
-HEAP|Pile|Rattletrap of a car?
+HEAP|Pile|Rattletrap car
 HEAR|Perceive sound|Try, as a case
 HEARS|Picks up sounds|Tries in court, as a case
 HEARSE|Funeral car|Coach for a last ride
@@ -2382,7 +2382,7 @@ HEH|Sly chuckle sound|Muted response to a joke
 HEIRESS|Woman due a fortune|Socialite with great expectations
 HEIST|Robbery|Caper film plot
 HELD|Grasped|Conducted, as elections
-HELIX|Spiral|DNA's shape, doubled
+HELIX|Spiral|Double ___ (DNA structure)
 HELL|Inferno|Dante's first stop
 HELLO|Common greeting|"Anybody home?"
 HELM|Ship's wheel|Position of control
@@ -2397,7 +2397,7 @@ HENNA|Reddish hair dye|Temporary tattoo ink
 HENS|Egg layers|Bachelorette partiers, in Britain
 HEP|In the know, old-style|Drill sergeant's count word
 HER|That woman|"___ Majesty"
-HERALD|Announce|Usher in
+HERALD|Announce|Miami daily
 HERALDS|Announces|Royal messengers
 HERB|Basil or sage|Bouquet garni bit
 HERD|Cattle group|Round up, as cats
@@ -2452,7 +2452,7 @@ HOLIER|More sacred|___-than-thou
 HOLSTER|Gun holder|Put away, as a sidearm
 HOME|Abode|___ plate
 HOMER|Ball hit over the fence|Biased ref, in slang
-HOMEY|Cozy and comfortable|Lived-in, in a good way
+HOMEY|Cozy and comfortable|Pal, in slang
 HONE|Sharpen, as a knife|Polish, as one's skills
 HONEST|Truthful|"No lie!"
 HONEY|Bee product|Term of endearment
@@ -2462,7 +2462,7 @@ HOOD|Cloak's head covering|Part lifted to check the oil
 HOODS|Parka head coverings|Gangsters, informally
 HOOK|Fishing item|Catchy chorus
 HOOP|Basketball rim|Earring shape
-HOOPLA|Noisy fuss|Fanfare surrounding a premiere
+HOOPLA|Noisy fuss|Ring-toss game at a British fair
 HOOT|Owl's call|Real laugh riot
 HOP|Bunny move|Short flight
 HOPE|Wish for|Last thing in Pandora's box
@@ -2495,11 +2495,11 @@ HUGE|Enormous|Wildly popular
 HUGEST|Most enormous|Like the top jackpot, size-wise
 HUH|"What did you say?"|"Well, how about that"
 HULA|Hawaiian dance|___ Hoop (hip toy)
-HUM|Tune without words|Bustle with activity
+HUM|Sing without words|Bustle with activity
 HUMANE|Kind and compassionate|Like a no-kill shelter
 HUMID|Muggy|Like a sauna
 HUMUS|Rich garden soil matter|Decayed leaves, eventually
-HUNKS|Thick chunks|Beefcake types
+HUNKS|Thick pieces|Beefcake types
 HUNT|Search|Fox chase
 HUNTER|One stalking game|Kind of green
 HUNTERS|Deer stalkers|Ones seeking bargains or treasure
@@ -2516,7 +2516,7 @@ HYENA|Laughing African animal|Scavenger in "The Lion King"
 HYGIENE|Personal cleanliness|Sleep ___ (bedtime habits)
 HYGIENIC|Sanitary|Fit for an operating room
 HYPE|Overblown publicity|Get (someone) pumped, with "up"
-HYPER|Overly energetic|Bouncing off the walls
+HYPER|Overly energetic|Prefix with link or text
 HYPO|Syringe, informally|Darkroom fixer solution
 IAMB|Poetic foot|da-DUM, metrically
 IBEX|Wild mountain goat|Alpine climber with curved horns
@@ -2580,7 +2580,7 @@ INFO|Data, briefly|Desk sign at a mall
 INGOT|Gold bar|Brick in a vault
 INGRATE|One who never says thanks|Biter of the hand that feeds
 INGRESS|Act of entering|Property-law right of entry
-INHALE|Breathe in|Wolf down, informally
+INHALE|Draw breath|Wolf down, informally
 INK|Pen filler|Sign, as a deal
 INKED|Tattooed|Signed, as a contract
 INKIER|Darker, as night skies|More stained by a leaky pen
@@ -2598,17 +2598,17 @@ INNS|Roadside lodgings|Stops for stagecoaches
 INPUT|Contribution of ideas|What a keyboard provides
 INSANE|Wildly unreasonable|Off-the-charts good, in slang
 INSECTS|Six-legged creatures|Entomologists' subjects
-INSERT|Put in|Newspaper circular
+INSERT|Slide into place|Newspaper circular
 INSIDE|Within|Behind bars, slangily
 INSIGNIA|Military badges|Stripes and stars, e.g.
-INSTEAD|As a replacement|In lieu
+INSTEAD|As a replacement|Alternatively
 INSULT|Put-down|Add ___ to injury
 INSURE|Cover with a policy|Make certain of
 INTACT|Undamaged|Not broken, as a streak
 INTAKE|Amount consumed|Hospital admissions process
 INTENT|Purpose|Totally focused
 INTERNAL|Inside|Like a company memo, maybe
-INTO|Toward the inside of|Keen on
+INTO|Walk ___ a room|Keen on
 INTONE|Chant solemnly|Speak with a drone
 INTRO|Opening part, briefly|Bit before the first verse
 INTUIT|Sense without proof|Know without being told
@@ -2693,7 +2693,7 @@ KEELS|Hull backbones|Topples (over)
 KEEP|Hold onto|Castle stronghold
 KEG|Beer barrel|Powder ___
 KEGS|Beer barrels|Frat party purchases
-KEN|Range of knowledge|Beyond one's ___
+KEN|Range of knowledge|Barbie's longtime beau
 KEPI|French military cap|Legionnaire's flat-topped headgear
 KEPT|Held on to|Stayed fresh
 KERNEL|Corn piece|Core of an operating system
@@ -2720,7 +2720,7 @@ KITES|Windy-day flyers|Birds of prey
 KITS|Model-building sets|Baby foxes
 KITTEN|Young cat|Litter member
 KITTENS|Young cats|Have ___ (freak out)
-KIWI|Fuzzy green fruit|New Zealander, informally?
+KIWI|Fuzzy green fruit|New Zealander, informally
 KNACK|Special talent|Trick of doing something
 KNAVE|Rogue|Jack, in old card games
 KNEAD|Work dough|Massage deeply
@@ -2739,7 +2739,7 @@ KNOW|Be aware|Have down cold
 KNOWN|Familiar|A ___ quantity
 KOALA|Eucalyptus eater|Marsupial "bear"
 KOALAS|Eucalyptus-eating marsupials|Aussie tree huggers?
-KOI|Pond fish|Colorful carp in Japanese gardens
+KOI|Pond fish|Fish that sounds bashful?
 KUDO|Bit of praise|Single pat on the back
 KUDU|African antelope|Spiral-horned savanna browser
 LAB|Scientist's workplace|Retriever, for short
@@ -2803,11 +2803,11 @@ LASTED|Went the distance|Held up
 LATCH|Gate fastener|Grab hold, with "on"
 LATE|Tardy|Recently deceased
 LATER|Afterward|Casual goodbye
-LATEST|Most recent|At the ___ (no later than)
+LATEST|Most recent|At the ___ (by then, tops)
 LATHE|Woodturning machine|Shaper of table legs
 LATHERS|Suds up|Sweaty froths on racehorses
 LATTE|Espresso and steamed milk drink|Barista's canvas for foam art
-LATTES|Cafe orders|Drinks with milk hearts on top
+LATTES|Milky espresso drinks|Drinks with milk hearts on top
 LAUGH|Chuckle|Real hoot
 LAUREL|Bay leaf source|Symbol of victory in ancient Greece
 LAVA|Volcanic flow|The floor, in a kids' game
@@ -2823,7 +2823,7 @@ LAY|Place down|Minstrel's song
 LAYER|Tier|Egg producer
 LAYS|Sets down|Produces, as eggs
 LAZY|Idle|___ Susan
-LEA|Meadow|Poetic pasture
+LEA|Meadow|Where the lowing herd winds, in Gray's "Elegy"
 LEAD|Pencil material|Front position
 LEADER|One in front|Head of state, say
 LEADING|In front|___ question
@@ -2860,7 +2860,7 @@ LEGGY|Long-limbed|Built like a runway model
 LEGIT|Genuine, slangily|On the up and up
 LEGS|Limbs|Staying power
 LEI|Hawaiian garland|Aloha gift
-LEIS|Luau necklaces|Flowery greetings at Honolulu
+LEIS|Luau necklaces|Flowery greetings in Honolulu
 LEMON|Sour citrus fruit|Dud car
 LEMUR|Madagascar primate|Big-eyed ring-tailed climber
 LEND|Loan|Give, as a hand
@@ -2913,7 +2913,7 @@ LIMB|Arm or leg|Risky place to go out on
 LIME|Green citrus fruit|Mortar ingredient
 LIMIT|Maximum allowed|What the sky is, idiomatically
 LIMO|Stretch car|Prom night ride
-LINE|Queue|Actor's memorization
+LINE|Queue|Pickup ___ (bar opener)
 LINEAGE|Ancestry|What a pedigree documents
 LINEAL|Directly descended|Like father-to-son succession
 LINEAR|Sequential, as a process|Like y = 2x + 1
@@ -3042,7 +3042,7 @@ LYRIC|Song word|Expressive, as poetry
 LYSE|Burst, as a cell|Undergo dissolution, in a biology lab
 MACE|Spiked medieval club|Spice from nutmeg's coating
 MACHINES|Mechanical devices|Political groups run by bosses
-MACHO|Overly manly|Like a tough-guy pose
+MACHO|Overly manly|___ Man (Village People hit)
 MACRO|Large-scale, as economics|Spreadsheet time-saver
 MAD|Furious|Totally nuts
 MADAM|Polite address for a woman|Palindromic form of address
@@ -3111,8 +3111,8 @@ MARKETS|Grocery stores|Promotes and sells
 MARKS|Grades on tests|Con artists' targets
 MARLIN|Big-game fish|Nemo's dad
 MAROON|Dark reddish-brown|Strand on an island
-MARRIED|Wed|Got hitched
-MARRY|Wed|Combine, as flavors
+MARRIED|Wed|Blended, as flavors
+MARRY|Tie the knot|Combine, as flavors
 MARSH|Wetland|___mallow (s'mores staple)
 MARTIN|Bird that nests in eaves|Purple ___ (bird)
 MARTINET|Strict disciplinarian|Drill sergeant type
@@ -3198,13 +3198,13 @@ MERIT|Worth|Be worthy of
 MERITS|Deserves|Strong points
 MERMAID|Half-fish sea maiden|Andersen's little heroine
 MERMAN|Male sea creature of legend|Triton, for one
-MERRY|Jolly|Like a ___-go-round
+MERRY|Jolly|A bit tipsy, to a Brit
 MESA|Flat-topped hill|Table, in Tijuana
 MESH|Net fabric|Fit together
 MESS|Disarray|Army dining hall
 MESSAGES|Texts, e.g.|Morals of stories
 MESSES|Disorderly states|Shipboard meals
-MESSIER|Less tidy|More tangled, as a situation
+MESSIER|Less tidy|French comet hunter with a famous catalog
 MESSY|Untidy|Complicated, as a breakup
 MET|Came across|Satisfied, as demands
 METAL|Iron or tin|Heavy rock genre
@@ -3244,7 +3244,7 @@ MINUTE|Sixty seconds|Ultrasmall
 MIRE|Swampy muck|Bog down
 MIRROR|Reflector|Mimic exactly
 MIRRORS|Reflecting glasses|Smoke and ___
-MISDEAL|Card dealing error|Reason to reshuffle
+MISDEAL|Card distribution error|Reason to reshuffle
 MISLEAD|Deceive|Point the wrong way
 MISS|Fail to hit|Young lady
 MISSHAPEN|Deformed|Lumpy, like a homemade pot
@@ -3263,14 +3263,14 @@ MOB|Unruly crowd|Swarm around
 MOCHA|Coffee and chocolate|Shade of brown
 MOD|Stylish, in '60s London|Message board monitor, for short
 MODE|Way of doing things|Most frequent value in data
-MODERN|Up to date|Of the present age
+MODERN|Up to date|___ Family (ABC sitcom)
 MODES|Transportation options, e.g.|Phone settings like 'airplane'
 MODS|Fan-made game tweaks|Rivals of '60s rockers
 MOIETY|One of two equal parts|Share, in formal writing
 MOIST|Slightly wet|Like a good cake
 MOISTURE|Dampness|What a dehumidifier removes
 MOLD|Bread growth|Gelatin shaper
-MOLDY|Like old bread|Like forgotten leftovers
+MOLDY|Like old bread|Hopelessly old-fashioned
 MOLE|Burrowing mammal|Double agent
 MOLES|Lawn tunnelers|Chemistry units
 MOLT|Shed feathers|Outgrow one's skin, as a snake
@@ -3290,7 +3290,7 @@ MOPE|Act glum|Gloomy Gus
 MOPED|Sulked|Motorized bike
 MOPES|Sulks|Sad sacks
 MOPS|Cleans the floor|Wipes, as a brow
-MORAINE|Glacial debris|Ice age leftover ridge
+MORAINE|Glacial debris|Banff's ___ Lake
 MORAL|Lesson of a fable|Ethical
 MORE|Additional|Cry for an encore
 MORGUE|Body storage room|Newspaper's archive
@@ -3303,7 +3303,7 @@ MOTE|Speck of dust|Sunbeam floater
 MOTEL|Roadside inn|Place with a vacancy sign
 MOTH|Flame seeker|Closet pest
 MOTION|Movement|Proposal from the floor
-MOTTO|Slogan|Words to live by
+MOTTO|Slogan|E pluribus unum, for one
 MOUNT|Climb onto|Knight's steed
 MOUNTED|Got on a horse|Increased steadily, as tension
 MOURN|Grieve|Wear black for, perhaps
@@ -3419,7 +3419,7 @@ NICHE|Alcove|Market segment
 NIECE|Sibling's daughter|Aunt's charge, perhaps
 NIGHT|Dark time|Opening ___ (premiere)
 NIL|Zero|Nada, to a Brit
-NINE|Baseball team size|Dressed to the ___
+NINE|Baseball team size|Cloud ___ (bliss)
 NINJA|Stealthy warrior|Black-clad assassin of legend
 NINTH|After eighth|Beethoven's last symphony
 NIP|Small bite|Chill in the air
@@ -3449,10 +3449,10 @@ NOS|Negative votes|Numbers, for short
 NOSE|Smeller|Narrow margin at the track?
 NOSEY|Snooping|Apt to eavesdrop
 NOSH|Snack|Grab a bite
-NOSTRIL|Nose opening|Flared feature
+NOSTRIL|Nasal opening|Flared feature
 NOSY|Prying|Like a busybody
 NOT|Negation word|"Just kidding!"
-NOTABLE|Worth noting|Big name
+NOTABLE|Remarkable|Big name
 NOTCH|V-shaped cut|A ___ above the rest
 NOTE|Brief message|Sheet music symbol
 NOTED|Famous|Jotted down
@@ -3619,7 +3619,7 @@ OTTERS|Playful river swimmers|Kelp-bed floaters
 OUGHT|Should|Is morally bound to
 OUNCE|Small weight|Shred, as of decency
 OUR|Belonging to us|"___ Father, who art..."
-OURS|Belonging to us|"Your place or ___?"
+OURS|Not theirs|"Your place or ___?"
 OUST|Remove from office|Show the door
 OUSTER|Removal from power|Coup result
 OUT|Not in|Retired, in baseball
@@ -3646,10 +3646,10 @@ OVEREAT|Have too much food|Go back for thirds
 OVERHEAR|Listen in unintentionally|Catch in passing
 OVERLIE|Rest on top of|Cover, as rock strata
 OVERRUN|Swarm over|Go past the time limit
-OVERSELL|Hype too much|Book beyond capacity, as a flight
+OVERSELL|Hype too much|Move more tickets than there are seats
 OVERT|Not hidden|Done in plain sight
 OVIDUCT|Egg-carrying tube|Fallopian tube, technically
-OVOID|Oval solid|Like a rugby ball, roughly
+OVOID|Egg-shaped solid|Like a rugby ball, roughly
 OWE|Be in debt|Be beholden to
 OWED|Was indebted to|Credited, as one's success
 OWES|Is in debt|Has a tab running
@@ -3671,7 +3671,7 @@ PACT|Agreement|Nonaggression ___
 PAD|Writing tablet|Bachelor's digs
 PADDED|Cushioned|Inflated, as an expense report
 PADDLE|Canoe oar|Ping-Pong item
-PADDLES|Canoe propellers|Ping-pong gear
+PADDLES|Canoe propellers|Ping-Pong gear
 PADDY|Rice field|Flooded field
 PAGAN|Worshipper of many gods|Solstice celebrant, perhaps
 PAGE|Book leaf|Summon over the PA
@@ -3731,7 +3731,7 @@ PARSE|Analyze grammatically|Read, as a compiler does
 PARSEC|About 3.26 light-years|Han Solo's famous distance unit
 PART|Piece|Hair dividing line
 PARTIES|Festive gatherings|Sides in a lawsuit
-PARTNER|Business associate|Dance pairing
+PARTNER|Business associate|One of two in a tango
 PARTS|Components|Hair divisions
 PARTY|Celebration|Litigant, e.g.
 PASCHAL|Relating to Easter|Like a certain lamb
@@ -3934,7 +3934,7 @@ PLEASE|Polite request word|Go over well with
 PLEASED|Satisfied and glad|Tickled pink
 PLEB|Commoner, informally|One lacking class?
 PLED|Begged|Entered 'no contest,' e.g.
-PLEDGE|Solemn promise|Frat hopeful
+PLEDGE|Promise to donate|Frat hopeful
 PLENTY|A lot|What a cornucopia's horn holds?
 PLIED|Worked steadily at, as a trade|Kept refilling, as with drinks
 PLOD|Walk heavily|Grind away at dull work
@@ -4012,7 +4012,7 @@ POSTMAN|Mail carrier|He 'always rings twice' in a film title
 POSTS|Fence uprights|Puts on social media
 POT|Stew vessel|Poker kitty
 POTABLE|Safe to drink|Like properly treated water
-POTATO|Spud|Couch ___
+POTATO|Spud|Vodka source, at times
 POTS|Cooking vessels|Poker winnings
 POTTERS|Clay workers|Dawdles, with 'about'
 POUCH|Kangaroo feature|Tobacco carrier
@@ -4049,7 +4049,7 @@ PRESENT|Gift|Here and now
 PRESS|Iron|Reporters collectively
 PRETTY|Attractive|___ penny (lots of money)
 PREWAR|Before the fighting began|Like some classic Manhattan apartments
-PREY|Hunted animal|Weigh (on), as worries?
+PREY|Hunted animal|Weigh (on), as worries
 PREYS|Hunts for food, with 'on'|Weighs heavily, with 'on'
 PRICE|Sticker figure|Toll paid for success
 PRICED|Tagged with a cost|Shopped around, comparing tags
@@ -4071,7 +4071,7 @@ PROD|Poke|Cattle-driving tool
 PROM|High school dance|Corsage occasion
 PROMO|Ad, informally|Trailer, e.g.
 PRONE|Lying face down|Inclined (to)
-PRONG|Fork point|Part of a three-___ attack
+PRONG|Fork point|Electrical plug part
 PROOF|Evidence|Alcohol strength measure
 PROP|Theater object|Hold up, as a sagging shelf
 PROS|Seasoned veterans|Upsides of a decision
@@ -4084,7 +4084,7 @@ PROXY|Stand-in|Absentee shareholder's vote
 PRUNE|Dried plum|Trim, as a hedge
 PRUNED|Trimmed, as a hedge|Streamlined, as a list
 PRY|Snoop|Lever open
-PSALM|Sacred song|Twenty-third, e.g
+PSALM|Sacred song|Twenty-third, e.g.
 PSEUDO|Pretended; not genuine|Like a wannabe intellectual
 PSHAW|Old-fashioned 'Nonsense!'|Cry of a dismissive grandpa
 PSI|Greek letter before omega|Tire pressure unit
@@ -4157,7 +4157,7 @@ RADIAL|Kind of tire|Spreading out like spokes
 RADIO|Dashboard device|Call in, as backup
 RADIOS|Car dashboard items|Walkie-talkies and such
 RADISH|Red root vegetable|Garnish that's often rosette-cut
-RADS|Radiation units|Dosimeter readings
+RADS|Radiation units|Heating units, to Brits
 RAFT|River float|Lots, as in "a ___ of problems"
 RAFTER|Roof beam|Whitewater enthusiast
 RAFTS|Floating platforms|Large amounts, informally
@@ -4165,7 +4165,7 @@ RAG|Cleaning cloth|Tease mercilessly
 RAGE|Fury|Latest craze
 RAGGED|Tattered|Run ___ (exhausted)
 RAGS|Dusting cloths|Teases
-RAGTIME|Scott Joplin's music|Syncopated piano style
+RAGTIME|Scott Joplin's music|Doctorow novel set in 1900s New York
 RAH|Cheer word|Half of a cheer?
 RAHS|Stadium cheers|Pep rally sounds
 RAID|Surprise attack|Plunder, as a fridge
@@ -4222,7 +4222,7 @@ RAVEL|Tangle up|Unwind, paradoxically
 RAVEN|Poe's bird|Glossy black, as hair
 RAVINE|Deep narrow valley|Spot for a rope bridge
 RAW|Uncooked|Chafed and sore
-RAY|Manta or sun beam|Glimmer, as of hope
+RAY|Beam of light|Glimmer, as of hope
 RAYON|Silky fiber|Viscose fabric
 REACH|Stretch toward|Arm span
 REACT|Respond|Undergo a chemical change
@@ -4284,7 +4284,7 @@ REED|Oboe part|Marsh plant
 REEDS|Marsh plants|Oboe mouthpieces
 REEDY|Full of marsh grass|Thin-sounding, as a voice
 REEF|Coral ridge|Shorten, as a sail
-REEK|Smell awful|Strongly suggest, as of corruption
+REEK|Smell awful|Strongly suggest, with "of"
 REEKS|Stinks|Smacks strongly (of)
 REEL|Fishing rod attachment|Stagger dizzily
 REELS|Film spools|Lively Scottish dances
@@ -4359,7 +4359,7 @@ RESIGN|Quit one's job|Concede a chess game
 RESIN|Sticky tree secretion|Amber source
 RESINOUS|Like pine sap|Characteristic of frankincense
 RESISTS|Fights back against|Says no to dessert, say
-RESIZE|Make bigger or smaller|Have a jeweler adjust, as a ring
+RESIZE|Make bigger or smaller|Adjust, as a ring that's too tight
 RESOLVE|Determination|Work out
 RESORT|Vacation spot|Last ___
 RESORTS|Vacation destinations|Turns (to) out of need
@@ -4369,7 +4369,7 @@ RESPOND|Answer|Write back
 REST|Take a nap|Whatever's left over
 RESTED|Took a break|Concluded, as a legal case
 RESTING|Taking five|At ease
-RESTORE|Bring back|Reboot to factory settings
+RESTORE|Bring back|Put back on the throne
 RESTS|Takes breaks|Musical silences
 RESULT|Outcome|Arise (from)
 RESULTS|Outcomes|Lab report contents
@@ -4424,7 +4424,7 @@ RIFE|Widespread|Crawling, as with rumors?
 RIFFLE|Shuffle cards|Thumb through pages
 RIFLE|Hunter's firearm|Rummage (through)
 RIFLEMAN|Infantry sharpshooter|'The ___' (classic TV western)
-RIFT|Split|Falling-out between friends
+RIFT|Break in a friendship|Great ___ Valley
 RIG|Big truck|Fix, as an election
 RIGHT|Correct|Entitlement, like free speech
 RIGID|Stiff|Strict about rules
@@ -4481,9 +4481,9 @@ RODE|Went on horseback|Teased mercilessly
 RODENT|Mouse or rat|Capybara, e.g.
 RODEO|Bronco-riding event|Cattle roundup, originally
 RODS|Fishing poles|Retina cells
-ROE|Fish eggs|Sturgeon's caviar
+ROE|Fish eggs|Small Eurasian deer
 ROES|Fish egg masses|Small deer
-ROGUE|Scoundrel|Going ___ (acting alone)
+ROGUE|Unprincipled rascal|Going ___ (acting alone)
 ROLE|Part in a play|Function on a team
 ROLES|Movie parts|Job functions
 ROLL|Bread item|Register of names
@@ -4514,7 +4514,7 @@ ROTTED|Decayed|Languished, as in a cell
 ROUE|Rake|Wheel, to a Parisian
 ROUGH|Not smooth|Long grass off the fairway
 ROUSE|Wake up|Stir to action
-ROUT|Crushing defeat|Root around, like a pig
+ROUT|Crushing defeat|Dig with the snout, as a pig
 ROUTE|Path|Paper carrier's assignment
 ROUTER|Wi-Fi device|Woodworking tool
 ROUTES|Delivery paths|Sends along
@@ -4539,7 +4539,7 @@ RULE|Law|Hold sway over
 RULER|Straightedge|Reigning monarch
 RULERS|Kings and queens|Desk drawer measurers
 RULES|Regulations|Reigns supreme
-RUM|Pirate's drink|Mojito spirit
+RUM|Pirate's drink|Odd, to a Brit
 RUMBA|Latin ballroom dance|Afro-Cuban drumming style
 RUMOR|Unconfirmed report|Mill product?
 RUMP|Hindquarters|Remaining faction after a split
@@ -4558,13 +4558,13 @@ RUSHES|Hurries|Daily film footage
 RUSK|Hard, dry biscuit|Teething toddler's treat
 RUSSET|Reddish-brown|Idaho potato variety
 RUST|Iron oxide|Lose sharpness from disuse
-RUSTY|Needing oil|Out of practice
+RUSTY|Corroded, as old nails|Out of practice
 RUT|Wheel track|Humdrum routine
 RUTS|Grooves in a dirt road|Monotonous routines
 RYE|Deli bread|Whiskey grain
 RYES|Deli breads|Whiskeys in Manhattans
 SABER|Cavalry sword|Something to rattle?
-SABLE|Luxurious fur|Black, poetically
+SABLE|Dark, costly fur|Black, poetically
 SABOT|Wooden shoe|Sleeve around some tank shells
 SAC|Pouch in a plant or animal|Squid's ink holder
 SACS|Pouches|Spiders' egg holders
@@ -4592,7 +4592,7 @@ SAILS|Jib and spinnaker|Glides effortlessly
 SAINT|Holy person|Very patient person
 SAINTED|Canonized|My ___ mother (revered late parent)
 SAINTS|Canonized ones|Very patient people
-SAKE|For Pete's ___|Rice wine
+SAKE|Japanese rice wine|Benefit
 SAKES|For goodness' ___|Rice wines at sushi bars
 SALAD|Lettuce dish|___ days (youthful heyday)
 SALADS|Caesar and Cobb, e.g.|Jumbled mixtures, figuratively
@@ -4612,7 +4612,7 @@ SALUTE|Military greeting|Raise a glass to
 SALVE|Soothing ointment|Ease, as a conscience
 SALVO|Volley of gunfire|Opening shot in a debate
 SAMBA|Ballroom dance from Brazil|Rio Carnival rhythm
-SAMPLE|Taste test|Use part of a song in another
+SAMPLE|Free taste at a store|Use part of a song in another
 SAMPLES|Free tastes|Borrows beats from, in hip-hop
 SAND|Beach material|Smooth, as wood
 SANDAL|Summer shoe|Flip-flop or huarache
@@ -4620,7 +4620,7 @@ SANDALS|Beach footwear|Birkenstocks, for example
 SANDED|Smoothed with paper|Treated an icy road
 SANDING|Smoothing wood|Prep before staining
 SANDS|Beach grains|The ___ of time
-SANE|Rational|Sensible, as a plan
+SANE|Rational|Compos mentis
 SANER|More rational|Less hectic, as a schedule
 SANG|Performed vocally|Squealed to the cops
 SAP|Tree fluid|Drain, as energy
@@ -4644,8 +4644,8 @@ SAUTE|Pan-fry|Ballet jump
 SAVE|Rescue|Goalie's highlight
 SAVED|Rescued|Set aside, as cash
 SAVIOR|Rescuer|Last-minute hero
-SAVOR|Enjoy slowly|Linger over, as a moment
-SAVORED|Relished|Lingered over, as a moment
+SAVOR|Enjoy slowly|Smack (of)
+SAVORED|Relished|Smacked (of)
 SAW|Toothed cutting tool|Old adage
 SAWED|Cut lumber|Played a fiddle roughly
 SAWS|Carpenters' cutters|Old adages
@@ -4674,7 +4674,7 @@ SCARCE|In short supply|Make oneself ___ (leave)
 SCARE|Frighten|Close call, health-wise
 SCARF|Winter neck warmer|Wolf (down)
 SCARLET|Bright red|___ letter
-SCARY|Spine-chilling|Like a haunted house
+SCARY|Spine-chilling|___ Spice (Mel B)
 SCENE|Movie segment|Embarrassing public display
 SCENERY|Landscape|Stage backdrop
 SCENES|Parts of a play's acts|Embarrassing public outbursts
@@ -4714,7 +4714,7 @@ SEARED|Browned in a hot pan|Branded, as on one's memory
 SEARING|Intensely hot|Scathing, as criticism
 SEARS|Scorches|Dries up, as desert heat does
 SEAS|Oceans|Great multitudes, as of faces
-SEASIDE|Beach area|By the shore
+SEASIDE|Beach area|Like Atlantic City's boardwalk
 SEASON|Summer or winter|Add pepper to
 SEASONS|Spring and fall|Salts and peppers
 SEAT|Chair or stool|Place in Congress
@@ -4732,7 +4732,7 @@ SECS|Short moments, for short|Parts of a min
 SECT|Religious offshoot|Group with its own creed
 SECTION|Part|Orchestra division
 SECTOR|Area of the economy|Pie slice, geometrically
-SECTS|Religious factions|Dissenting denominations
+SECTS|Religious factions|Shakers and Amish, e.g.
 SECULAR|Not religious|Long-term, as an economic trend
 SECURE|Safe and protected|Obtain, as a deal
 SEDAN|Four-door car|Chair carried on poles
@@ -4769,7 +4769,7 @@ SEMI|Eighteen-wheeler|Final four contest, for short
 SENATE|Upper chamber|Body with 100 members
 SENATOR|Capitol Hill figure|Six-year officeholder
 SEND|Mail off|Delight, as music might
-SENDING|Mailing|Shipping out
+SENDING|Mailing|Thrilling, in old slang
 SENILE|Affected by age-related decline|Of old age, medically
 SENIOR|Fourth-year student|Discount-eligible diner, maybe
 SENSATE|Capable of feeling|Not numb
@@ -4787,11 +4787,11 @@ SERAPH|Six-winged angel|Cherub's higher-ranking colleague
 SERENE|Calm and peaceful|Like a lake with no ripples
 SERF|Feudal laborer|Drudge, figuratively
 SERFS|Medieval peasants|Lord's workforce
-SERIAL|Like a number on a product|Story told in installments
+SERIAL|___ number (product ID)|Story told in installments
 SERIES|TV show with episodes|World ___ (October event)
 SERIF|Font's little stroke|Times New Roman feature
 SERIOUS|Not joking|Grave, as a situation
-SERRATE|Notched like a saw|Like a bread knife's edge
+SERRATE|Notched like a saw|Like many leaf margins
 SERUM|Truth ___|Skin care treatment
 SERVANT|Butler, e.g.|Civil ___
 SERVE|Wait on|Start a tennis point
@@ -4835,7 +4835,7 @@ SHAPE|Circle or square, e.g.|Mold, as clay
 SHARD|Sharp fragment of glass|Pottery remnant at a dig
 SHARK|Jaws creature|Pool hustler
 SHAVE|Use a razor|Cut slightly, as a price
-SHAWL|Wrap for the shoulders|Pashmina, e.g
+SHAWL|Wrap for the shoulders|Pashmina, e.g.
 SHE|Female pronoun|Ship, pronominally
 SHEA|___ butter (lotion ingredient)|African tree with oily nuts
 SHEAF|Bundle of wheat|Stack of papers, perhaps
@@ -4926,7 +4926,7 @@ SIN|Moral lapse|Gluttony, for one
 SINCE|From then on|Seeing as
 SINE|Trig function|___ qua non
 SINEWS|Tendons|Sources of strength
-SING|Carry a tune|Rat out
+SING|Carry a tune|Squeal to the cops
 SINGE|Burn slightly|Mishap with a curling iron
 SINGER|Choir member|Informant, slangily
 SINGERS|Choir members|Crooners and belters
@@ -4974,7 +4974,7 @@ SKITS|Comedy sketches|SNL segments
 SKY|Blue above|Pie in the ___
 SLAB|Thick piece|Concrete foundation
 SLABS|Thick slices|Concrete foundations
-SLAG|Smelting waste|Heap seen near old mines
+SLAG|Smelting waste|Cinder-like volcanic rock
 SLAIN|Killed|Like a dragon in legend
 SLAM|Shut loudly|Pan harshly
 SLANG|Informal speech|Lingo like 'rizz'
@@ -4989,14 +4989,14 @@ SLAW|Cabbage side dish|Picnic shreds?
 SLAY|Kill, as a dragon|Totally impress, slangily
 SLAYER|Dragon killer|Buffy, notably
 SLED|Snow rider|Rosebud, famously
-SLEDGE|Heavy hammer|Horse-drawn snow cart
+SLEDGE|Heavy hammer|Horse-drawn sleigh
 SLEDS|Toboggans|Coasts on snow
 SLEEK|Smooth|Like a sports car's lines
 SLEEP|Nightly rest|Eye crust, informally
 SLEEPER|Overnight train car|Surprise hit
 SLEEPS|Catches some Z's|Has beds for, as a cabin
 SLEET|Icy rain|Winter storm mix
-SLEETS|Falls as icy rain|Glazes the windshield, weather-wise
+SLEETS|Falls as icy rain|Pelts the windshield, weather-wise
 SLEEVE|Arm covering|Record jacket
 SLEEVES|Shirt arm parts|Record jackets
 SLENDER|Thin|Slim, as odds
@@ -5035,7 +5035,7 @@ SLY|Cunning|On the ___ (secretly)
 SLYER|More cunning|Even more foxlike?
 SLYLY|Cunningly|With a wink, maybe
 SMALL|Tiny|Petty and mean
-SMALLER|Not as big|Lesser in scale
+SMALLER|Not as big|Like a dime, next to a nickel
 SMART|Intelligent|Sting, as a wound
 SMARTEN|Spruce, with 'up'|Get wiser, with 'up'
 SMARTY|Know-it-all|Pants-wearing wise guy?
@@ -5079,7 +5079,7 @@ SNOB|Elitist|Coffee purist, say
 SNORE|Sleeper's sound|Real bore, slangily
 SNORED|Breathed loudly while asleep|Sawed wood?
 SNORT|Piggy sound|Quick shot of whiskey
-SNOTTY|Haughty and rude|Upturned-nose kind?
+SNOTTY|Haughty and rude|Like a toddler with a cold
 SNOUT|Pig's nose|Schnoz, so to speak
 SNOW|Winter flakes|Con with smooth talk
 SNOWED|Fell as flakes|Fooled with fast talk
@@ -5103,7 +5103,7 @@ SOFT|Not hard|Lenient, as a judge
 SOGGY|Soaked|Like cereal left too long
 SOIL|Garden dirt|Make dirty
 SOIREE|Evening party|Fancy do after dark
-SOLACE|Comfort|Balm for grief
+SOLACE|Consolation|Balm for grief
 SOLAR|Of the sun|Like some roof panels
 SOLD|Exchanged for money|Auctioneer's cry
 SOLDER|Join metal with heat|Alloy for joining wires
@@ -5135,7 +5135,7 @@ SORREL|Reddish-brown horse|Lemony salad green
 SORROW|Deep sadness|Parting's 'sweet' partner
 SORRY|Apologetic|Pathetic, as an excuse
 SORT|Classify|Kind, as in "of a ___"
-SORTED|Put in order|Taken care of, in British slang
+SORTED|Grouped by type|Taken care of, in British slang
 SORTER|Organizer by category|Laundry-day helper, maybe
 SORTING|Putting in order|Separating laundry
 SORTS|Types|Out of ___ (grumpy)
@@ -5162,7 +5162,7 @@ SPAR|Box for practice|Ship's mast or boom
 SPARE|Extra|Show mercy to
 SPARED|Held back from harm|Shown mercy
 SPARES|Extra tires|Shows mercy to
-SPARING|Frugal|Stingy (with)
+SPARING|Frugal|Showing mercy to
 SPARK|Flash of fire|Ignite, as interest
 SPARKLE|Twinkle brightly|Lively wit and charm
 SPARRED|Boxed for practice|Argued playfully
@@ -5191,7 +5191,7 @@ SPELL|Witch's incantation|Stretch of time
 SPELLER|Bee contestant|Classroom word book of old
 SPELT|Ancient wheat grain|Wrote letter by letter, in Britain
 SPEND|Pay out|Pass, as a weekend
-SPENDER|Big shopper|Big ___
+SPENDER|Big shopper|British poet Stephen
 SPEW|Gush out|Rant out, as vitriol
 SPEWS|Gushes forth|Rattles off, as insults
 SPHERES|Globes|Areas of influence
@@ -5215,7 +5215,7 @@ SPLASHING|Playing in puddles|Displaying prominently, as headlines
 SPLAT|Sound of a dropped tomato|Back slat of a chair
 SPLATTER|Spray messily|Gory horror subgenre
 SPLICE|Join rope ends|Edit, as DNA
-SPLIT|Divide|Bowler's 7-10, e.g
+SPLIT|Divide|Bowler's 7-10, e.g.
 SPLITS|Divides in two|Gymnast's feat, with 'the'
 SPOIL|Go bad|Overindulge, as a child
 SPOILED|Rotten|Indulged too much
@@ -5226,7 +5226,7 @@ SPONDEE|Poetic foot of two stresses|'Hum-drum' foot in verse
 SPONGE|Dish scrubber|Live off others
 SPONSOR|Financial backer|Bill's introducer in Congress
 SPOOF|Parody|Fake, as a caller ID
-SPOON|Soup utensil|Cuddle, side by side
+SPOON|Soup utensil|Cuddle, front to back
 SPOONS|Soup utensils|Cuddles closely in bed
 SPORE|Fungus seed|Fern's seed equivalent
 SPORRAN|Kilt pouch|Furry Highland purse
@@ -5248,7 +5248,7 @@ SPRY|Quick on one's feet|Lively for one's age
 SPUDS|Potatoes|Mr. Potato Head's kin?
 SPURS|Cowboy boot attachments|Prompts to act
 SPURT|Sudden gush|Growth burst in a teen
-SPUTTER|Stall and cough, as an engine|Stammer in anger
+SPUTTER|Cough and pop, as an engine|Stammer in anger
 SPY|Secret agent|Make out in the distance?
 SPYGLASS|Pirate's telescope|Captain's extendable eye?
 SQUARE|Four-sided shape|Unhip type
@@ -5286,10 +5286,10 @@ STAPLE|Office fastener|Pantry essential
 STAR|Celebrity|Keyboard asterisk
 STARCHY|Like potatoes|Stiff and formal
 STARE|Look fixedly|Death ___ (intimidating look)
-STARED|Gawked|Fixed one's gaze
+STARED|Gawked|___ down (won a face-off)
 STARK|Bleak|___ naked
 STARLESS|Like a cloudy night sky|Lacking celebrities, as a cast
-STARS|Night sky lights|Headlines, as a film
+STARS|Night sky lights|Has top billing
 START|Begin|Jump in surprise
 STARTED|Began|Jumped in surprise
 STARTER|Appetizer|Ignition part
@@ -5366,7 +5366,7 @@ STOMPS|Tramps heavily|Routs, informally
 STONE|Pebble or rock|British weight unit
 STONES|Small rocks|Some kidney problems
 STONING|Ancient punishment|Pitting, as cherries
-STOOD|Was upright|Put up with
+STOOD|Was upright|Ran for office, in Britain
 STOOL|Bar seat|Milking aid
 STOOP|Bend over|Front step
 STOP|Halt|Organ knob
@@ -5376,7 +5376,7 @@ STORAGE|Attic use|Cloud offering
 STORE|Shop|Squirrel away
 STORED|Put away|Kept in reserve
 STORES|Shops|Squirrels away
-STORIES|Tales|Tall tales
+STORIES|Tales|Skyscraper levels
 STORK|Long-legged wading bird|Fabled baby courier
 STORM|Tempest|Charge, as a castle
 STORMS|Tempests|Takes by force
@@ -5388,7 +5388,7 @@ STRAGGLE|Lag behind|Grow untidily, as hair
 STRAIN|Tax to the limit|Pull, as a muscle
 STRAINS|Tries too hard|Musical passages
 STRAND|Single hair|Leave high and dry
-STRANDS|Leaves helpless|Single hairs
+STRANDS|Threads in a rope|Leaves high and dry
 STRANGE|Odd|Unfamiliar, as surroundings
 STRAP|Watch band|Secure with a belt
 STRAPLESS|Like some gowns|Like a tube top
@@ -5416,7 +5416,7 @@ STRINGS|Violin parts|Hidden conditions
 STRIPE|Zebra feature|Kind or sort
 STRIPED|Like a zebra|Like a barber pole
 STRIPS|Takes off clothes|Funny pages fixtures
-STRIVES|Tries hard|Makes an effort
+STRIVES|Tries hard|Struggles (against)
 STROLL|Leisurely walk|Constitutional, of sorts
 STRONG|Powerful|Numbering, as a crowd
 STROVE|Tried hard|Fought, as rivals
@@ -5431,7 +5431,7 @@ STUDIO|Artist's workspace|One-room apartment
 STUDS|Small earrings|Cleat bumps
 STUDY|Hit the books|Home library room
 STUFF|Cram|Possessions, casually
-STUMP|Tree remnant|Baffle
+STUMP|Tree remnant|Make campaign speeches
 STUN|Amaze|Knock senseless
 STUNT|Daredevil act|Hinder, as growth
 STURGEON|Caviar fish|Bony-plated river giant
@@ -5442,7 +5442,7 @@ SUB|Deli sandwich|Bench player
 SUBS|Hoagies|Bench players
 SUBSET|Part of a group|Venn circle inside another
 SUBSIDE|Die down|Ebb away
-SUBTLE|Not obvious|Not heavy-handed
+SUBTLE|Not obvious|Delicate, as a flavor
 SUCH|Of that kind|"___ a deal!"
 SUCROSE|Table sugar|Cane extract, chemically
 SUE|Take to court|Plead, as for peace
@@ -5450,7 +5450,7 @@ SUED|Took to court|Begged, as for peace
 SUEDE|Soft leather|Elvis's blue shoe material
 SUEDES|Napped leathers|Brushed hides
 SUES|Files a lawsuit|Pleads (for)
-SUET|Bird-feeder fat|Pudding fat
+SUET|Bird-feeder fat|Haggis ingredient
 SUFFICE|Be enough|Do the trick
 SUGAR|Sweetener|Honey, so to speak?
 SUIT|Business attire|Spades, for one
@@ -5548,14 +5548,14 @@ TAKER|Bet acceptor|Selfish sort, opposite of a giver
 TAKINGS|Money collected|Box office haul
 TALE|Story|Tall one isn't true
 TALENT|Natural gift|Hollywood scouts' quarry
-TALENTS|Natural gifts|Biblical coins in a parable
+TALENTS|Natural gifts|Sums entrusted to servants in a parable
 TALK|Chat|Give a lecture
 TALKING|Chatting|Spilling the beans
 TALKS|Speaks|Peace negotiations
 TALL|Not short|Hard to believe, as a tale
 TALLER|Not as short|Like a giraffe vs. a horse
-TALON|Eagle's claw|Raptor's grabber
-TAMALE|Corn-husk-wrapped dish|Hot ___ (sassy person)
+TALON|Eagle's claw|Card pile left after the deal
+TAMALE|Corn-husk-wrapped dish|Hot ___ (fiery sort)
 TAME|Domesticated|Bland, as humor
 TAMED|Made docile|Brought under control, as a shrew
 TAMER|Lion handler|Less wild
@@ -5579,7 +5579,7 @@ TAPE|Sticky roll|Record, as a show
 TAPER|Thin candle|Gradually lessen
 TAPERED|Narrowed at one end|Diminished gradually
 TAPIR|Snouted mammal|Rainforest browser
-TAPS|Faucets|Bugle call at dusk
+TAPS|Faucets|Bugle call at lights-out
 TAR|Road paving material|Old salt
 TARDY|Late to class|Belated, as a reply
 TARGET|Bull's-eye|Set one's sights on
@@ -5645,7 +5645,7 @@ TELLS|Narrates|Poker giveaways
 TEMP|Fill-in office worker|Thermometer reading, briefly
 TEMPLE|Place of worship|Side of the head
 TEMPO|Musical speed|Pace of play
-TEMPORAL|Relating to time|Near the temple, anatomically
+TEMPORAL|Relating to time|Worldly, not spiritual
 TEMPT|Entice|Play the serpent in Eden
 TEMPTED|Lured into wrongdoing|Dangled a carrot before
 TEN|Perfect score|Hang ___ (surf move)
@@ -5663,13 +5663,13 @@ TENORS|Some choir voices|Overall tones of talks
 TENS|Perfect scores|Sawbucks
 TENSE|Nervous and on edge|Past or future, grammatically
 TENSION|Strain|Building suspense
-TENSOR|Muscle type|Generalization of a vector
+TENSOR|Multidimensional array in machine learning|Muscle that tightens, as in the ear
 TENT|Campsite shelter|Big top, e.g.
 TENTS|Camping shelters|Revival meeting venues
 TEPEE|Cone-shaped Plains dwelling|Structure with a smoke flap
 TERM|Word or phrase|Semester, e.g.
 TERMITE|Wood-eating insect|Mound builder of the savanna
-TERMS|Contract conditions|School semesters
+TERMS|Contract conditions|Come to ___ with (accept)
 TERNS|Gull-like seabirds|Fork-tailed Arctic travelers
 TERRACE|Outdoor patio|Step on a hillside farm
 TERRAIN|Lay of the land|Ground features
@@ -5718,7 +5718,7 @@ THRICE|Three times|As often as Peter denied Jesus
 THRILL|Exciting feeling|Delight, as a crowd
 THROB|Pulse painfully|Heart___ (teen idol)
 THRONE|King's seat|Royal power, figuratively
-THRONES|Royal seats|Seats of power
+THRONES|Royal seats|Toilets, jocularly
 THROW|Hurl|Lose on purpose
 THRUST|Push forcefully|Main point of an argument
 THUG|Hoodlum|Hired muscle
@@ -5771,7 +5771,7 @@ TIRED|Sleepy|Hackneyed, as a joke
 TIRES|Grows weary|Michelin products
 TISANE|Herbal tea|Chamomile brew, fancily
 TITAN|Colossus|Saturn's largest moon
-TITANIC|Colossal|Of epic scale, like a struggle
+TITANIC|Colossal|1997 Best Picture winner
 TITHE|One-tenth church donation|Give a tenth
 TITLE|Book name|Championship belt
 TOAD|Warty hopper|Despicable sort
@@ -5779,7 +5779,7 @@ TOADS|Warty amphibians|Croakers in a garden
 TOAST|Breakfast bread|Raised-glass tribute
 TOASTED|Lightly browned|Done for, slangily
 TOASTER|Bread browner|Pop-up maker?
-TOASTS|Bread in the morning, or wedding speeches|Raises a glass to
+TOASTS|Wedding speeches|Raises a glass to
 TODAY|This very day|The present era
 TOE|Sock end|___ the line
 TOED|Three-___ sloth|Obeyed, as the line
@@ -5791,7 +5791,7 @@ TOGS|Clothes, informally|Swimming gear, to Aussies
 TOIL|Hard work|'Double, double ___ and trouble'
 TOILETS|Restroom fixtures|They're often flushed
 TOKEN|Arcade coin|Merely symbolic
-TOLD|Informed|Tattled on someone
+TOLD|Informed|Snitched, with "on"
 TOLL|Bridge charge|Heavy price paid
 TOLLING|Ringing, as a bell|Pealing slowly
 TOM|Male cat|Peeping ___
@@ -5823,7 +5823,7 @@ TOPS|Best|Maximum, informally
 TORCH|Olympic flame carrier|Set ablaze
 TORE|Ripped|Raced along
 TORN|Ripped, as jeans|Of two minds
-TORNADO|Twister|Funnel cloud
+TORNADO|Twister|Dorothy's ride to Oz
 TORPID|Sluggish|Like a hibernating bear
 TORRENT|Rushing stream|Unstoppable flood of words
 TORRID|Scorching hot|Like a steamy romance
@@ -5839,7 +5839,7 @@ TOTEM|Carved pole figure|Revered emblem of a group
 TOTES|Carries|Absolutely, in teen slang
 TOTS|Little kids|Tater ___
 TOTTER|Walk unsteadily|Be on the verge of collapse
-TOUCH|Feel|A bit, as of garlic?
+TOUCH|Feel|Small amount, as of garlic
 TOUCHED|Made contact with|Moved emotionally
 TOUR|Guided trip|Band's road trip
 TOURIST|Sightseer|Shutterbug abroad, perhaps
@@ -5879,7 +5879,7 @@ TRAIN|Locomotive|Bridal gown's tail
 TRAINED|Taught|Like a housebroken pup
 TRAINEE|Apprentice|Shadow on the job?
 TRAINER|Gym coach|Sneaker, in Britain
-TRAINS|Locomotive pulls|Bridal gown features
+TRAINS|Coaches, as athletes|Bridal gown features
 TRAIT|Characteristic|Inherited eye color, e.g.
 TRAM|Streetcar|Ski lift car
 TRAMLINE|Streetcar route|Tennis alley marking, in Britain
@@ -5944,11 +5944,11 @@ TROUBLE|Difficulty|Bother, as a person
 TROUPE|Acting company|Traveling circus group
 TROVE|Treasure ___|Cache of collectibles
 TROWEL|Gardener's small shovel|Mason's mortar spreader
-TRUCE|Cease-fire|Pause in hostilities
+TRUCE|Cease-fire|1914 Christmas event on the Western Front
 TRUE|Accurate|Loyal to the end
 TRUER|More accurate|More loyal
 TRUISM|Self-evident statement|"You win some, you lose some," e.g.
-TRUMP|Card game winner|Outrank, in bridge
+TRUMP|Card game winner|Take precedence over
 TRUMPS|Outdoes|Winning suits in bridge
 TRUNK|Elephant's nose|Car's storage area
 TRUST|Faith|Estate-planning vehicle
@@ -6012,7 +6012,7 @@ TYPES|Uses a keyboard|A and O, for blood
 TYPHUS|Disease spread by lice|Fever once called jail fever
 TYPOS|Spelling slips|Things autocorrect may fix
 TYRANT|Cruel ruler|Petty despot at home
-TYRE|Tire, in London|Michelin product, in Manchester
+TYRE|Tire, in London|Ancient Phoenician port
 TYRO|Novice|Person learning the ropes
 UDDER|Cow's milk source|It's milked on the farm
 UDON|Thick Japanese noodle|Wheat strands in a dashi bowl
@@ -6045,10 +6045,10 @@ UNION|Labor group|Marriage, formally
 UNIONS|Labor groups|Marriages, formally
 UNIT|Single item|Condo, for one
 UNITE|Join forces|Bring under one banner
-UNITED|Joined together|Merged, as companies
+UNITED|Joined together|Manchester ___ (Premier League club)
 UNITES|Joins together|Weds
 UNITING|Joining|Bringing together
-UNITS|Measurement amounts|Apartments in a complex
+UNITS|Inches and grams, e.g.|Apartments in a complex
 UNITY|Oneness|Goal of a peace summit
 UNKNOT|Untangle, as a rope|Work the kinks out of
 UNLACE|Loosen, as a shoe|Free from a corset
@@ -6076,7 +6076,7 @@ UPEND|Turn over|Topple, as expectations
 UPENDED|Turned over|Disrupted, as plans
 UPHELD|Supported, as a ruling|Kept, as a promise
 UPHOLD|Support|Keep, as a tradition
-UPON|On top of|"Once ___ a time"
+UPON|On top of|Come ___ (stumble across)
 UPPER|Higher|Shoe top
 UPROAR|Loud commotion|Public outcry
 UPS|Highs, opposite of downs|Raises, as a bet
@@ -6144,7 +6144,7 @@ VENOUS|Not arterial|Heart-bound, as some blood
 VENT|Air outlet|Let off steam
 VENUES|Concert sites|Places where trials are held
 VERB|Action word|Run or walk, for one
-VERDICT|Jury's decision|Final ruling
+VERDICT|Jury's decision|Critic's judgment
 VERSE|Poetry unit|Song section before a chorus
 VERSES|Poem parts|Bible subdivisions
 VERSION|Edition|Side of the story
@@ -6155,7 +6155,7 @@ VET|Animal doctor|Screen thoroughly
 VETERAN|Old soldier|Old hand
 VETO|President's rejection of a bill|Shoot down, as a suggestion
 VETS|Animal doctors|Checks out thoroughly, as candidates
-VIA|By way of|Routed through
+VIA|By way of|Road, to Romans
 VIALS|Small medicine bottles|Perfume sample holders
 VIBE|Feeling given off|Chill together, in slang
 VIBRATE|Shake rapidly|Phone's silent alert mode
@@ -6179,7 +6179,7 @@ VIRILE|Manly|Vigorous, as a writing style
 VIRUS|Flu cause|Malware type
 VISION|Eyesight|Dream for the future
 VISIT|Drop in on|Afflict, as a plague
-VISITED|Dropped in on|Called on
+VISITED|Dropped in on|Afflicted, as a plague might
 VISITOR|Guest|Weekend houseguest
 VISOR|Cap brim|Helmet's face guard
 VISTA|Scenic view|Prospect from a hilltop
@@ -6190,7 +6190,7 @@ VOLATILE|Prone to sudden change|Like a quick-evaporating liquid
 VOLTAGE|Electrical force|Potential difference
 VOTE|Ballot cast|Have a say
 VOTED|Cast ballots|Raised a hand, say
-VOW|Solemn promise|Swear solemnly
+VOW|Swear to do|"I do," e.g.
 WACKY|Zany|Totally off-the-wall
 WAD|Bundle of bills|Lump of chewed gum
 WADE|Walk in water|Slog (through)
@@ -6200,7 +6200,7 @@ WADS|Thick rolls of bills|Cotton balls, e.g.
 WAFER|Thin cookie|Communion bread
 WAG|Dog's tail motion|Witty joker
 WAGE|Paycheck|Carry on, as a war
-WAGER|Bet|Gambler's stake
+WAGER|Bet|Venture, as a guess
 WAIT|Linger|"Hold on!"
 WAITER|Restaurant server|Tipped worker
 WAITERS|Restaurant servers|People biding their time
@@ -6279,7 +6279,7 @@ WEEPING|Crying|Kind of willow
 WEFT|Crosswise threads on a loom|Warp's partner
 WEIGH|Check the scale|Ponder carefully
 WEIR|Low dam|Fish trap in a stream
-WEIRD|Strange and unusual|Unsettling and eerie
+WEIRD|Strange and unusual|Like the sisters in "Macbeth"
 WEIRS|Low river dams|Fish-catching fences
 WELD|Fuse, as steel beams|Unite closely, as a team
 WELDER|Torch-wielding metalworker|One wearing a dark-visored mask
@@ -6293,7 +6293,7 @@ WERE|Past tense of 'are'|As it ___ (so to speak)
 WEREWOLF|Full-moon shape-shifter|One who goes through a phase?
 WEST|Direction of the sunset|Bridge position opposite East
 WESTERN|Cowboy film|Oater, in film
-WET|Soaked|___ blanket
+WET|Not dry|___ blanket
 WHACK|Hit hard|Out of ___ (misaligned)
 WHALE|Huge sea mammal|Casino's biggest gambler
 WHARF|Dock|Fisherman's ___
@@ -6323,7 +6323,7 @@ WHOSE|Of whom|"___ Line Is It Anyway?"
 WHY|Question of reason|Toddler's endless question
 WIDE|Broad|Like an errant kick, maybe
 WIDEN|Make broader|Add lanes to, say
-WIDER|Broader|Less narrow
+WIDER|Broader|"Eyes ___ Shut" (Kubrick film)
 WIDTH|Breadth|Side-to-side measure
 WIELD|Brandish, as a sword|Exercise, as power
 WIENER|Hot dog|___ dog (dachshund nickname)
@@ -6374,10 +6374,10 @@ WOMEN|Adult females|Little ___ (Alcott novel)
 WON|Came in first|Seoul currency
 WONDER|Marvel|Boy ___
 WONDERS|Marvels|Muses about
-WOO|Court|Try to win over
+WOO|Court|___-hoo! (cry of glee)
 WOOD|Lumber|Golf driver, once
 WOODEN|Like a plank|Stiff, as acting
-WOODS|Forest|Golfer's drivers, e.g
+WOODS|Forest|Golfer's drivers, e.g.
 WOOL|Sheep's coat|Pull the ___ over one's eyes
 WOOLS|Merino and alpaca, e.g.|Fabrics from flocks
 WOOLY|Like a lamb's coat|Fuzzy, as thinking
@@ -6423,7 +6423,7 @@ YAWLS|Two-masted sailboats|Ketch relatives
 YAWN|Sign of boredom|Total snoozefest
 YAWS|Veers off course|Twists on a vertical axis
 YAY|'Hooray!'|___ high (gesture-sized)
-YEA|Vote in favor|Nay's opposite
+YEA|Vote in favor|Indeed, archaically
 YEAR|Twelve months|Wine's vintage
 YEARLY|Annual|Like birthdays
 YELL|Shout|Cheerleader's chant
@@ -6457,7 +6457,7 @@ YOUTH|Adolescence|Teen, e.g.
 YOWL|Cat's wail|Back-fence serenade
 YULE|Christmastime|Time for wassailing
 YUM|'Delicious!'|Tot's verdict on dessert
-YUP|'Yes,' casually|Nod's spoken equivalent
+YUP|'Yes,' casually|Verbal nod, informally
 YURT|Mongolian tent|Round home on the steppe
 ZAP|Hit with a ray gun|Nuke, as leftovers
 ZEN|Buddhist school|Totally calm, slangily

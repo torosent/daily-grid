@@ -7,18 +7,24 @@ const LANG = path.basename(path.resolve(DATA)) === 'he' ? 'he' : 'en', SIZES = L
 const html = fs.readFileSync(path.join(__dirname, 'public', 'index.html'), 'utf8');
 const eng = html.slice(html.indexOf('// ENGINE START'), html.indexOf('// ENGINE END'));
 const api = new Function(eng + '; return { loadSet, buildPuzzle };')();
-const PUZZLES = SIZES.flatMap(n => {
-  const data = JSON.parse(fs.readFileSync(path.join(DATA, `puzzles-${n}.json`), 'utf8'));
-  assert.strictEqual(data.size, n, `puzzles-${n}.json says size ${data.size}`);
+const FILES = ['', '-medium', '-hard'].flatMap(lv => SIZES.map(n => [n, `puzzles-${n}${lv}.json`])).filter(([, f]) => lv0(f) || fs.existsSync(path.join(DATA, f)));
+function lv0(f) { return !/-(medium|hard)\.json$/.test(f); } // the easy files must exist
+const PUZZLES = FILES.flatMap(([n, file]) => {
+  const data = JSON.parse(fs.readFileSync(path.join(DATA, file), 'utf8'));
+  assert.strictEqual(data.size, n, `${file} says size ${data.size}`);
+  assert.strictEqual(data.puzzles.length, +process.env.EXPECT || 100, `${file}: expected ${+process.env.EXPECT || 100} puzzles`);
   // each file must carry the clues for its own answers: the page may load only this one
   for (const [id, grid] of data.puzzles) for (const s of require('./build.js').slotsOf([...grid].map(ch => ch === '#'), n)) {
     const w = s.cells.map(c => grid[c]).join('');
-    assert(Array.isArray(data.clues[w]) && data.clues[w].length === 2, `puzzles-${n}.json, puzzle ${id}: no clues for ${w} in this file`);
+    assert(Array.isArray(data.clues[w]) && data.clues[w].length === 2, `${file}, puzzle ${id}: no clues for ${w} in this file`);
   }
   return api.loadSet(data, LANG);
 });
 
 const bySize = {}, usage = new Map(), shapes = new Set();
+// Across the whole archive two different answers never share a clue text, which would make one of them ambiguous.
+// To fix: node build.js dupes, the clues workflow in mode dedupe, then node build.js merge.
+const owner = new Map();
 for (const raw of PUZZLES) {
   const p = api.buildPuzzle(raw), n = p.n, where = `puzzle ${p.id} (${n}x${n})`;
   (bySize[n] ||= []).push(p);
@@ -34,11 +40,11 @@ for (const raw of PUZZLES) {
     assert(c.clue && c.hard && c.clue !== c.hard, `${where}: ${c.answer} needs separate easy and hard clues`);
     for (const k of ['clue', 'hard']) assert(!norm(c[k].toUpperCase()).includes(c.answer), `${where}: ${k} for ${c.answer} contains the answer`);
     usage.set(c.answer, (usage.get(c.answer) || 0) + 1);
+    for (const t of [c.clue, c.hard]) { const k = norm(t.toUpperCase()), was = owner.get(k); assert(!was || was === c.answer, `${was} and ${c.answer} share the clue "${t}" (run node build.js dupes)`); owner.set(k, c.answer); }
   }
   for (let i = 0; i < answers.length; i++) for (let j = i + 1; j < answers.length; j++) assert(!related(answers[i], answers[j]), `${where}: ${answers[i]} and ${answers[j]} are too alike`);
   p.sol.forEach((v, i) => { if (v !== null) assert(['A', 'D'].every(d => p.clues[d].some(c => c.cells.includes(i))), `${where}: unchecked square`); });
 }
-const want = +process.env.EXPECT || 100;
-for (const n of SIZES) assert.strictEqual((bySize[n] || []).length, want, `expected ${want} puzzles of size ${n}`);
+// each file was already checked to hold its 100 puzzles
 const entries = [...usage.values()].reduce((a, b) => a + b, 0);
-console.log(`${PUZZLES.length} puzzles ok: ${entries} entries, ${usage.size} different words, ${shapes.size} grid shapes, most-used word ${Math.max(...usage.values())} times`);
+console.log(`${FILES.length} files, ${PUZZLES.length} puzzles ok: ${entries} entries, ${usage.size} different words, ${shapes.size} grid shapes, most-used word ${Math.max(...usage.values())} times`);

@@ -5,11 +5,11 @@
 // refreshes from GitHub in the background every few minutes; if GitHub is slow, down or sends a broken file, the last good
 // copy keeps being served. deploy.sh also ships a snapshot of the datasets with the Worker, used when a data center has
 // no cached copy and GitHub is unavailable.
-const FILE = /^\/data\/((?:he\/puzzles-(5|7|13)|puzzles-(5|7|15))\.json)$/; // only the real datasets, so this is never an open proxy
+const FILE = /^\/data\/((?:he\/puzzles-(5|7|13)(?:-medium|-hard)?|puzzles-(5|7|15))\.json)$/; // only the real datasets, so this is never an open proxy
 const FRESH = 300; // seconds before GitHub is asked again
 const KEEP = 7 * 86400; // how long the last good copy stays in the edge cache
 const UPSTREAM_MS = 5000; // give up on GitHub after this long
-const HE = { title: 'התשבץ היומי', desc: 'תשבצים בעברית: 300 תשבצים בשלושה גדלים ובשלוש רמות קושי.' };
+const HE = { title: 'התשבץ היומי', desc: 'תשבצים בעברית: 900 תשבצים בשלושה גדלים, ולכל רמת קושי תשבצים משלה.' };
 
 // The same checks the page makes before using a file, so a bad commit can never replace a good cached copy.
 function validDataset(text, n, he) {

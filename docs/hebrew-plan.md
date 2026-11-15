@@ -28,8 +28,9 @@ Status: decisions made; Hebrew word list in progress. Based on research by five 
 2. **Sizes:** 5×5, 7×7, 13×13.
 3. **Final letters:** stored and matched as regular forms; either form accepted when typed; the grid shows what the solver typed.
 4. **Spelling:** Academy 2017 full spelling, stated on the page.
-5. **Hard clues:** harder plain definitions, occasional wordplay, a letter count `(n)` on every Hard clue.
-6. **Language switch:** an EN/HE toggle in the masthead, with a transition animation when switching. Both languages stay on their own URLs (`/` and `/he/`) for sharing and search engines; the toggle swaps in place and updates the address.
+5. **Hard clues:** tricky clues: misdirection, double meanings and wordplay in the spirit of the logic crossword. No letter count (changed 2026-11-15).
+6. **Levels (2026-11-15):** each level has its own puzzles. Easy uses everyday words; Medium adds a medium vocabulary tier; Hard adds a hard tier and favours rarer words, but every Medium and Hard puzzle keeps a minimum share of everyday words.
+7. **Language switch:** an EN/HE toggle in the masthead, with a transition animation when switching. Both languages stay on their own URLs (`/` and `/he/`) for sharing and search engines; the toggle swaps in place and updates the address.
 
 Still open: a native Hebrew speaker to review a clue sample and the interface strings before launch.
 

@@ -316,9 +316,10 @@ button{font:inherit;color:inherit}
 // The page plays a fixed archive built offline by build.js: one dataset file per language and grid size
 // (/data/puzzles-N.json, /data/he/puzzles-N.json), downloaded the first time it is asked for.
 const CLUES = { en: new Map(), he: new Map() }, SETS = {};
-function loadSet(data, lang = 'en') { // { size, puzzles: [[id, grid]], clues: { WORD: [easy, hard] } }; # in a grid is a black square
+function loadSet(data, lang = 'en') { // { size, level, puzzles: [[id, grid]], clues: { WORD: [easy, hard] } }; # in a grid is a black square
+  const level = data.level || 'easy';
   for (const w in data.clues) CLUES[lang].set(w, data.clues[w]);
-  return SETS[lang + data.size] = data.puzzles.map(([id, grid]) => ({ id, n: data.size, grid, lang }));
+  return SETS[lang + data.size + level] = data.puzzles.map(([id, grid]) => ({ id, n: data.size, grid, lang, level }));
 }
 function slotsOf(blk, n) {
   const slots = [];
@@ -342,7 +343,7 @@ function buildPuzzle(p) { // archive entry -> numbered, clued puzzle
     clues[s.dir].push({ num: numbers[s.cells[0]], cells: s.cells, answer, clue, hard, mix: (p.id + i) % 2 === 0 });
   });
   clues.A.sort((a, b) => a.num - b.num); clues.D.sort((a, b) => a.num - b.num);
-  return { id: p.id, n, lang, sol, numbers, clues };
+  return { id: p.id, n, lang, level: p.level || 'easy', sol, numbers, clues };
 }
 // ENGINE END
 
@@ -354,7 +355,7 @@ const fold = s => (s || '').replace(/[ךםןףץ]/g, c => HE_FINAL[c]);
 const HE_KEYS = { KeyE: 'ק', KeyR: 'ר', KeyT: 'א', KeyY: 'ט', KeyU: 'ו', KeyI: 'ן', KeyO: 'ם', KeyP: 'פ', KeyA: 'ש', KeyS: 'ד', KeyD: 'ג', KeyF: 'כ', KeyG: 'ע', KeyH: 'י', KeyJ: 'ח', KeyK: 'ל', KeyL: 'ך', Semicolon: 'ף', KeyZ: 'ז', KeyX: 'ס', KeyC: 'ב', KeyV: 'ה', KeyB: 'נ', KeyN: 'מ', KeyM: 'צ', Comma: 'ת', Period: 'ץ' };
 const T = {
   en: {
-    dir: 'ltr', path: '/', name: 'The Daily Grid', desc: 'A crossword solver with 300 puzzles in three sizes and three difficulty levels.',
+    dir: 'ltr', path: '/', name: 'The Daily Grid', levelled: false, desc: 'A crossword solver with 300 puzzles in three sizes and three difficulty levels.',
     sizes: [5, 7, 15], sizeName: { 5: 'Mini', 7: 'Midi', 15: 'Full' }, no: 'No.', letter: /^[a-z]$/i,
     date: d => d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }),
     keys: ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'], other: 'עברית', otherLang: 'he', otherLabel: 'Hebrew edition',
@@ -380,7 +381,7 @@ const T = {
     switchLoading: 'Loading the Hebrew edition…', switchFail: 'Couldn\'t load the Hebrew edition. Check your connection, then press עברית again.', completed: 'completed',
   },
   he: {
-    dir: 'rtl', path: '/he/', name: 'התשבץ היומי', desc: 'תשבצים בעברית: 300 תשבצים בשלושה גדלים ובשלוש רמות קושי.',
+    dir: 'rtl', path: '/he/', name: 'התשבץ היומי', levelled: true, desc: 'תשבצים בעברית: 900 תשבצים בשלושה גדלים, ולכל רמת קושי תשבצים משלה.',
     sizes: [5, 7, 13], sizeName: { 5: 'מיני', 7: 'בינוני', 13: 'מלא' }, no: 'מס׳', letter: /^[א-ת]$/,
     date: d => d.toLocaleDateString('he-IL', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }), // Gregorian, in Hebrew
     keys: ['קראטוןםפ', 'שדגכעיחלךף', 'זסבהנמצתץ'], other: 'English', otherLang: 'en', otherLabel: 'English edition',
@@ -414,7 +415,9 @@ let LANG = langOf(location.pathname), t = T[LANG];
 const $ = id => document.getElementById(id);
 const gridEl = $('grid'), boardEl = $('board'), overlay = $('overlay');
 // English keeps its original keys, so progress saved before the Hebrew edition still loads.
-const key = (suffix = '', lang = LANG) => (lang === 'he' ? 'dailygrid:he:v1' : 'dailygrid:v1') + suffix;
+// Hebrew has its own puzzles for each level, so progress is kept per level; the easy keys are the original ones.
+const levelOf = (lang = LANG) => { if (!T[lang].levelled) return 'easy'; try { const l = localStorage.getItem(`dailygrid:${lang}:level`); if (['easy', 'medium', 'hard'].includes(l)) return l; } catch (e) {} return 'easy'; };
+const key = (suffix = '', lang = LANG, level = levelOf(lang)) => (lang === 'he' ? 'dailygrid:he:v1' : 'dailygrid:v1') + (level === 'easy' ? '' : ':' + level) + suffix;
 let S = null, P = null, CC = [], cells = [], items = new Map();
 let cur = 0, dir = 'A', paused = false, wasFull = false, seen = [];
 
@@ -430,7 +433,7 @@ const loadSaved = () => readSaved(LANG);
 async function refreshSaved() {
   const s = S, lang = LANG; if (!s) return;
   try {
-    const p = (await getSet(lang, s.P.n)).find(x => x.id === s.P.id);
+    const p = (await getSet(lang, s.P.n, s.P.level || 'easy')).find(x => x.id === s.P.id);
     if (!p || S !== s || LANG !== lang || p.grid !== s.P.sol.map(v => v ?? '#').join('')) return;
     const keep = { cur, dir }; s.P = P = buildPuzzle(p); begin(s, true); cur = keep.cur; dir = keep.dir; render(); save();
   } catch (e) {}
@@ -510,22 +513,23 @@ function begin(state, quiet) {
   dir = 'A'; cur = P.clues.A[0].cells[0];
   wasFull = open().every(c => S.ent[c]);
   buildDOM(); render(); syncLevel();
-  $('meta').textContent = `${t.sizeName[n] || ''} · ${n}×${n}${P.id ? ` · ${t.no} ${P.id}` : ''}`;
+  $('meta').textContent = `${t.sizeName[n] || ''} · ${n}×${n}${t.levelled ? ` · ${t.levels[P.level || 'easy']}` : ''}${P.id ? ` · ${t.no} ${P.id}` : ''}`;
   if (!quiet) { veil(false); paused = false; boardEl.classList.remove('paused'); }
   const a = document.activeElement;
   if (S.done) { if (!quiet) showDone(); }
   else if (!quiet && (!a || a === document.body || a === gridEl || a.closest?.('.menu'))) focusGrid();
 }
 const loading = {};
-function getSet(lang, n) {
-  if (SETS[lang + n]) return Promise.resolve(SETS[lang + n]);
-  return loading[lang + n] ||= downloadSet(lang, n).finally(() => { delete loading[lang + n]; });
+function getSet(lang, n, level = 'easy') {
+  const id = lang + n + level;
+  if (SETS[id]) return Promise.resolve(SETS[id]);
+  return loading[id] ||= downloadSet(lang, n, level).finally(() => { delete loading[id]; });
 }
-async function downloadSet(lang, n) {
-  const res = await fetch(`/data/${lang === 'he' ? 'he/' : ''}puzzles-${n}.json`);
+async function downloadSet(lang, n, level) {
+  const res = await fetch(`/data/${lang === 'he' ? 'he/' : ''}puzzles-${n}${level === 'easy' ? '' : '-' + level}.json`);
   if (!res.ok) throw new Error(res.status);
   const data = await res.json(), letters = lang === 'he' ? /^[א-ת#]+$/ : /^[A-Z#]+$/;
-  const ok = data && data.size === n && Array.isArray(data.puzzles) && data.puzzles.length && data.clues && typeof data.clues === 'object'
+  const ok = data && data.size === n && (data.level || 'easy') === level && Array.isArray(data.puzzles) && data.puzzles.length && data.clues && typeof data.clues === 'object'
     && data.puzzles.every(p => Array.isArray(p) && Number.isInteger(p[0]) && typeof p[1] === 'string' && p[1].length === n * n && letters.test(p[1]));
   if (!ok) throw new Error('bad dataset');
   return loadSet(data, lang);
@@ -535,15 +539,15 @@ function freshState(pool, n) {
   if (!fresh.length) { seen = seen.filter(id => !pool.some(p => p.id === id)); fresh = pool.filter(p => p.id !== P?.id); } // played them all: start over
   const pick = fresh[Math.floor(Math.random() * fresh.length)] || pool[0];
   seen.push(pick.id); try { localStorage.setItem(key(':seen'), JSON.stringify(seen)); } catch (e) {}
-  return { P: buildPuzzle(pick), level: S?.level || 'easy', ent: Array(n * n).fill(''), mark: Array(n * n).fill(''), time: 0, done: false, revealed: false };
+  return { P: buildPuzzle(pick), level: t.levelled ? pick.level : S?.level || 'easy', ent: Array(n * n).fill(''), mark: Array(n * n).fill(''), time: 0, done: false, revealed: false };
 }
 let asked = 0;
 async function newPuzzle(n) {
-  const turn = ++asked, lang = LANG; // if the solver asks again while a download is running, the later request wins
-  if (!SETS[lang + n]) status(t.loading(n));
+  const turn = ++asked, lang = LANG, level = levelOf(); // if the solver asks again while a download is running, the later request wins
+  if (!SETS[lang + n + level]) status(t.loading(n));
   try {
-    const pool = await getSet(lang, n);
-    if (turn !== asked || lang !== LANG) return;
+    const pool = await getSet(lang, n, level);
+    if (turn !== asked || lang !== LANG || level !== levelOf()) return;
     begin(freshState(pool, n)); save();
   } catch (e) {
     if (turn === asked && lang === LANG) status(t.loadFail(n));
@@ -613,8 +617,16 @@ function keepVisible(li) {
   else if (li.offsetTop + li.offsetHeight > ol.scrollTop + ol.clientHeight) ol.scrollTop = li.offsetTop + li.offsetHeight - ol.clientHeight + 6;
 }
 
-function syncLevel() { for (const b of $('levels').children) b.setAttribute('aria-pressed', String(b.dataset.level === (S?.level || 'easy'))); }
+function syncLevel() { const l = t.levelled ? levelOf() : S?.level || 'easy'; for (const b of $('levels').children) b.setAttribute('aria-pressed', String(b.dataset.level === l)); }
 function setLevel(l) {
+  if (t.levelled) { // Hebrew: each level has its own puzzles and its own progress
+    if (l === levelOf()) return;
+    save(); try { localStorage.setItem(`dailygrid:${LANG}:level`, l); } catch (e) {}
+    loadSeen(); syncLevel();
+    const saved = loadSaved();
+    if (saved) try { begin(saved); refreshSaved(); return; } catch (e) {}
+    newPuzzle(P?.n || t.sizes[0]); return;
+  }
   S.level = l; save(); syncLevel();
   for (const [cl, li] of items) li.lastChild.textContent = clueOf(cl);
   render();
@@ -763,7 +775,7 @@ async function switchLanguage(to, push = true) {
     // Load what the other edition needs before animating, so the turn never shows an empty board:
     // its saved puzzle if that can be drawn, otherwise the first size's dataset.
     const target = T[to], saved = readSaved(to);
-    const pool = saved ? null : (SETS[to + target.sizes[0]] || (status(T[from].switchLoading), $('barTxt').lang = from, await getSet(to, target.sizes[0])));
+    const lvl = levelOf(to), pool = saved ? null : (SETS[to + target.sizes[0] + lvl] || (status(T[from].switchLoading), $('barTxt').lang = from, await getSet(to, target.sizes[0], lvl)));
     const level = S?.level;
     const swap = () => {
       asked++; // any download still running for the old edition no longer applies
@@ -771,7 +783,7 @@ async function switchLanguage(to, push = true) {
       if (push) history.pushState({ lang: to }, '', t.path);
       S = null; P = null; showClues(false); closeMenus(); $('barTxt').removeAttribute('lang');
       if (saved) { try { begin(saved); refreshSaved(); return; } catch (e) { S = null; P = null; } }
-      if (pool) { begin({ ...freshState(pool, t.sizes[0]), level: level || 'easy' }); save(); }
+      if (pool) { const st = freshState(pool, t.sizes[0]); if (!t.levelled) st.level = level || 'easy'; begin(st); save(); }
       else newPuzzle(t.sizes[0]); // the saved puzzle could not be drawn after all: load a fresh one
     };
     await transition(swap, { turn: to === 'he' ? 'to-rtl' : 'to-ltr' });

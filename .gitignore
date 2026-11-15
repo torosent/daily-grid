@@ -2,7 +2,8 @@
 node_modules/
 .wrangler/
 .dev.vars
-.claude/
+.claude/*
+!.claude/workflows/
 data/need.txt
 data/generate.log
 data/he/need.txt
@@ -13,3 +14,9 @@ public/snapshot/
 .impeccable/hook.cache.json
 .impeccable/hook.pending.json
 .impeccable/config.local.json
+data/batches/
+data/review/
+data/dupes/
+data/he/batches/
+data/he/review/
+data/he/dupes/
