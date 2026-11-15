@@ -8,3 +8,8 @@ data/generate.log
 data/he/need.txt
 data/he/generate.log
 public/snapshot/
+*.log
+# design-tool caches with local paths
+.impeccable/hook.cache.json
+.impeccable/hook.pending.json
+.impeccable/config.local.json
