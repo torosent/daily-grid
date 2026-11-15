@@ -194,7 +194,8 @@ function generate(onlyClued) {
   const old = lines('puzzles.txt').map(parsePuzzle), seenUses = new Map();
   const planned = new Set(PLAN.map(([n]) => n)), kept = [];
   const keep = old.filter(p => {
-    const ws = wordsIn(p), ok = ws.every(w => allowed.has(w) && (seenUses.get(w) || 0) < MAX_USES);
+    // sizes being refilled must fit this run's vocabulary (with --clued: clued words only); other sizes only need allowed words
+    const ws = wordsIn(p), ok = ws.every(w => (planned.has(p.n) ? vocab : allowed).has(w) && (seenUses.get(w) || 0) < MAX_USES);
     if (!ok && planned.has(p.n)) return false;
     if (!ok) kept.push(p.id); // a size this run will not refill is never emptied: report it instead
     ws.forEach(w => seenUses.set(w, (seenUses.get(w) || 0) + 1)); return true;

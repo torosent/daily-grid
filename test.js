@@ -1,10 +1,9 @@
 // Self-check for the puzzle datasets as public/index.html reads them.
 // Run: node test.js (English, data/)  or  DATA_DIR=data/he node test.js (Hebrew).
 const fs = require('fs'), assert = require('assert'), path = require('path');
-const { validPattern, related } = require('./build.js');
+const { validPattern, related, norm } = require('./build.js'); // build.js reads DATA_DIR too, so norm folds for this language
 const DATA = process.env.DATA_DIR || path.join(__dirname, 'data');
 const LANG = path.basename(path.resolve(DATA)) === 'he' ? 'he' : 'en', SIZES = LANG === 'he' ? [5, 7, 13] : [5, 7, 15];
-const fold = s => s.replace(/[ךםןףץ]/g, c => ({ 'ך': 'כ', 'ם': 'מ', 'ן': 'נ', 'ף': 'פ', 'ץ': 'צ' })[c]);
 const html = fs.readFileSync(path.join(__dirname, 'public', 'index.html'), 'utf8');
 const eng = html.slice(html.indexOf('// ENGINE START'), html.indexOf('// ENGINE END'));
 const api = new Function(eng + '; return { loadSet, buildPuzzle };')();
@@ -33,7 +32,7 @@ for (const raw of PUZZLES) {
   assert.strictEqual(new Set(texts).size, texts.length, `${where}: the same clue text twice`);
   for (const c of all) {
     assert(c.clue && c.hard && c.clue !== c.hard, `${where}: ${c.answer} needs separate easy and hard clues`);
-    for (const k of ['clue', 'hard']) assert(!fold(c[k].toUpperCase()).includes(c.answer), `${where}: ${k} for ${c.answer} contains the answer`);
+    for (const k of ['clue', 'hard']) assert(!norm(c[k].toUpperCase()).includes(c.answer), `${where}: ${k} for ${c.answer} contains the answer`);
     usage.set(c.answer, (usage.get(c.answer) || 0) + 1);
   }
   for (let i = 0; i < answers.length; i++) for (let j = i + 1; j < answers.length; j++) assert(!related(answers[i], answers[j]), `${where}: ${answers[i]} and ${answers[j]} are too alike`);

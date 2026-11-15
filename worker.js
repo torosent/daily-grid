@@ -25,14 +25,14 @@ const reply = (body, fetchedAt, source) => new Response(body, {
   headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'public, max-age=60', 'x-fetched-at': String(fetchedAt), 'x-source': source },
 });
 
-async function refresh(env, ctx, key, file, n, he) {
+async function refresh(env, key, file, n, he) {
   const upstream = await fetch(env.DATA_ORIGIN + file, { signal: AbortSignal.timeout(UPSTREAM_MS) });
   if (!upstream.ok) throw new Error(`GitHub answered ${upstream.status}`);
   const body = await upstream.text();
   if (!validDataset(body, n, he)) throw new Error('GitHub sent a dataset the page would reject');
   const now = Date.now();
-  ctx.waitUntil(caches.default.put(key, new Response(body, { headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': `public, max-age=${KEEP}`, 'x-fetched-at': String(now) } })));
-  return { body, now };
+  const stored = caches.default.put(key, new Response(body, { headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': `public, max-age=${KEEP}`, 'x-fetched-at': String(now) } }));
+  return { body, now, stored };
 }
 
 async function dataset(request, env, ctx, url, m) {
@@ -43,11 +43,12 @@ async function dataset(request, env, ctx, url, m) {
   if (hit) {
     const fetchedAt = +hit.headers.get('x-fetched-at') || 0, body = await hit.text();
     // Stale: answer now, refresh in the background. A failed refresh keeps the old copy and tries again next time.
-    if (Date.now() - fetchedAt >= FRESH * 1000) ctx.waitUntil(refresh(env, ctx, key, file, n, he).catch(() => {}));
+    if (Date.now() - fetchedAt >= FRESH * 1000) ctx.waitUntil(refresh(env, key, file, n, he).then(r => r.stored).catch(() => {}));
     return reply(body, fetchedAt, 'cache');
   }
   try {
-    const { body, now } = await refresh(env, ctx, key, file, n, he);
+    const { body, now, stored } = await refresh(env, key, file, n, he);
+    ctx.waitUntil(stored);
     return reply(body, now, 'github');
   } catch (e) {
     // No cached copy here and GitHub is unavailable: fall back to the snapshot shipped with the deploy, if any.

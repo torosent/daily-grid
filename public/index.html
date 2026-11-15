@@ -79,7 +79,7 @@ button{font:inherit;color:inherit}
 .icon{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .menu{position:relative}
 .menu .caret{width:12px;height:12px}
-.menu-list{position:absolute;inset-inline-end:0;top:calc(100% + 6px);z-index:30;min-width:180px;padding:6px 0;background:var(--bg);border:1px solid var(--line);border-radius:8px;box-shadow:0 6px 20px var(--shadow)}
+.menu-list{position:absolute;right:0;top:calc(100% + 6px);z-index:30;min-width:180px;padding:6px 0;background:var(--bg);border:1px solid var(--line);border-radius:8px;box-shadow:0 6px 20px var(--shadow)}
 .menu-list button{color:var(--ink);display:block;width:100%;text-align:start;background:none;border:0;padding:9px 16px;cursor:pointer;font-size:.95rem}
 .menu-list button:hover{background:var(--hover)}
 .menu-list button:focus-visible{background:var(--hover);outline:2px solid var(--fixed);outline-offset:-2px}
@@ -382,8 +382,7 @@ const T = {
   he: {
     dir: 'rtl', path: '/he/', name: 'התשבץ היומי', desc: 'תשבצים בעברית: 300 תשבצים בשלושה גדלים ובשלוש רמות קושי.',
     sizes: [5, 7, 13], sizeName: { 5: 'מיני', 7: 'בינוני', 13: 'מלא' }, no: 'מס׳', letter: /^[א-ת]$/,
-    // explicit fields: some engines garble the Hebrew calendar with dateStyle
-    date: d => new Intl.DateTimeFormat('he-IL-u-ca-hebrew', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(d),
+    date: d => d.toLocaleDateString('he-IL', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }), // Gregorian, in Hebrew
     keys: ['קראטוןםפ', 'שדגכעיחלךף', 'זסבהנמצתץ'], other: 'English', otherLang: 'en', otherLabel: 'English edition',
     levels: { easy: 'קל', medium: 'בינוני', hard: 'קשה' }, levelsLabel: 'רמת קושי',
     time: 'זמן', pause: 'השהיה', clear: 'ניקוי', reveal: 'חשיפה', check: 'בדיקה', newLong: 'תשבץ חדש', newShort: 'חדש',
@@ -415,7 +414,7 @@ let LANG = langOf(location.pathname), t = T[LANG];
 const $ = id => document.getElementById(id);
 const gridEl = $('grid'), boardEl = $('board'), overlay = $('overlay');
 // English keeps its original keys, so progress saved before the Hebrew edition still loads.
-const key = (suffix = '') => (LANG === 'he' ? 'dailygrid:he:v1' : 'dailygrid:v1') + suffix;
+const key = (suffix = '', lang = LANG) => (lang === 'he' ? 'dailygrid:he:v1' : 'dailygrid:v1') + suffix;
 let S = null, P = null, CC = [], cells = [], items = new Map();
 let cur = 0, dir = 'A', paused = false, wasFull = false, seen = [];
 
@@ -424,7 +423,7 @@ function loadSeen() { seen = []; try { const s = JSON.parse(localStorage.getItem
 function save() { if (S) try { localStorage.setItem(key(), JSON.stringify(S)); } catch (e) {} }
 const readable = (s, lang) => !!(s && s.P && Array.isArray(s.P.sol) && Number.isInteger(s.P.n) && s.P.sol.length === s.P.n * s.P.n && s.P.clues && s.P.clues.A?.length
   && Array.isArray(s.ent) && s.ent.length === s.P.sol.length && Array.isArray(s.mark) && (s.P.lang || 'en') === lang);
-function readSaved(lang) { try { const s = JSON.parse(localStorage.getItem(lang === 'he' ? 'dailygrid:he:v1' : 'dailygrid:v1')); if (readable(s, lang)) return s; } catch (e) {} return null; }
+function readSaved(lang) { try { const s = JSON.parse(localStorage.getItem(key('', lang))); if (readable(s, lang)) return s; } catch (e) {} return null; }
 const loadSaved = () => readSaved(LANG);
 // A saved puzzle carries its clues from the day it was started. Once that size's dataset is loaded, take the current
 // clues (fixes and both levels) for the same puzzle, keeping the solver's letters.
@@ -460,6 +459,7 @@ const focusGrid = () => gridEl.focus({ preventScroll: true });
 const live = fn => (...a) => { if (S) fn(...a); };
 
 /* ---------- interface text ---------- */
+const MENUS = [...document.querySelectorAll('#tools > .menu')]; // Clear, Reveal, Check, New: the English order
 function applyLanguage() {
   const root = document.documentElement;
   root.lang = LANG; root.dir = t.dir; document.title = t.name;
@@ -470,6 +470,11 @@ function applyLanguage() {
   $('levels').setAttribute('aria-label', t.levelsLabel);
   $('barTxt').title = t.switchDir;
   const sw = $('langSwitch'); sw.lastElementChild.textContent = t.other; sw.lastElementChild.lang = t.otherLang; sw.title = t.otherLabel; sw.href = T[t.otherLang].path;
+  // Hebrew reads the toolbar from the right: the menus sit on the right, New puzzle first (far right), the timer on the left.
+  // The page order changes too, so Tab follows the reading order.
+  const bar = document.querySelector('.toolbar'), tools = $('tools');
+  bar.prepend(LANG === 'he' ? tools : document.querySelector('.timer'));
+  tools.append(...(LANG === 'he' ? [...MENUS].reverse() : MENUS));
   $('newList').innerHTML = '';
   for (const n of t.sizes) {
     const b = document.createElement('button'); b.setAttribute('role', 'menuitem'); b.dataset.act = `new:${n}`;
@@ -511,8 +516,12 @@ function begin(state, quiet) {
   if (S.done) { if (!quiet) showDone(); }
   else if (!quiet && (!a || a === document.body || a === gridEl || a.closest?.('.menu'))) focusGrid();
 }
-async function getSet(lang, n) {
-  if (SETS[lang + n]) return SETS[lang + n];
+const loading = {};
+function getSet(lang, n) {
+  if (SETS[lang + n]) return Promise.resolve(SETS[lang + n]);
+  return loading[lang + n] ||= downloadSet(lang, n).finally(() => { delete loading[lang + n]; });
+}
+async function downloadSet(lang, n) {
   const res = await fetch(`/data/${lang === 'he' ? 'he/' : ''}puzzles-${n}.json`);
   if (!res.ok) throw new Error(res.status);
   const data = await res.json(), letters = lang === 'he' ? /^[א-ת#]+$/ : /^[A-Z#]+$/;
@@ -751,9 +760,9 @@ async function switchLanguage(to, push = true) {
   const from = LANG;
   save();
   try {
-    // Load what the other edition needs before animating, so the turn never shows an empty board.
+    // Load what the other edition needs before animating, so the turn never shows an empty board:
+    // its saved puzzle if that can be drawn, otherwise the first size's dataset.
     const target = T[to], saved = readSaved(to);
-    // Fetch the first size of the other edition before animating unless a readable saved puzzle exists.
     const pool = saved ? null : (SETS[to + target.sizes[0]] || (status(T[from].switchLoading), $('barTxt').lang = from, await getSet(to, target.sizes[0])));
     const level = S?.level;
     const swap = () => {
@@ -766,6 +775,7 @@ async function switchLanguage(to, push = true) {
       else newPuzzle(t.sizes[0]); // the saved puzzle could not be drawn after all: load a fresh one
     };
     await transition(swap, { turn: to === 'he' ? 'to-rtl' : 'to-ltr' });
+    if (S && overlay.hidden && document.activeElement === $('langSwitch')) focusGrid();
   } catch (e) {
     status(T[from].switchFail); $('barTxt').lang = from;
     if (!push) history.replaceState({ lang: from }, '', T[from].path); // Back/Forward failed: keep the address on the edition shown
@@ -800,7 +810,10 @@ document.addEventListener('keydown', e => {
   if (!S || !overlay.hidden || switching) return;
   if (e.target.closest?.('button, a') && (k === ' ' || k === 'Enter')) return;
   if (!inGrid && document.activeElement !== document.body) return; // other controls keep their own keys
-  const letter = t.letter.test(k) ? k.toUpperCase() : LANG === 'he' && /^[a-z;,.]$/i.test(k) ? HE_KEYS[e.code] : null;
+  // A layout that does not match the edition (English typed on a Hebrew layout, or the reverse) falls back to the physical key.
+  const letter = t.letter.test(k) ? k.toUpperCase()
+    : LANG === 'he' ? (/^[a-z;,.]$/i.test(k) ? HE_KEYS[e.code] : null)
+    : k.length === 1 && /^Key[A-Z]$/.test(e.code) ? e.code.slice(3) : null;
   // Arrows move on screen: in Hebrew the next letter across is to the left.
   const side = LANG === 'he' ? -1 : 1;
   if (letter) type(letter);
