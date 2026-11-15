@@ -1,0 +1,844 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Daily Grid</title>
+<meta name="description" content="A crossword solver with 300 puzzles in three sizes and three difficulty levels.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23cf8fc9'/%3E%3Crect x='17' y='17' width='10' height='10' fill='%232b2b2b'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="alternate" hreflang="en" href="https://grid.tomer.dev/">
+<link rel="alternate" hreflang="he" href="https://grid.tomer.dev/he/">
+<link rel="alternate" hreflang="x-default" href="https://grid.tomer.dev/">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700&family=Heebo:wght@400;500;600;700&family=Libre+Baskerville:wght@700&family=Libre+Franklin:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<script>try { const th = localStorage.getItem('dailygrid:theme'); if (th === 'light' || th === 'dark') document.documentElement.dataset.theme = th; } catch (e) {}</script>
+<style>
+/* Layout: masthead, toolbar strip, then clue bar + grid beside stacked Across and Down panels; phone: grid, clue bar, on-screen keys */
+:root{
+  --bg:#ffffff; --panel:#f7f7f7; --ink:#121212; --muted:#5c6066; --line:#cfd0d4; --hover:#e9e9ec; --key:#e4e6e9;
+  --cell:#f7f7f7; --block:#2b2b2b; --rule:#3a3a3a;
+  --sel:#cf8fc9; --sel-edge:#b25aa9; --sel-ink:#121212; --sel-wrong:#6e0f0a; --sel-fixed:#0f2f7a;
+  --word:#f3dcf2; --cross:#faeff9; --done:#5d6268; --block-fill:var(--block);
+  --wrong:#b3261e; --fixed:#1f55c4; --edge:#85888f; --veil:rgba(255,255,255,.96); --shadow:rgba(20,24,30,.14);
+  --ui:"Libre Franklin","Franklin Gothic Medium","Helvetica Neue",Arial,sans-serif;
+  --display:"Libre Baskerville",Georgia,"Times New Roman",serif;
+  --gridsize:max(240px, min(640px, calc(100svh - 250px)));
+}
+/* Hebrew edition: Heebo for the interface and grid, Frank Ruhl Libre for headings */
+:root:lang(he){--ui:"Heebo","Arial Hebrew",Arial,sans-serif;--display:"Frank Ruhl Libre","Times New Roman",serif}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#17181a; --panel:#1f2023; --ink:#ececec; --muted:#a3a7ad; --line:#3a3c41; --hover:#2b2d31; --key:#33353a;
+  --cell:#26272a; --block:#060606; --rule:#7a7d84;
+  --word:#4d3350; --cross:#30263a; --done:#a2a7ad; --block-fill:repeating-linear-gradient(135deg,#060606 0 5px,#4a4c51 5px 6px);
+  --wrong:#ff8a80; --fixed:#7fb0ff; --edge:#7a7d84; --veil:rgba(23,24,26,.96); --shadow:rgba(0,0,0,.5); color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#17181a; --panel:#1f2023; --ink:#ececec; --muted:#a3a7ad; --line:#3a3c41; --hover:#2b2d31; --key:#33353a;
+  --cell:#26272a; --block:#060606; --rule:#7a7d84;
+  --word:#4d3350; --cross:#30263a; --done:#a2a7ad; --block-fill:repeating-linear-gradient(135deg,#060606 0 5px,#4a4c51 5px 6px);
+  --wrong:#ff8a80; --fixed:#7fb0ff; --edge:#7a7d84; --veil:rgba(23,24,26,.96); --shadow:rgba(0,0,0,.5); color-scheme:dark }
+/* Touch screens wider than a phone also get the on-screen keys, so leave room for them */
+@media (min-width:720px) and (hover:none) and (pointer:coarse){ :root{--gridsize:max(240px, min(600px, calc(100svh - 450px)))} }
+
+[hidden]{display:none!important}
+body{margin:0;padding-block:env(safe-area-inset-top,0px) env(safe-area-inset-bottom,0px);background:var(--bg);color:var(--ink);font-family:var(--ui);font-size:.9375rem;-webkit-tap-highlight-color:transparent}
+::selection{background:var(--word)}
+button{font:inherit;color:inherit}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 40px}
+
+.mast{display:flex;align-items:baseline;flex-wrap:wrap;column-gap:18px;row-gap:4px;padding-block:22px 14px}
+.mast h1{font-family:var(--display);font-weight:700;font-size:1.8rem;letter-spacing:-0.01em;margin:0;text-wrap:balance}
+.mast .date{font-weight:600;font-size:1rem}
+.mast .meta{color:var(--muted);font-size:.9rem}
+.levels{margin-inline-start:auto;align-self:center;display:inline-flex;border:1px solid var(--edge);border-radius:8px;overflow:hidden}
+.levels button{color:var(--ink);background:none;border:0;padding:7px 14px;font-size:.9rem;font-weight:500;cursor:pointer}
+.levels button + button{border-inline-start:1px solid var(--edge)}
+.lang{align-self:center;display:inline-flex;align-items:center;gap:6px;color:var(--ink);text-decoration:none;font-size:.9rem;font-weight:600;padding:7px 12px;border:1px solid var(--edge);border-radius:999px}
+.lang:hover{background:var(--hover)}
+.lang:focus-visible{outline:2px solid var(--fixed);outline-offset:2px}
+.lang .icon{width:16px;height:16px}
+.themebtn{align-self:center;display:inline-grid;place-items:center;width:36px;height:36px;padding:0;color:var(--ink);background:none;border:1px solid var(--edge);border-radius:50%;cursor:pointer}
+.themebtn:hover{background:var(--hover)}
+.themebtn:focus-visible{outline:2px solid var(--fixed);outline-offset:2px}
+.themebtn .sun{display:none}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .themebtn .sun{display:block} :root:not([data-theme="light"]) .themebtn .moon{display:none} }
+:root[data-theme="dark"] .themebtn .sun{display:block}
+:root[data-theme="dark"] .themebtn .moon{display:none}
+.lang:lang(he){font-family:"Heebo","Arial Hebrew",Arial,sans-serif}
+.lang:lang(en){font-family:"Libre Franklin","Helvetica Neue",Arial,sans-serif}
+.levels button:hover{background:var(--hover)}
+.levels button[aria-pressed="true"]{background:var(--word);font-weight:700}
+.levels button:focus-visible{outline:2px solid var(--fixed);outline-offset:-2px}
+
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:48px;border-block:1px solid var(--line)}
+.timer{display:flex;align-items:center;gap:2px;font-weight:600;font-size:1.05rem;font-variant-numeric:tabular-nums}
+.tools{display:flex;align-items:center;gap:2px;flex-wrap:wrap;justify-content:flex-end}
+.btn{color:var(--ink);background:none;border:0;padding:8px 12px;border-radius:4px;cursor:pointer;font-size:.95rem;font-weight:500;display:inline-flex;align-items:center;gap:6px}
+.btn:hover{background:var(--hover)}
+.btn:focus-visible,.board-grid:focus-visible,.kbd button:focus-visible,.cluebar .nav:focus-visible{outline:2px solid var(--fixed);outline-offset:2px}
+.icon{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.menu{position:relative}
+.menu .caret{width:12px;height:12px}
+.menu-list{position:absolute;inset-inline-end:0;top:calc(100% + 6px);z-index:30;min-width:180px;padding:6px 0;background:var(--bg);border:1px solid var(--line);border-radius:8px;box-shadow:0 6px 20px var(--shadow)}
+.menu-list button{color:var(--ink);display:block;width:100%;text-align:start;background:none;border:0;padding:9px 16px;cursor:pointer;font-size:.95rem}
+.menu-list button:hover{background:var(--hover)}
+.menu-list button:focus-visible{background:var(--hover);outline:2px solid var(--fixed);outline-offset:-2px}
+
+.board{position:relative;display:grid;grid-template-columns:var(--gridsize) minmax(0,360px);justify-content:center;gap:32px;padding-top:20px;align-items:start}
+.left{min-width:0;display:flex;flex-direction:column;gap:12px}
+.cluebar{order:-1;display:flex;align-items:center;gap:8px;min-height:58px;padding:6px 14px;box-sizing:border-box;background:var(--panel);border:1px solid var(--line);border-radius:8px;font-size:1.08rem;line-height:1.35}
+.cluebar .num{font-weight:700;white-space:nowrap;min-width:2.4em}
+.cluebar .txt{flex:1;min-width:0;cursor:pointer;overflow-wrap:anywhere;text-align:start;background:none;border:0;padding:4px 0;color:inherit;font:inherit;line-height:inherit}
+.cluebar .txt:focus-visible{outline:2px solid var(--fixed);outline-offset:2px;border-radius:2px}
+.cluebar .nav{display:none;color:var(--ink);background:none;border:0;padding:8px;cursor:pointer;border-radius:4px}
+.board-grid{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));grid-template-rows:repeat(var(--n),minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:8px;overflow:hidden;width:100%;aspect-ratio:1;container-type:inline-size;user-select:none;-webkit-user-select:none;touch-action:manipulation;box-sizing:border-box}
+.board-grid:empty{background:var(--panel);border-color:var(--line)}
+.cell{position:relative;background:var(--cell);display:flex;align-items:flex-end;justify-content:center;cursor:pointer;overflow:hidden}
+.cell .no{position:absolute;top:3%;inset-inline-start:6%;font-size:max(6px, calc(100cqw / var(--n) * .24));font-weight:400;line-height:1}
+.cell .ch{font-size:calc(100cqw / var(--n) * .58);font-weight:500;line-height:1;padding-bottom:12%}
+.cell.block{background:var(--block-fill);cursor:default}
+.cell.inword{background:var(--word);box-shadow:inset 0 2px 0 var(--sel-edge),inset 0 -2px 0 var(--sel-edge)}
+.board-grid.down .cell.inword{box-shadow:inset 2px 0 0 var(--sel-edge),inset -2px 0 0 var(--sel-edge)}
+/* The selected cell is the same orchid in both themes, so marks on it get their own darker inks */
+.cell.sel{background:var(--sel);color:var(--sel-ink);box-shadow:inset 0 0 0 2px var(--sel-ink),inset 0 calc(100cqw / var(--n) * -.09) 0 var(--sel-edge);--wrong:var(--sel-wrong);--fixed:var(--sel-fixed)}
+.cell.ok .ch,.cell.rev .ch{color:var(--fixed)}
+.cell.wrong .ch{color:var(--wrong)}
+.cell.ok::after{content:"";position:absolute;inset-inline-end:9%;bottom:9%;width:calc(100cqw / var(--n) * .12);height:calc(100cqw / var(--n) * .12);border-radius:50%;background:var(--fixed)}
+.cell.wrong::after{content:"";position:absolute;inset:0;background:linear-gradient(to top right,transparent calc(50% - 1px),var(--wrong) calc(50% - 1px),var(--wrong) calc(50% + 1px),transparent calc(50% + 1px))}
+.cell.rev::before{content:"";position:absolute;top:0;inset-inline-end:0;width:calc(100cqw / var(--n) * .24);aspect-ratio:1;background:var(--fixed);clip-path:polygon(0 0,100% 0,100% 100%)}
+[dir="rtl"] .cell.rev::before{clip-path:polygon(0 0,100% 0,0 100%)}
+/* Hebrew letters have descenders (ק ך ן ף ץ): sit them a little higher */
+:root:lang(he) .cell .ch{padding-bottom:18%;font-size:calc(100cqw / var(--n) * .55)}
+.board.paused .board-grid .ch{visibility:hidden}
+
+.lists{display:flex;flex-direction:column;gap:14px;min-width:0}
+.list{min-width:0}
+.list h2{font-family:var(--display);font-size:1.15rem;font-weight:700;line-height:1.3;margin:0;padding:0 0 8px;padding-inline-start:4px}
+.list ol{list-style:none;margin:0;padding:6px;box-sizing:border-box;overflow-y:auto;position:relative;max-height:calc(var(--gridsize) / 2 - 4px);background:var(--panel);border:1px solid var(--line);border-radius:8px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.list li{display:flex;gap:8px;padding:7px 10px;font-size:1rem;border-radius:5px;cursor:pointer;line-height:1.4}
+.list li .n{font-weight:700;min-width:1.9em;text-align:end;font-variant-numeric:tabular-nums}
+.list li:hover{background:var(--hover)}
+.list ol:focus-visible{outline:2px solid var(--fixed);outline-offset:2px}
+.list li.done{color:var(--done)}
+.list li.done .n{text-decoration:line-through;text-decoration-thickness:2px}
+.list li.cross{background:var(--cross)}
+.list li.active{background:var(--word);color:var(--ink);font-weight:600}
+.list li.cross > span:last-child{text-decoration:underline dotted;text-underline-offset:3px}
+.list li:focus-visible{outline:2px solid var(--fixed);outline-offset:-2px}
+
+.overlay{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:var(--veil);padding:16px}
+.panel{max-width:340px;text-align:center;display:flex;flex-direction:column;gap:10px;align-items:center}
+.panel h2{font-family:var(--display);font-size:1.6rem;margin:0;text-wrap:balance}
+.panel p{margin:0;color:var(--muted);line-height:1.5}
+.panel .acts{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:8px}
+.pill{border-radius:999px;padding:11px 24px;font-weight:600;cursor:pointer;border:1px solid var(--ink);background:var(--ink);color:var(--bg)}
+.pill.ghost{background:none;color:var(--ink)}
+.pill:focus-visible{outline:2px solid var(--fixed);outline-offset:2px}
+
+.kbd{display:none;flex-direction:column;gap:7px;width:100%}
+.kbd .row{display:flex;gap:5px;justify-content:center}
+.kbd button{flex:1;min-width:0;padding:0;max-width:48px;height:50px;border:0;border-radius:5px;background:var(--key);font-weight:600;font-size:1.1rem;cursor:pointer;touch-action:manipulation;display:grid;place-items:center}
+.kbd button.wide{max-width:72px;flex:1.5}
+.kbd button:active{background:var(--line)}
+[dir="rtl"] #prevClue svg,[dir="rtl"] #nextClue svg{transform:scaleX(-1)}
+.lbl-short{display:none}
+.about{margin:24px 0 0;font-size:.85rem;color:var(--muted);max-width:65ch}
+.dock{display:contents}
+.hint{margin:0;font-size:.85rem;color:var(--muted);visibility:hidden}
+.board-grid:focus-visible ~ .hint{visibility:visible}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+@media (max-width:980px){
+  .board{grid-template-columns:minmax(0,1fr);justify-items:center}
+  .left{width:min(100%,var(--gridsize))}
+  .lists{display:grid;grid-template-columns:1fr 1fr;gap:20px;width:100%}
+  .list ol{max-height:none}
+}
+@media (max-width:719px){
+  .mast{padding-block:14px 10px}
+  .mast h1{font-size:1.35rem}
+  .mast .date{display:none}
+  .board{padding-top:12px;gap:0}
+  .left{width:100%;align-items:center}
+  .wrap{padding-block:0 16px}
+  .board-grid{width:min(100%, max(240px, calc(100svh - 446px)))}
+  .cluebar{width:100%;font-size:1rem;padding-inline:4px;gap:2px;height:64px;min-height:0}
+  .cluebar .txt{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .cluebar .nav{display:inline-flex}
+  .lists{display:none}
+  .board.clues .lists{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;width:100%;padding-top:12px}
+  .board.clues .kbd{display:none}
+  .btn{padding:8px 7px;gap:2px;font-size:.9rem}
+  .menu .caret,.lbl-long{display:none}
+  .lbl-short{display:inline}
+  .lang{padding:6px 10px}
+  .kbd{order:3;padding-top:10px}
+  .cluebar{order:0}
+  /* The largest grid uses the side margins too, so its squares stay at least 24px; the clue bar and keys stay pinned
+     to the bottom of the screen and the grid scrolls under them, keeping the selected square in view. */
+  .board-grid[data-full]{width:calc(100% + 24px);max-width:none;margin-inline:-12px}
+  .dock{display:flex;flex-direction:column;width:100%}
+  .board:has(.board-grid[data-full]) .dock{position:sticky;bottom:0;z-index:5;background:var(--bg);padding-top:8px;padding-bottom:max(8px, env(safe-area-inset-bottom, 0px))}
+  .board-grid[data-full] .cell{scroll-margin-top:110px;scroll-margin-bottom:270px}
+}
+@media (max-width:719px) and (max-height:700px){
+  .mast h1,.mast .meta{display:none}
+  .mast{padding-block:8px 6px}
+  .kbd{gap:5px}
+  .kbd button{height:44px!important}
+  .cluebar{min-height:48px}
+  .board-grid{width:min(100%, max(200px, calc(100svh - 372px)))}
+}
+
+@media (max-width:719px),(hover:none) and (pointer:coarse){
+  .kbd{display:flex}
+  .kbd button{height:52px}
+  .btn,.levels button,.cluebar .nav,.menu-list button,.pill{min-height:44px}
+  .themebtn{width:44px;height:44px}
+  .lang{min-height:44px;box-sizing:border-box}
+  .cluebar .txt{min-height:44px;align-self:stretch}
+  .list li{min-height:44px;box-sizing:border-box;align-items:center}
+  .hint{display:none}
+  .cluebar .nav,#pause{min-width:44px;justify-content:center}
+}
+/* Touch screen on its side (phone or tablet): grid on the left, clue bar and keys on the right */
+@media (orientation:landscape) and (hover:none) and (pointer:coarse){
+  :root{--gridsize:max(200px, min(calc(100svh - 150px), calc(min(100vw - 32px, 1160px) - 420px)))}
+  .wrap{padding-block:0 12px}
+  .mast{padding-block:8px 6px}
+  .mast h1{font-size:1.2rem}
+  .mast .date{display:none}
+  .toolbar{min-height:44px}
+  .board{grid-template-columns:minmax(0,1fr);padding-top:8px;gap:0}
+  .left{display:grid;grid-template-columns:var(--gridsize) minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:16px;row-gap:8px;align-items:start;width:100%}
+  .board-grid{grid-column:1;grid-row:1 / 3;width:var(--gridsize)}
+  .dock{display:contents}
+  .cluebar{grid-column:2;grid-row:1;min-height:48px;width:auto}
+  .cluebar .nav{display:inline-flex}
+  .kbd{grid-column:2;grid-row:2;display:flex;padding-top:0}
+  .lists{display:none}
+  .board.clues .lists{display:grid;grid-template-columns:1fr 1fr;gap:16px;position:absolute;top:72px;bottom:0;inset-inline-end:0;width:calc(100% - var(--gridsize) - 16px);overflow:auto;padding:0}
+  .board.clues .lists .list ol{max-height:none}
+  .board.clues .kbd{display:none}
+}
+@media (max-width:359px){
+  .cluebar{font-size:.9rem} .cluebar .num{min-width:0}
+  .btn{padding-inline:5px;font-size:.85rem}
+  .tools{flex-wrap:nowrap;gap:0}
+  .timer{gap:0}
+}
+@media (prefers-reduced-motion: no-preference){
+  .list li{transition:background-color .08s ease-out}
+  .board-grid{view-transition-name:board}
+  .mast h1{view-transition-name:masthead}
+  ::view-transition-group(board){animation-duration:.7s;animation-timing-function:cubic-bezier(.16,1,.3,1)}
+  ::view-transition-old(board),::view-transition-new(board){animation-duration:.7s;backface-visibility:hidden;mix-blend-mode:normal}
+  [data-turn="to-rtl"]::view-transition-old(board){animation-name:turn-out-rtl;animation-timing-function:cubic-bezier(.5,0,.75,0)}
+  [data-turn="to-rtl"]::view-transition-new(board){animation-name:turn-in-rtl;animation-timing-function:cubic-bezier(.16,1,.3,1)}
+  [data-turn="to-ltr"]::view-transition-old(board){animation-name:turn-out-ltr;animation-timing-function:cubic-bezier(.5,0,.75,0)}
+  [data-turn="to-ltr"]::view-transition-new(board){animation-name:turn-in-ltr;animation-timing-function:cubic-bezier(.16,1,.3,1)}
+  ::view-transition-old(masthead){animation:mast-out .35s cubic-bezier(.5,0,.75,0) both}
+  ::view-transition-new(masthead){animation:mast-in .45s .2s cubic-bezier(.16,1,.3,1) both}
+  ::view-transition-old(root),::view-transition-new(root){animation-duration:.45s}
+  [data-vt="theme"] .board-grid,[data-vt="theme"] .mast h1{view-transition-name:none}
+  [data-vt="theme"]::view-transition-old(root){animation:none}
+  [data-vt="theme"]::view-transition-new(root){animation:theme-reveal .6s cubic-bezier(.16,1,.3,1)}
+}
+@keyframes theme-reveal{from{clip-path:circle(0 at var(--vt-x,50%) var(--vt-y,0))}to{clip-path:circle(var(--vt-r,150vmax) at var(--vt-x,50%) var(--vt-y,0))}}
+@keyframes turn-out-rtl{0%{transform:perspective(1400px) rotateY(0)}50%,100%{transform:perspective(1400px) rotateY(90deg);opacity:1}}
+@keyframes turn-in-rtl{0%,50%{transform:perspective(1400px) rotateY(-90deg)}100%{transform:perspective(1400px) rotateY(0)}}
+@keyframes turn-out-ltr{0%{transform:perspective(1400px) rotateY(0)}50%,100%{transform:perspective(1400px) rotateY(-90deg);opacity:1}}
+@keyframes turn-in-ltr{0%,50%{transform:perspective(1400px) rotateY(90deg)}100%{transform:perspective(1400px) rotateY(0)}}
+@keyframes mast-out{to{opacity:0;filter:blur(6px);transform:translateY(-6px)}}
+@keyframes mast-in{from{opacity:0;filter:blur(6px);transform:translateY(6px)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <h1 data-t="name">The Daily Grid</h1>
+    <span class="date" id="date"></span>
+    <span class="meta" id="meta"></span>
+    <div class="levels" id="levels" role="group" aria-label="Clue difficulty">
+      <button data-level="easy" aria-pressed="true">Easy</button><button data-level="medium" aria-pressed="false">Medium</button><button data-level="hard" aria-pressed="false">Hard</button>
+    </div>
+    <a class="lang" id="langSwitch" href="/he/"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span lang="he">עברית</span></a>
+    <button class="themebtn" id="themeBtn" type="button" aria-label="Switch to dark theme"><svg class="icon moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="icon sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+  </header>
+
+  <div class="toolbar">
+    <div class="timer">
+      <span id="clock" role="timer" aria-label="Time" data-t-label="time">0:00</span>
+      <button class="btn" id="pause" aria-label="Pause" data-t-label="pause"><svg class="icon" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></svg></button>
+    </div>
+    <div class="tools" id="tools">
+      <div class="menu"><button class="btn" aria-haspopup="true" aria-expanded="false"><span data-t="clear">Clear</span><svg class="icon caret" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="menu-list" role="menu" hidden><button role="menuitem" data-act="clear:word" data-t="word">Word</button><button role="menuitem" data-act="clear:wrong" data-t="wrongSquares">Incorrect squares</button><button role="menuitem" data-act="clear:puzzle" data-t="puzzle">Puzzle</button></div></div>
+      <div class="menu"><button class="btn" aria-haspopup="true" aria-expanded="false"><span data-t="reveal">Reveal</span><svg class="icon caret" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="menu-list" role="menu" hidden><button role="menuitem" data-act="reveal:square" data-t="square">Square</button><button role="menuitem" data-act="reveal:word" data-t="word">Word</button><button role="menuitem" data-act="reveal:puzzle" data-t="puzzle">Puzzle</button></div></div>
+      <div class="menu"><button class="btn" aria-haspopup="true" aria-expanded="false"><span data-t="check">Check</span><svg class="icon caret" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="menu-list" role="menu" hidden><button role="menuitem" data-act="check:square" data-t="square">Square</button><button role="menuitem" data-act="check:word" data-t="word">Word</button><button role="menuitem" data-act="check:puzzle" data-t="puzzle">Puzzle</button></div></div>
+      <div class="menu"><button class="btn" aria-haspopup="true" aria-expanded="false"><span class="lbl-long" data-t="newLong">New puzzle</span><span class="lbl-short" data-t="newShort">New</span><svg class="icon caret" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="menu-list" role="menu" id="newList" hidden><button role="menuitem" data-act="new:5">Mini, 5×5</button></div></div>
+    </div>
+  </div>
+
+  <main class="board" id="board">
+    <div class="left">
+      <div class="board-grid" id="grid" tabindex="0" role="application" aria-label="Crossword grid. Type letters; arrows move; space switches direction; Tab goes to the next clue; Escape leaves the grid."></div>
+      <p class="hint" id="hint" data-t="hint">Tab: next clue · Space: switch direction · Esc: leave the grid</p>
+      <div class="dock" id="dock">
+        <div class="cluebar" id="cluebar">
+          <button class="nav" id="prevClue" aria-label="Previous clue" data-t-label="prev"><svg class="icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
+          <span class="num" id="barNum"></span><button class="txt" id="barTxt" title="Switch direction"></button>
+          <button class="nav" id="cluesBtn" aria-label="All clues" data-t-label="allClues" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></button>
+          <button class="nav" id="nextClue" aria-label="Next clue" data-t-label="next"><svg class="icon" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
+        </div>
+        <div class="kbd" id="kbd" dir="ltr"></div>
+      </div>
+    </div>
+    <div class="lists">
+      <section class="list"><h2 id="hA" data-t="across">Across</h2><ol id="listA" tabindex="0" aria-labelledby="hA"></ol></section>
+      <section class="list"><h2 id="hD" data-t="down">Down</h2><ol id="listD" tabindex="0" aria-labelledby="hD"></ol></section>
+    </div>
+    <div class="overlay" id="overlay" hidden>
+      <div class="panel" role="dialog" aria-labelledby="ovTitle" aria-describedby="ovText">
+        <h2 id="ovTitle"></h2><p id="ovText"></p><div class="acts" id="ovActs"></div>
+      </div>
+    </div>
+  </main>
+  <p class="about" id="about" hidden></p>
+  <div class="sr" aria-live="polite" id="live"></div>
+</div>
+
+<script>
+// ENGINE START
+// The page plays a fixed archive built offline by build.js: one dataset file per language and grid size
+// (/data/puzzles-N.json, /data/he/puzzles-N.json), downloaded the first time it is asked for.
+const CLUES = { en: new Map(), he: new Map() }, SETS = {};
+function loadSet(data, lang = 'en') { // { size, puzzles: [[id, grid]], clues: { WORD: [easy, hard] } }; # in a grid is a black square
+  for (const w in data.clues) CLUES[lang].set(w, data.clues[w]);
+  return SETS[lang + data.size] = data.puzzles.map(([id, grid]) => ({ id, n: data.size, grid, lang }));
+}
+function slotsOf(blk, n) {
+  const slots = [];
+  for (const dir of ['A', 'D']) for (let a = 0; a < n; a++) {
+    let run = [];
+    for (let b = 0; b <= n; b++) {
+      const cell = dir === 'A' ? a * n + b : b * n + a;
+      if (b < n && !blk[cell]) run.push(cell);
+      else { if (run.length) slots.push({ dir, cells: run }); run = []; }
+    }
+  }
+  return slots;
+}
+function buildPuzzle(p) { // archive entry -> numbered, clued puzzle
+  const n = p.n, lang = p.lang || 'en', sol = [...p.grid].map(ch => ch === '#' ? null : ch), slots = slotsOf(sol.map(v => v === null), n);
+  const starts = new Set(slots.map(s => s.cells[0])), numbers = new Array(n * n).fill(0);
+  let num = 0; for (let c = 0; c < n * n; c++) if (starts.has(c)) numbers[c] = ++num;
+  const clues = { A: [], D: [] };
+  slots.forEach((s, i) => {
+    const answer = s.cells.map(c => sol[c]).join(''), [clue, hard] = CLUES[lang].get(answer) || ['', ''];
+    clues[s.dir].push({ num: numbers[s.cells[0]], cells: s.cells, answer, clue, hard, mix: (p.id + i) % 2 === 0 });
+  });
+  clues.A.sort((a, b) => a.num - b.num); clues.D.sort((a, b) => a.num - b.num);
+  return { id: p.id, n, lang, sol, numbers, clues };
+}
+// ENGINE END
+
+/* ---------- languages ---------- */
+// Hebrew answers are stored with regular letters; a final letter (ך ם ן ף ץ) typed by the solver counts as its regular form.
+const HE_FINAL = { 'ך': 'כ', 'ם': 'מ', 'ן': 'נ', 'ף': 'פ', 'ץ': 'צ' }, HE_TO_FINAL = { 'כ': 'ך', 'מ': 'ם', 'נ': 'ן', 'פ': 'ף', 'צ': 'ץ' };
+const fold = s => (s || '').replace(/[ךםןףץ]/g, c => HE_FINAL[c]);
+// SI-1452, the standard Israeli layout, by physical key: lets a solver type Hebrew while the computer is set to English.
+const HE_KEYS = { KeyE: 'ק', KeyR: 'ר', KeyT: 'א', KeyY: 'ט', KeyU: 'ו', KeyI: 'ן', KeyO: 'ם', KeyP: 'פ', KeyA: 'ש', KeyS: 'ד', KeyD: 'ג', KeyF: 'כ', KeyG: 'ע', KeyH: 'י', KeyJ: 'ח', KeyK: 'ל', KeyL: 'ך', Semicolon: 'ף', KeyZ: 'ז', KeyX: 'ס', KeyC: 'ב', KeyV: 'ה', KeyB: 'נ', KeyN: 'מ', KeyM: 'צ', Comma: 'ת', Period: 'ץ' };
+const T = {
+  en: {
+    dir: 'ltr', path: '/', name: 'The Daily Grid', desc: 'A crossword solver with 300 puzzles in three sizes and three difficulty levels.',
+    sizes: [5, 7, 15], sizeName: { 5: 'Mini', 7: 'Midi', 15: 'Full' }, no: 'No.', letter: /^[a-z]$/i,
+    date: d => d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }),
+    keys: ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'], other: 'עברית', otherLang: 'he', otherLabel: 'Hebrew edition',
+    levels: { easy: 'Easy', medium: 'Medium', hard: 'Hard' }, levelsLabel: 'Clue difficulty',
+    time: 'Time', pause: 'Pause', clear: 'Clear', reveal: 'Reveal', check: 'Check', newLong: 'New puzzle', newShort: 'New',
+    word: 'Word', square: 'Square', puzzle: 'Puzzle', wrongSquares: 'Incorrect squares', across: 'Across', down: 'Down',
+    bar: (num, d) => `${num}${d}`, prev: 'Previous clue', next: 'Next clue', allClues: 'All clues', switchDir: 'Switch direction', del: 'Delete',
+    gridLabel: 'Crossword grid. Type letters; arrows move; space switches direction; Tab goes to the next clue; Escape leaves the grid.',
+    hint: 'Tab: next clue · Space: switch direction · Esc: leave the grid', about: '',
+    loading: n => `Loading the ${n}×${n} puzzles…`, loadFail: n => `Couldn't load the ${n}×${n} puzzles. Check your connection, then choose New puzzle again.`,
+    nothing: s => `Nothing to check in ${{ square: 'this square', word: 'this word', puzzle: 'the puzzle' }[s]}. `,
+    wrongN: (n, s) => `${n} wrong ${n === 1 ? 'square' : 'squares'} in ${{ square: 'this square', word: 'this word', puzzle: 'the puzzle' }[s]}. `,
+    noMistakes: s => `No mistakes in ${{ square: 'this square', word: 'this word', puzzle: 'the puzzle' }[s]}. `,
+    revealed: s => `Revealed ${{ square: 'this square', word: 'this word', puzzle: 'the puzzle' }[s]}. `,
+    cleared: s => `Cleared ${{ square: 'this square', word: 'this word', puzzle: 'the puzzle' }[s]}. `, clearedWrong: 'Cleared incorrect squares. ',
+    marks: { ok: ', checked correct', wrong: ', marked wrong', rev: ', revealed' }, blank: 'blank',
+    say: (num, d, clue, i, len, r, c, ch, mark, sofar) => `${num} ${d}: ${clue}. Square ${i} of ${len}, row ${r}, column ${c}: ${ch}${mark}. Word so far: ${sofar}.`,
+    almost: 'Almost there', almostText: 'At least one square is wrong. Check the puzzle to find it.', keepTrying: 'Keep trying',
+    solved: 'Solved!', solvedText: (lvl, n, t, help) => `You finished the ${lvl.toLowerCase()} ${n}×${n} in ${t}${help ? ', with a little help' : ''}.`,
+    revealedTitle: 'Puzzle revealed', revealedText: 'Here are the answers. Start a new puzzle when you are ready.', newPuzzle: 'New puzzle', viewGrid: 'View grid',
+    paused: 'Paused', pausedText: 'Your timer is stopped.', resume: 'Resume',
+    toDark: 'Switch to dark theme', toLight: 'Switch to light theme',
+    switchLoading: 'Loading the Hebrew edition…', switchFail: 'Couldn\'t load the Hebrew edition. Check your connection, then press עברית again.', completed: 'completed',
+  },
+  he: {
+    dir: 'rtl', path: '/he/', name: 'התשבץ היומי', desc: 'תשבצים בעברית: 300 תשבצים בשלושה גדלים ובשלוש רמות קושי.',
+    sizes: [5, 7, 13], sizeName: { 5: 'מיני', 7: 'בינוני', 13: 'מלא' }, no: 'מס׳', letter: /^[א-ת]$/,
+    // explicit fields: some engines garble the Hebrew calendar with dateStyle
+    date: d => new Intl.DateTimeFormat('he-IL-u-ca-hebrew', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(d),
+    keys: ['קראטוןםפ', 'שדגכעיחלךף', 'זסבהנמצתץ'], other: 'English', otherLang: 'en', otherLabel: 'English edition',
+    levels: { easy: 'קל', medium: 'בינוני', hard: 'קשה' }, levelsLabel: 'רמת קושי',
+    time: 'זמן', pause: 'השהיה', clear: 'ניקוי', reveal: 'חשיפה', check: 'בדיקה', newLong: 'תשבץ חדש', newShort: 'חדש',
+    word: 'מילה', square: 'משבצת', puzzle: 'תשבץ', wrongSquares: 'משבצות שגויות', across: 'מאוזן', down: 'מאונך',
+    bar: (num, d) => `${num} ${d === 'A' ? 'מאוזן' : 'מאונך'}`, prev: 'ההגדרה הקודמת', next: 'ההגדרה הבאה', allClues: 'כל ההגדרות', switchDir: 'החלפת כיוון', del: 'מחיקה',
+    gridLabel: 'לוח התשבץ. מקלידים אותיות; החצים מזיזים; רווח מחליף כיוון; Tab עובר להגדרה הבאה; Esc יוצא מהלוח.',
+    hint: 'Tab: ההגדרה הבאה · רווח: החלפת כיוון · Esc: יציאה מהלוח',
+    about: 'כתיב מלא לפי כללי האקדמיה ללשון העברית. אפשר להקליד אות סופית בכל אחת משתי הצורות.',
+    loading: n => `התשבצים בגודל ${n}×${n} בטעינה…`, loadFail: n => `לא הצלחנו לטעון את התשבצים בגודל ${n}×${n}. כדאי לבדוק את החיבור ולבחור שוב "תשבץ חדש".`,
+    nothing: s => `אין מה לבדוק ב${{ square: 'משבצת', word: 'מילה', puzzle: 'תשבץ' }[s]}. `,
+    wrongN: (n, s) => `${n === 1 ? 'משבצת שגויה אחת' : `${n} משבצות שגויות`} ב${{ square: 'משבצת', word: 'מילה', puzzle: 'תשבץ' }[s]}. `,
+    noMistakes: s => `אין טעויות ב${{ square: 'משבצת', word: 'מילה', puzzle: 'תשבץ' }[s]}. `,
+    revealed: s => `${{ square: 'המשבצת נחשפה', word: 'המילה נחשפה', puzzle: 'התשבץ נחשף' }[s]}. `,
+    cleared: s => `${{ square: 'המשבצת נוקתה', word: 'המילה נוקתה', puzzle: 'התשבץ נוקה' }[s]}. `, clearedWrong: 'המשבצות השגויות נוקו. ',
+    marks: { ok: ', נבדקה ונמצאה נכונה', wrong: ', מסומנת כשגויה', rev: ', נחשפה' }, blank: 'ריקה',
+    say: (num, d, clue, i, len, r, c, ch, mark, sofar) => `${num} ${d}: ${clue}. משבצת ${i} מתוך ${len}, שורה ${r}, טור ${c}: ${ch}${mark}. המילה עד כה: ${sofar}.`,
+    almost: 'כמעט', almostText: 'לפחות משבצת אחת שגויה. אפשר לבדוק את התשבץ כדי למצוא אותה.', keepTrying: 'להמשיך לפתור',
+    solved: 'נפתר!', solvedText: (lvl, n, t, help) => `התשבץ (${n}×${n}, רמה: ${lvl}) נפתר תוך ${t}${help ? ', עם קצת עזרה' : ''}.`,
+    revealedTitle: 'התשבץ נחשף', revealedText: 'אלה הפתרונות. אפשר להתחיל תשבץ חדש מתי שרוצים.', newPuzzle: 'תשבץ חדש', viewGrid: 'לצפייה בלוח',
+    paused: 'בהשהיה', pausedText: 'הטיימר עצר.', resume: 'להמשיך',
+    toDark: 'מעבר לערכת צבעים כהה', toLight: 'מעבר לערכת צבעים בהירה',
+    switchLoading: 'המהדורה האנגלית בטעינה…', switchFail: 'לא הצלחנו לטעון את המהדורה האנגלית. כדאי לבדוק את החיבור וללחוץ שוב על English.', completed: 'הושלמה',
+  },
+};
+const langOf = path => /^\/he(\/|$)/.test(path) ? 'he' : 'en';
+let LANG = langOf(location.pathname), t = T[LANG];
+
+/* ---------- state ---------- */
+const $ = id => document.getElementById(id);
+const gridEl = $('grid'), boardEl = $('board'), overlay = $('overlay');
+// English keeps its original keys, so progress saved before the Hebrew edition still loads.
+const key = (suffix = '') => (LANG === 'he' ? 'dailygrid:he:v1' : 'dailygrid:v1') + suffix;
+let S = null, P = null, CC = [], cells = [], items = new Map();
+let cur = 0, dir = 'A', paused = false, wasFull = false, seen = [];
+
+// Puzzles already shown to this solver, so New puzzle keeps handing out fresh ones.
+function loadSeen() { seen = []; try { const s = JSON.parse(localStorage.getItem(key(':seen'))); if (Array.isArray(s)) seen = s.filter(Number.isInteger); } catch (e) {} }
+function save() { if (S) try { localStorage.setItem(key(), JSON.stringify(S)); } catch (e) {} }
+const readable = (s, lang) => !!(s && s.P && Array.isArray(s.P.sol) && Number.isInteger(s.P.n) && s.P.sol.length === s.P.n * s.P.n && s.P.clues && s.P.clues.A?.length
+  && Array.isArray(s.ent) && s.ent.length === s.P.sol.length && Array.isArray(s.mark) && (s.P.lang || 'en') === lang);
+function readSaved(lang) { try { const s = JSON.parse(localStorage.getItem(lang === 'he' ? 'dailygrid:he:v1' : 'dailygrid:v1')); if (readable(s, lang)) return s; } catch (e) {} return null; }
+const loadSaved = () => readSaved(LANG);
+// A saved puzzle carries its clues from the day it was started. Once that size's dataset is loaded, take the current
+// clues (fixes and both levels) for the same puzzle, keeping the solver's letters.
+async function refreshSaved() {
+  const s = S, lang = LANG; if (!s) return;
+  try {
+    const p = (await getSet(lang, s.P.n)).find(x => x.id === s.P.id);
+    if (!p || S !== s || LANG !== lang || p.grid !== s.P.sol.map(v => v ?? '#').join('')) return;
+    const keep = { cur, dir }; s.P = P = buildPuzzle(p); begin(s, true); cur = keep.cur; dir = keep.dir; render(); save();
+  } catch (e) {}
+}
+
+const fmt = t => `${Math.floor(t / 60)}:${String(t % 60).padStart(2, '0')}`;
+const locked = c => S.mark[c] === 'ok' || S.mark[c] === 'rev';
+const right = c => fold(S.ent[c]) === P.sol[c];
+const wipe = c => { if (!locked(c)) { S.ent[c] = ''; S.mark[c] = ''; } };
+const open = () => P.sol.map((v, i) => v === null ? -1 : i).filter(i => i >= 0);
+const word = () => CC[cur][dir];
+const allClues = () => [...P.clues.A.map(c => ['A', c]), ...P.clues.D.map(c => ['D', c])];
+const firstEmpty = cl => cl.cells.find(c => !S.ent[c]) ?? null;
+// A revealed Hebrew letter takes its final form only where it ends every word through its square.
+const shown = c => { const ch = P.sol[c]; return P.lang === 'he' && HE_TO_FINAL[ch] && ['A', 'D'].every(d => !CC[c][d] || CC[c][d].cells.at(-1) === c) ? HE_TO_FINAL[ch] : ch; };
+// Easy shows the plain clue, Hard the tricky one, Medium a fixed half-and-half mix chosen when the puzzle was built.
+const clueOf = cl => (S.level === 'hard' || (S.level === 'medium' && cl.mix)) && cl.hard || cl.clue;
+// Status messages go to the clue bar, the screen reader, and the dialog text when a dialog covers the board.
+function status(msg) {
+  $('barNum').textContent = ''; $('barTxt').textContent = msg; $('live').textContent = msg;
+  if (!overlay.hidden) $('ovText').textContent = msg;
+}
+let notice = ''; // said once, in front of the next announcement (results of Check, Reveal, Clear)
+const focusGrid = () => gridEl.focus({ preventScroll: true });
+// Until the first puzzle exists (still loading, or the load failed) the controls do nothing.
+const live = fn => (...a) => { if (S) fn(...a); };
+
+/* ---------- interface text ---------- */
+function applyLanguage() {
+  const root = document.documentElement;
+  root.lang = LANG; root.dir = t.dir; document.title = t.name;
+  document.querySelector('meta[name="description"]').content = t.desc;
+  for (const el of document.querySelectorAll('[data-t]')) el.textContent = t[el.dataset.t];
+  for (const el of document.querySelectorAll('[data-t-label]')) el.setAttribute('aria-label', t[el.dataset.tLabel]);
+  for (const b of $('levels').children) b.textContent = t.levels[b.dataset.level];
+  $('levels').setAttribute('aria-label', t.levelsLabel);
+  $('barTxt').title = t.switchDir;
+  const sw = $('langSwitch'); sw.lastElementChild.textContent = t.other; sw.lastElementChild.lang = t.otherLang; sw.title = t.otherLabel; sw.href = T[t.otherLang].path;
+  $('newList').innerHTML = '';
+  for (const n of t.sizes) {
+    const b = document.createElement('button'); b.setAttribute('role', 'menuitem'); b.dataset.act = `new:${n}`;
+    b.textContent = `${t.sizeName[n]}, ${n}×${n}`; $('newList').appendChild(b);
+  }
+  $('date').textContent = t.date(new Date());
+  syncTheme();
+  $('about').textContent = t.about; $('about').hidden = !t.about;
+  buildKeyboard();
+}
+function buildKeyboard() {
+  const kbd = $('kbd'); kbd.innerHTML = '';
+  t.keys.forEach((row, i) => {
+    const r = document.createElement('div'); r.className = 'row';
+    for (const ch of [...row, ...(i === t.keys.length - 1 ? ['⌫'] : [])]) {
+      const b = document.createElement('button');
+      if (ch === '⌫') { b.className = 'wide'; b.setAttribute('aria-label', t.del); b.innerHTML = '<svg class="icon" viewBox="0 0 24 24"><path d="M21 5H9l-6 7 6 7h12z"/><path d="m17 9-6 6M11 9l6 6"/></svg>'; b.onclick = live(backspace); }
+      else { b.textContent = ch; b.onclick = live(() => type(ch)); }
+      b.addEventListener('pointerdown', e => e.preventDefault());
+      r.appendChild(b);
+    }
+    kbd.appendChild(r);
+  });
+}
+
+const phone = matchMedia('(max-width: 719px)');
+
+/* ---------- puzzles ---------- */
+function begin(state, quiet) {
+  S = state; P = S.P; const n = P.n;
+  CC = Array.from({ length: n * n }, () => ({}));
+  for (const d of ['A', 'D']) for (const cl of P.clues[d]) for (const c of cl.cells) CC[c][d] = cl;
+  dir = 'A'; cur = P.clues.A[0].cells[0];
+  wasFull = open().every(c => S.ent[c]);
+  buildDOM(); render(); syncLevel();
+  $('meta').textContent = `${t.sizeName[n] || ''} · ${n}×${n}${P.id ? ` · ${t.no} ${P.id}` : ''}`;
+  if (!quiet) { veil(false); paused = false; boardEl.classList.remove('paused'); }
+  const a = document.activeElement;
+  if (S.done) { if (!quiet) showDone(); }
+  else if (!quiet && (!a || a === document.body || a === gridEl || a.closest?.('.menu'))) focusGrid();
+}
+async function getSet(lang, n) {
+  if (SETS[lang + n]) return SETS[lang + n];
+  const res = await fetch(`/data/${lang === 'he' ? 'he/' : ''}puzzles-${n}.json`);
+  if (!res.ok) throw new Error(res.status);
+  const data = await res.json(), letters = lang === 'he' ? /^[א-ת#]+$/ : /^[A-Z#]+$/;
+  const ok = data && data.size === n && Array.isArray(data.puzzles) && data.puzzles.length && data.clues && typeof data.clues === 'object'
+    && data.puzzles.every(p => Array.isArray(p) && Number.isInteger(p[0]) && typeof p[1] === 'string' && p[1].length === n * n && letters.test(p[1]));
+  if (!ok) throw new Error('bad dataset');
+  return loadSet(data, lang);
+}
+function freshState(pool, n) {
+  let fresh = pool.filter(p => !seen.includes(p.id));
+  if (!fresh.length) { seen = seen.filter(id => !pool.some(p => p.id === id)); fresh = pool.filter(p => p.id !== P?.id); } // played them all: start over
+  const pick = fresh[Math.floor(Math.random() * fresh.length)] || pool[0];
+  seen.push(pick.id); try { localStorage.setItem(key(':seen'), JSON.stringify(seen)); } catch (e) {}
+  return { P: buildPuzzle(pick), level: S?.level || 'easy', ent: Array(n * n).fill(''), mark: Array(n * n).fill(''), time: 0, done: false, revealed: false };
+}
+let asked = 0;
+async function newPuzzle(n) {
+  const turn = ++asked, lang = LANG; // if the solver asks again while a download is running, the later request wins
+  if (!SETS[lang + n]) status(t.loading(n));
+  try {
+    const pool = await getSet(lang, n);
+    if (turn !== asked || lang !== LANG) return;
+    begin(freshState(pool, n)); save();
+  } catch (e) {
+    if (turn === asked && lang === LANG) status(t.loadFail(n));
+  }
+}
+
+function buildDOM() {
+  const n = P.n; gridEl.style.setProperty('--n', n); gridEl.dataset.n = n; gridEl.toggleAttribute('data-full', n === t.sizes.at(-1)); gridEl.innerHTML = ''; cells = [];
+  gridEl.setAttribute('aria-label', t.gridLabel);
+  P.sol.forEach((v, i) => {
+    const d = document.createElement('div');
+    d.className = 'cell' + (v === null ? ' block' : '');
+    if (v !== null) {
+      if (P.numbers[i]) d.innerHTML = `<span class="no">${+P.numbers[i]}</span>`;
+      d.insertAdjacentHTML('beforeend', '<span class="ch"></span>');
+      d.addEventListener('pointerdown', e => { e.preventDefault(); if (i === cur) toggleDir(); else { cur = i; if (!CC[cur][dir]) toggleDir(); } render(); focusGrid(); });
+    }
+    gridEl.appendChild(d); cells.push(d);
+  });
+  items.clear();
+  for (const d of ['A', 'D']) {
+    const ol = $('list' + d); ol.innerHTML = '';
+    for (const cl of P.clues[d]) {
+      const li = document.createElement('li');
+      li.setAttribute('role', 'button'); li.tabIndex = -1;
+      li.addEventListener('keydown', e => {
+        const to = e.key === 'ArrowDown' ? li.nextElementSibling : e.key === 'ArrowUp' ? li.previousElementSibling : null;
+        if (to) { to.focus(); e.preventDefault(); e.stopPropagation(); }
+        else if (e.key === 'Enter' || e.key === ' ') { li.click(); e.preventDefault(); e.stopPropagation(); }
+      });
+      li.innerHTML = `<span class="n">${+cl.num}.</span><span></span>`; li.lastChild.textContent = clueOf(cl);
+      li.addEventListener('click', () => { dir = d; cur = firstEmpty(cl) ?? cl.cells[0]; showClues(false); render(); focusGrid(); });
+      ol.appendChild(li); items.set(cl, li);
+    }
+  }
+}
+
+function render() {
+  const wd = word(), cross = CC[cur][dir === 'A' ? 'D' : 'A'], inw = new Set(wd.cells);
+  cells.forEach((el, i) => {
+    if (P.sol[i] === null) return;
+    el.className = 'cell' + (i === cur ? ' sel' : inw.has(i) ? ' inword' : '') + (S.mark[i] ? ' ' + S.mark[i] : '');
+    el.querySelector('.ch').textContent = S.ent[i];
+  });
+  for (const [cl, li] of items) {
+    const done = cl.cells.every(c => S.ent[c]);
+    li.className = (cl === wd ? 'active' : cl === cross ? 'cross' : '') + (done ? ' done' : '');
+    if (cl === wd) li.setAttribute('aria-current', 'true'); else li.removeAttribute('aria-current');
+    li.setAttribute('aria-label', `${cl.num}. ${clueOf(cl)}${done ? ', ' + t.completed : ''}`);
+  }
+  for (const d of ['A', 'D']) { const ol = $('list' + d), own = [...ol.children].find(li => li.classList.contains('active') || li.classList.contains('cross')) || ol.firstElementChild; ol.removeAttribute('tabindex'); for (const li of ol.children) li.tabIndex = li === own ? 0 : -1; }
+  for (const cl of [wd, cross]) if (cl) keepVisible(items.get(cl));
+  $('barNum').textContent = t.bar(wd.num, dir); $('barTxt').textContent = clueOf(wd);
+  gridEl.classList.toggle('down', dir === 'D');
+  const say = notice + t.say(wd.num, dir === 'A' ? t.across : t.down, clueOf(wd), wd.cells.indexOf(cur) + 1, wd.cells.length,
+    Math.floor(cur / P.n) + 1, cur % P.n + 1, S.ent[cur] || t.blank, t.marks[S.mark[cur]] || '', wd.cells.map(c => S.ent[c] || t.blank).join(', '));
+  // phones: keep the selected square clear of the pinned clue bar and keys
+  if (gridEl.hasAttribute('data-full') && phone.matches) cells[cur].scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  if (notice && $('live').textContent === say) { $('live').textContent = ''; requestAnimationFrame(() => { $('live').textContent = say; }); }
+  else if ($('live').textContent !== say) $('live').textContent = say; // unchanged text is not announced again
+  notice = '';
+  $('clock').textContent = fmt(S.time);
+}
+function keepVisible(li) {
+  const ol = li.parentElement;
+  if (li.offsetTop < ol.scrollTop) ol.scrollTop = li.offsetTop - 6;
+  else if (li.offsetTop + li.offsetHeight > ol.scrollTop + ol.clientHeight) ol.scrollTop = li.offsetTop + li.offsetHeight - ol.clientHeight + 6;
+}
+
+function syncLevel() { for (const b of $('levels').children) b.setAttribute('aria-pressed', String(b.dataset.level === (S?.level || 'easy'))); }
+function setLevel(l) {
+  S.level = l; save(); syncLevel();
+  for (const [cl, li] of items) li.lastChild.textContent = clueOf(cl);
+  render();
+}
+// Phones hide the clue lists; the list button in the clue bar swaps the keyboard for them.
+function showClues(on) {
+  boardEl.classList.toggle('clues', on); $('cluesBtn').setAttribute('aria-expanded', String(on));
+  if (on) items.get(word()).scrollIntoView({ block: 'nearest' });
+}
+function toggleDir() { const d = dir === 'A' ? 'D' : 'A'; if (CC[cur][d]) dir = d; }
+function jumpClue(step, wantEmpty) {
+  const list = allClues(); let i = list.findIndex(([d, c]) => d === dir && c === word());
+  for (let t = 0; t < list.length; t++) {
+    i = (i + step + list.length) % list.length; const [d, c] = list[i];
+    if (!wantEmpty || firstEmpty(c) !== null) { dir = d; cur = firstEmpty(c) ?? c.cells[0]; return true; }
+  }
+  return false;
+}
+function changed() { save(); checkFull(); render(); }
+
+function type(ch) {
+  if (S.done || paused) return;
+  const cl = word(), was = S.ent[cur];
+  if (!locked(cur)) { S.ent[cur] = ch; S.mark[cur] = ''; }
+  const i = cl.cells.indexOf(cur), last = i === cl.cells.length - 1;
+  if (was || locked(cur)) { if (!last) cur = cl.cells[i + 1]; }
+  else {
+    const after = cl.cells.slice(i + 1).find(c => !S.ent[c]), any = firstEmpty(cl);
+    if (after !== undefined) cur = after;
+    else if (any !== null) cur = any;
+    else jumpClue(1, true);
+  }
+  changed();
+}
+function backspace() {
+  if (S.done || paused) return;
+  if (!S.ent[cur] || locked(cur)) {
+    const cl = word(), i = cl.cells.indexOf(cur);
+    if (i > 0) cur = cl.cells[i - 1]; else { jumpClue(-1, false); cur = word().cells.at(-1); }
+  }
+  wipe(cur); changed();
+}
+function del() { if (S.done || paused) return; wipe(cur); changed(); }
+function arrow(dr, dc) {
+  const d = dr ? 'D' : 'A';
+  if (d !== dir && CC[cur][d]) { dir = d; render(); return; }
+  const n = P.n; let r = Math.floor(cur / n), c = cur % n;
+  for (;;) {
+    r += dr; c += dc; if (r < 0 || c < 0 || r >= n || c >= n) return;
+    if (P.sol[r * n + c] !== null) { cur = r * n + c; render(); return; }
+  }
+}
+
+function scope(s) { return s === 'square' ? [cur] : s === 'word' ? word().cells : open(); }
+function act(a) {
+  const [kind, arg] = a.split(':');
+  if (kind === 'new') return newPuzzle(+arg);
+  if (!S || (S.done && a !== 'clear:puzzle')) return; // a finished grid only changes by clearing all of it
+  if (paused) hideOverlay(); // the grid never changes while it is hidden
+  const where = ['square', 'word', 'puzzle'].includes(arg) ? arg : 'puzzle';
+  if (kind === 'check') {
+    let wrong = 0, filled = 0;
+    for (const c of scope(arg)) if (S.ent[c] && !locked(c)) { filled++; S.mark[c] = right(c) ? 'ok' : 'wrong'; if (S.mark[c] === 'wrong') wrong++; }
+    notice = !filled ? t.nothing(where) : wrong ? t.wrongN(wrong, where) : t.noMistakes(where);
+  }
+  if (kind === 'reveal') {
+    for (const c of scope(arg)) if (!locked(c)) { S.mark[c] = right(c) ? 'ok' : 'rev'; if (S.mark[c] === 'rev') S.ent[c] = shown(c); }
+    if (arg === 'puzzle') S.revealed = true;
+    notice = t.revealed(where);
+  }
+  if (a === 'clear:puzzle') { if (S.done || S.revealed) S.time = 0; S.ent = S.ent.map(() => ''); S.mark = S.mark.map(() => ''); S.done = false; S.revealed = false; hideOverlay(); notice = t.cleared('puzzle'); }
+  else if (kind === 'clear') { for (const c of scope(arg === 'wrong' ? 'puzzle' : arg)) if (arg !== 'wrong' || !right(c)) wipe(c); notice = arg === 'wrong' ? t.clearedWrong : t.cleared(where); }
+  changed();
+}
+
+function checkFull() {
+  const all = open(), full = all.every(c => S.ent[c]);
+  if (full && !S.done) {
+    if (all.every(right)) { S.done = true; S.doneLevel = S.level || 'easy'; save(); showDone(); }
+    else if (!wasFull) showOverlay(t.almost, t.almostText, [[t.keepTrying, hideOverlay, true]]);
+  }
+  wasFull = full;
+}
+function showDone() {
+  const helped = S.revealed || S.mark.some(m => m === 'rev');
+  showOverlay(S.revealed ? t.revealedTitle : t.solved,
+    S.revealed ? t.revealedText : t.solvedText(t.levels[S.doneLevel || S.level || 'easy'], P.n, fmt(S.time), helped),
+    [[t.newPuzzle, () => newPuzzle(P.n), true], [t.viewGrid, hideOverlay, false]]);
+}
+function veil(on) { overlay.hidden = !on; for (const el of boardEl.children) if (el !== overlay) el.inert = on; }
+function showOverlay(title, text, acts) {
+  $('ovTitle').textContent = title; $('ovText').textContent = text;
+  const box = $('ovActs'); box.innerHTML = '';
+  for (const [label, fn, primary] of acts) { const b = document.createElement('button'); b.className = 'pill' + (primary ? '' : ' ghost'); b.textContent = label; b.onclick = fn; box.appendChild(b); }
+  veil(true); box.firstChild.focus();
+}
+function hideOverlay() { veil(false); paused = false; boardEl.classList.remove('paused'); if (S) render(); focusGrid(); }
+function pause() { if (S.done) return; paused = true; boardEl.classList.add('paused'); showOverlay(t.paused, t.pausedText, [[t.resume, hideOverlay, true]]); }
+
+setInterval(() => {
+  if (!S || S.done || paused || document.hidden || !overlay.hidden) return;
+  S.time++; $('clock').textContent = fmt(S.time); if (S.time % 5 === 0) save();
+}, 1000);
+
+/* ---------- animated changes ---------- */
+// Runs an update inside a view transition, but a transition that stalls (a page that draws no frames, an old engine)
+// can never block the change itself: after a second the update is applied directly.
+let transitions = 0;
+async function transition(update, mark) {
+  const root = document.documentElement, mine = ++transitions;
+  let done = false; const run = () => { if (!done) { done = true; update(); } };
+  if (!document.startViewTransition || matchMedia('(prefers-reduced-motion: reduce)').matches || document.hidden) return run();
+  Object.assign(root.dataset, mark);
+  let tr; try { tr = document.startViewTransition(run); } catch (e) { run(); }
+  const timer = setTimeout(() => { if (!done) { tr?.skipTransition(); run(); } }, 1000);
+  await Promise.race([tr?.finished.catch(() => {}), new Promise(r => setTimeout(r, 2500))]);
+  clearTimeout(timer); run();
+  if (mine === transitions) for (const k in mark) delete root.dataset[k]; // a newer transition owns the marks now
+}
+
+/* ---------- light and dark ---------- */
+// Follows the system until the solver picks one; the pick is remembered on this device.
+const isDark = () => (document.documentElement.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')) === 'dark';
+function syncTheme() { $('themeBtn').setAttribute('aria-label', isDark() ? t.toLight : t.toDark); $('themeBtn').title = isDark() ? t.toLight : t.toDark; }
+async function toggleTheme() {
+  const root = document.documentElement, next = isDark() ? 'light' : 'dark';
+  const apply = () => { root.dataset.theme = next; try { localStorage.setItem('dailygrid:theme', next); } catch (e) {} syncTheme(); };
+  if (switching) return apply();
+  const r = $('themeBtn').getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2;
+  root.style.setProperty('--vt-x', x + 'px'); root.style.setProperty('--vt-y', y + 'px');
+  root.style.setProperty('--vt-r', Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y)) + 'px');
+  await transition(apply, { vt: 'theme' });
+}
+$('themeBtn').addEventListener('click', toggleTheme);
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', syncTheme);
+
+/* ---------- switching language ---------- */
+// The board turns over like a card and comes back mirrored, because the grid really does change reading direction.
+let switching = false;
+async function switchLanguage(to, push = true) {
+  if (to === LANG || switching) return;
+  switching = true;
+  const from = LANG;
+  save();
+  try {
+    // Load what the other edition needs before animating, so the turn never shows an empty board.
+    const target = T[to], saved = readSaved(to);
+    // Fetch the first size of the other edition before animating unless a readable saved puzzle exists.
+    const pool = saved ? null : (SETS[to + target.sizes[0]] || (status(T[from].switchLoading), $('barTxt').lang = from, await getSet(to, target.sizes[0])));
+    const level = S?.level;
+    const swap = () => {
+      asked++; // any download still running for the old edition no longer applies
+      LANG = to; t = T[to]; loadSeen(); applyLanguage();
+      if (push) history.pushState({ lang: to }, '', t.path);
+      S = null; P = null; showClues(false); closeMenus(); $('barTxt').removeAttribute('lang');
+      if (saved) { try { begin(saved); refreshSaved(); return; } catch (e) { S = null; P = null; } }
+      if (pool) { begin({ ...freshState(pool, t.sizes[0]), level: level || 'easy' }); save(); }
+      else newPuzzle(t.sizes[0]); // the saved puzzle could not be drawn after all: load a fresh one
+    };
+    await transition(swap, { turn: to === 'he' ? 'to-rtl' : 'to-ltr' });
+  } catch (e) {
+    status(T[from].switchFail); $('barTxt').lang = from;
+    if (!push) history.replaceState({ lang: from }, '', T[from].path); // Back/Forward failed: keep the address on the edition shown
+  } finally {
+    switching = false;
+    // Back or Forward pressed during the turn: follow the address once the turn is over
+    if (langOf(location.pathname) !== LANG) switchLanguage(langOf(location.pathname), false);
+  }
+}
+$('langSwitch').addEventListener('click', e => {
+  if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return; // new tab or window: let the link work
+  e.preventDefault(); switchLanguage(t.otherLang);
+});
+window.addEventListener('popstate', () => switchLanguage(langOf(location.pathname), false));
+
+/* ---------- keys and controls ---------- */
+document.addEventListener('keydown', e => {
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  const k = e.key, menu = document.querySelector('.menu-list:not([hidden])'), inGrid = document.activeElement === gridEl;
+  if (k === 'Escape') {
+    if (menu) { closeMenus(); menu.previousElementSibling.focus(); }
+    else if (!overlay.hidden && S) hideOverlay();
+    else if (inGrid) $('pause').focus(); // the keyboard's way out of the grid, since Tab is clue navigation there
+    return;
+  }
+  if (menu) {
+    const its = [...menu.children], i = its.indexOf(document.activeElement);
+    const to = k === 'ArrowDown' ? its[(i + 1) % its.length] : k === 'ArrowUp' ? its[(i - 1 + its.length) % its.length] : k === 'Home' ? its[0] : k === 'End' ? its.at(-1) : null;
+    if (to) { to.focus(); e.preventDefault(); }
+    return;
+  }
+  if (!S || !overlay.hidden || switching) return;
+  if (e.target.closest?.('button, a') && (k === ' ' || k === 'Enter')) return;
+  if (!inGrid && document.activeElement !== document.body) return; // other controls keep their own keys
+  const letter = t.letter.test(k) ? k.toUpperCase() : LANG === 'he' && /^[a-z;,.]$/i.test(k) ? HE_KEYS[e.code] : null;
+  // Arrows move on screen: in Hebrew the next letter across is to the left.
+  const side = LANG === 'he' ? -1 : 1;
+  if (letter) type(letter);
+  else if (k === 'Backspace') backspace();
+  else if (k === 'Delete') del();
+  else if (k === 'ArrowLeft') arrow(0, -side);
+  else if (k === 'ArrowRight') arrow(0, side);
+  else if (k === 'ArrowUp') arrow(-1, 0);
+  else if (k === 'ArrowDown') arrow(1, 0);
+  else if (k === ' ') { toggleDir(); render(); }
+  else if (k === 'Tab' || k === 'Enter') { if (!jumpClue(e.shiftKey ? -1 : 1, true)) jumpClue(e.shiftKey ? -1 : 1, false); render(); }
+  else return;
+  e.preventDefault();
+});
+
+function closeMenus() { document.querySelectorAll('.menu').forEach(m => { m.querySelector('.menu-list').hidden = true; m.firstElementChild.setAttribute('aria-expanded', 'false'); }); }
+document.querySelectorAll('.menu').forEach(m => {
+  const btn = m.firstElementChild, list = m.querySelector('.menu-list');
+  btn.addEventListener('click', e => { e.stopPropagation(); const show = list.hidden; closeMenus(); list.hidden = !show; btn.setAttribute('aria-expanded', String(show)); if (show) list.firstElementChild.focus(); });
+  list.addEventListener('click', e => { const b = e.target.closest('[data-act]'); if (!b) return; closeMenus(); act(b.dataset.act); if (overlay.hidden) { if (S) focusGrid(); else btn.focus(); } else $('ovActs').firstChild.focus(); });
+  m.addEventListener('focusout', e => { if (!m.contains(e.relatedTarget) && !list.hidden) { list.hidden = true; btn.setAttribute('aria-expanded', 'false'); } });
+});
+document.addEventListener('click', closeMenus);
+$('levels').onclick = live(e => { const b = e.target.closest('[data-level]'); if (!b) return; setLevel(b.dataset.level); if (overlay.hidden) focusGrid(); });
+$('pause').onclick = live(pause);
+$('prevClue').onclick = live(() => { jumpClue(-1, false); render(); });
+$('nextClue').onclick = live(() => { jumpClue(1, false); render(); });
+$('barTxt').onclick = live(() => { toggleDir(); render(); });
+$('cluesBtn').onclick = live(() => showClues(!boardEl.classList.contains('clues')));
+
+function boot() {
+  history.replaceState({ lang: LANG }, '', location.href);
+  applyLanguage(); loadSeen();
+  const saved = loadSaved();
+  if (saved) try { begin(saved); refreshSaved(); return; } catch (e) { S = null; P = null; } // saved state this version can't read: start fresh
+  newPuzzle(t.sizes[0]);
+}
+boot();
+</script>
+</body>
+</html>
