@@ -43,7 +43,7 @@
 [hidden]{display:none!important}
 body{margin:0;padding-block:env(safe-area-inset-top,0px) env(safe-area-inset-bottom,0px);background:var(--bg);color:var(--ink);font-family:var(--ui);font-size:.9375rem;-webkit-tap-highlight-color:transparent}
 ::selection{background:var(--word)}
-button{font:inherit;color:inherit}
+button{font:inherit;color:inherit;touch-action:manipulation}
 .wrap{max-width:1160px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 40px}
 
 .mast{display:flex;align-items:baseline;flex-wrap:wrap;column-gap:18px;row-gap:4px;padding-block:22px 14px}
@@ -53,7 +53,7 @@ button{font:inherit;color:inherit}
 .levels{margin-inline-start:auto;align-self:center;display:inline-flex;border:1px solid var(--edge);border-radius:8px;overflow:hidden}
 .levels button{color:var(--ink);background:none;border:0;padding:7px 14px;font-size:.9rem;font-weight:500;cursor:pointer}
 .levels button + button{border-inline-start:1px solid var(--edge)}
-.lang{align-self:center;display:inline-flex;align-items:center;gap:6px;color:var(--ink);text-decoration:none;font-size:.9rem;font-weight:600;padding:7px 12px;border:1px solid var(--edge);border-radius:999px}
+.lang{align-self:center;display:inline-flex;align-items:center;gap:6px;color:var(--ink);text-decoration:none;font-size:.9rem;font-weight:600;padding:7px 12px;border:1px solid var(--edge);border-radius:999px;touch-action:manipulation}
 .lang:hover{background:var(--hover)}
 .lang:focus-visible{outline:2px solid var(--fixed);outline-offset:2px}
 .lang .icon{width:16px;height:16px}
@@ -70,16 +70,16 @@ button{font:inherit;color:inherit}
 .levels button[aria-pressed="true"]{background:var(--word);font-weight:700}
 .levels button:focus-visible{outline:2px solid var(--fixed);outline-offset:-2px}
 
-.toolbar{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:48px;border-block:1px solid var(--line)}
+.toolbar{position:relative;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:48px;border-block:1px solid var(--line)}
 .timer{display:flex;align-items:center;gap:2px;font-weight:600;font-size:1.05rem;font-variant-numeric:tabular-nums}
 .tools{display:flex;align-items:center;gap:2px;flex-wrap:wrap;justify-content:flex-end}
 .btn{color:var(--ink);background:none;border:0;padding:8px 12px;border-radius:4px;cursor:pointer;font-size:.95rem;font-weight:500;display:inline-flex;align-items:center;gap:6px}
-.btn:hover{background:var(--hover)}
+.btn:hover,.btn[aria-expanded="true"]{background:var(--hover)}
 .btn:focus-visible,.board-grid:focus-visible,.kbd button:focus-visible,.cluebar .nav:focus-visible{outline:2px solid var(--fixed);outline-offset:2px}
 .icon{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .menu{position:relative}
 .menu .caret{width:12px;height:12px}
-.menu-list{position:absolute;right:0;top:calc(100% + 6px);z-index:30;min-width:180px;padding:6px 0;background:var(--bg);border:1px solid var(--line);border-radius:8px;box-shadow:0 6px 20px var(--shadow)}
+.menu-list{position:absolute;right:0;top:calc(100% + 6px);z-index:30;min-width:180px;max-width:calc(100vw - 16px);box-sizing:border-box;padding:6px 0;background:var(--bg);border:1px solid var(--line);border-radius:8px;box-shadow:0 6px 20px var(--shadow)}
 .menu-list button{color:var(--ink);display:block;width:100%;text-align:start;background:none;border:0;padding:9px 16px;cursor:pointer;font-size:.95rem}
 .menu-list button:hover{background:var(--hover)}
 .menu-list button:focus-visible{background:var(--hover);outline:2px solid var(--fixed);outline-offset:-2px}
@@ -155,14 +155,17 @@ button{font:inherit;color:inherit}
   .list ol{max-height:none}
 }
 @media (max-width:719px){
-  .mast{padding-block:14px 10px}
-  .mast h1{font-size:1.35rem}
+  .mast{padding-block:10px 8px;column-gap:8px;row-gap:8px;align-items:center}
+  .mast h1{font-size:1.3rem}
   .mast .date{display:none}
-  .board{padding-top:12px;gap:0}
-  .left{width:100%;align-items:center}
+  .levels{margin-inline:0 auto}
+  .levels button{padding:6px 10px;font-size:.875rem}
+  .board{padding-top:10px;gap:0}
+  .left{width:100%;align-items:center;gap:10px}
   .wrap{padding-block:0 16px}
-  .board-grid{width:min(100%, max(240px, calc(100svh - 446px)))}
-  .cluebar{width:100%;font-size:1rem;padding-inline:4px;gap:2px;height:64px;min-height:0}
+  .board-grid{width:min(100%, max(240px, calc(100svh - 422px)))}
+  .cluebar{width:100%;font-size:1rem;padding-inline:4px;gap:2px;height:60px;min-height:0}
+  .cluebar .num{padding-inline-end:6px}
   .cluebar .txt{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .cluebar .nav{display:inline-flex}
   .lists{display:none}
@@ -171,23 +174,23 @@ button{font:inherit;color:inherit}
   .btn{padding:8px 7px;gap:2px;font-size:.9rem}
   .menu .caret,.lbl-long{display:none}
   .lbl-short{display:inline}
-  .lang{padding:6px 10px}
+  .lang{padding:6px 10px;font-size:.875rem;gap:5px}
   .kbd{order:3;padding-top:10px}
   .cluebar{order:0}
   /* The largest grid uses the side margins too, so its squares stay at least 24px; the clue bar and keys stay pinned
      to the bottom of the screen and the grid scrolls under them, keeping the selected square in view. */
   .board-grid[data-full]{width:calc(100% + 24px);max-width:none;margin-inline:-12px}
   .dock{display:flex;flex-direction:column;width:100%}
-  .board:has(.board-grid[data-full]) .dock{position:sticky;bottom:0;z-index:5;background:var(--bg);padding-top:8px;padding-bottom:max(8px, env(safe-area-inset-bottom, 0px))}
+  .board:not(.clues):has(.board-grid[data-full]) .dock{position:sticky;bottom:0;z-index:5;background:var(--bg);padding-top:8px;padding-bottom:max(8px, env(safe-area-inset-bottom, 0px))}
   .board-grid[data-full] .cell{scroll-margin-top:110px;scroll-margin-bottom:270px}
 }
 @media (max-width:719px) and (max-height:700px){
   .mast h1,.mast .meta{display:none}
   .mast{padding-block:8px 6px}
-  .kbd{gap:5px}
+  .kbd{gap:5px;padding-top:8px}
   .kbd button{height:44px!important}
-  .cluebar{min-height:48px}
-  .board-grid{width:min(100%, max(200px, calc(100svh - 372px)))}
+  .cluebar{height:56px}
+  .board-grid{width:min(100%, max(200px, calc(100svh - 352px)))}
 }
 
 @media (max-width:719px),(hover:none) and (pointer:coarse){
@@ -211,17 +214,21 @@ button{font:inherit;color:inherit}
   .toolbar{min-height:44px}
   .board{grid-template-columns:minmax(0,1fr);padding-top:8px;gap:0}
   .left{display:grid;grid-template-columns:var(--gridsize) minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:16px;row-gap:8px;align-items:start;width:100%}
-  .board-grid{grid-column:1;grid-row:1 / 3;width:var(--gridsize)}
-  .dock{display:contents}
-  .cluebar{grid-column:2;grid-row:1;min-height:48px;width:auto}
+  .board-grid,.board-grid[data-full]{grid-column:1;grid-row:1 / 3;width:var(--gridsize);margin-inline:0}
+  .dock,.board:not(.clues):has(.board-grid[data-full]) .dock{display:contents;position:static;padding:0;background:none}
+  .cluebar{grid-column:2;grid-row:1;height:auto;min-height:48px;width:auto}
   .cluebar .nav{display:inline-flex}
   .kbd{grid-column:2;grid-row:2;display:flex;padding-top:0}
   .lists{display:none}
   .board.clues .lists{display:grid;grid-template-columns:1fr 1fr;gap:16px;position:absolute;top:72px;bottom:0;inset-inline-end:0;width:calc(100% - var(--gridsize) - 16px);overflow:auto;padding:0}
   .board.clues .lists .list ol{max-height:none}
   .board.clues .kbd{display:none}
+  .about{margin-top:12px}
 }
 @media (max-width:359px){
+  .mast{column-gap:6px}
+  .levels button{padding:6px 8px;font-size:.8rem}
+  .lang{padding:6px 8px;font-size:.8rem;gap:4px}
   .cluebar{font-size:.9rem} .cluebar .num{min-width:0}
   .btn{padding-inline:5px;font-size:.85rem}
   .tools{flex-wrap:nowrap;gap:0}
@@ -496,14 +503,14 @@ function buildKeyboard() {
       const b = document.createElement('button');
       if (ch === '⌫') { b.className = 'wide'; b.setAttribute('aria-label', t.del); b.innerHTML = '<svg class="icon" viewBox="0 0 24 24"><path d="M21 5H9l-6 7 6 7h12z"/><path d="m17 9-6 6M11 9l6 6"/></svg>'; b.onclick = live(backspace); }
       else { b.textContent = ch; b.onclick = live(() => type(ch)); }
-      b.addEventListener('pointerdown', e => e.preventDefault());
+      b.addEventListener('pointerdown', e => { if (e.pointerType !== 'touch') e.preventDefault(); });
       r.appendChild(b);
     }
     kbd.appendChild(r);
   });
 }
 
-const phone = matchMedia('(max-width: 719px)');
+const phone = matchMedia('(max-width: 719px) and (orientation: portrait)');
 
 /* ---------- puzzles ---------- */
 function begin(state, quiet) {
@@ -514,7 +521,7 @@ function begin(state, quiet) {
   wasFull = open().every(c => S.ent[c]);
   buildDOM(); render(); syncLevel();
   $('meta').textContent = `${t.sizeName[n] || ''} · ${n}×${n}${t.levelled ? ` · ${t.levels[P.level || 'easy']}` : ''}${P.id ? ` · ${t.no} ${P.id}` : ''}`;
-  if (!quiet) { veil(false); paused = false; boardEl.classList.remove('paused'); }
+  if (!quiet) { veil(false); paused = false; boardEl.classList.remove('paused'); showClues(false); }
   const a = document.activeElement;
   if (S.done) { if (!quiet) showDone(); }
   else if (!quiet && (!a || a === document.body || a === gridEl || a.closest?.('.menu'))) focusGrid();
@@ -557,13 +564,18 @@ async function newPuzzle(n) {
 function buildDOM() {
   const n = P.n; gridEl.style.setProperty('--n', n); gridEl.dataset.n = n; gridEl.toggleAttribute('data-full', n === t.sizes.at(-1)); gridEl.innerHTML = ''; cells = [];
   gridEl.setAttribute('aria-label', t.gridLabel);
+  const selectCell = i => { if (i === cur) toggleDir(); else { cur = i; if (!CC[cur][dir]) toggleDir(); } render(); focusGrid(); };
   P.sol.forEach((v, i) => {
     const d = document.createElement('div');
     d.className = 'cell' + (v === null ? ' block' : '');
     if (v !== null) {
       if (P.numbers[i]) d.innerHTML = `<span class="no">${+P.numbers[i]}</span>`;
       d.insertAdjacentHTML('beforeend', '<span class="ch"></span>');
-      d.addEventListener('pointerdown', e => { e.preventDefault(); if (i === cur) toggleDir(); else { cur = i; if (!CC[cur][dir]) toggleDir(); } render(); focusGrid(); });
+      // Defer touch selection to click so scrolling a full-size grid never hijacks the active square.
+      let mouseDown = false;
+      d.addEventListener('pointerdown', e => { if (e.pointerType === 'touch') return; mouseDown = true; e.preventDefault(); selectCell(i); });
+      d.addEventListener('click', () => { if (mouseDown) { mouseDown = false; return; } selectCell(i); });
+      d.addEventListener('pointerleave', () => { mouseDown = false; });
     }
     gridEl.appendChild(d); cells.push(d);
   });
@@ -605,7 +617,7 @@ function render() {
   const say = notice + t.say(wd.num, dir === 'A' ? t.across : t.down, clueOf(wd), wd.cells.indexOf(cur) + 1, wd.cells.length,
     Math.floor(cur / P.n) + 1, cur % P.n + 1, S.ent[cur] || t.blank, t.marks[S.mark[cur]] || '', wd.cells.map(c => S.ent[c] || t.blank).join(', '));
   // phones: keep the selected square clear of the pinned clue bar and keys
-  if (gridEl.hasAttribute('data-full') && phone.matches) cells[cur].scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  if (gridEl.hasAttribute('data-full') && phone.matches && !boardEl.classList.contains('clues')) cells[cur].scrollIntoView({ block: 'nearest', inline: 'nearest' });
   if (notice && $('live').textContent === say) { $('live').textContent = ''; requestAnimationFrame(() => { $('live').textContent = say; }); }
   else if ($('live').textContent !== say) $('live').textContent = say; // unchanged text is not announced again
   notice = '';
@@ -815,7 +827,7 @@ document.addEventListener('keydown', e => {
   }
   if (menu) {
     const its = [...menu.children], i = its.indexOf(document.activeElement);
-    const to = k === 'ArrowDown' ? its[(i + 1) % its.length] : k === 'ArrowUp' ? its[(i - 1 + its.length) % its.length] : k === 'Home' ? its[0] : k === 'End' ? its.at(-1) : null;
+    const to = k === 'ArrowDown' ? its[(i + 1) % its.length] : k === 'ArrowUp' ? its[i < 0 ? its.length - 1 : (i - 1 + its.length) % its.length] : k === 'Home' ? its[0] : k === 'End' ? its.at(-1) : null;
     if (to) { to.focus(); e.preventDefault(); }
     return;
   }
@@ -841,14 +853,35 @@ document.addEventListener('keydown', e => {
   e.preventDefault();
 });
 
-function closeMenus() { document.querySelectorAll('.menu').forEach(m => { m.querySelector('.menu-list').hidden = true; m.firstElementChild.setAttribute('aria-expanded', 'false'); }); }
+function closeMenus() { document.querySelectorAll('.menu').forEach(m => { const l = m.querySelector('.menu-list'); l.hidden = true; l.style.transform = ''; m.firstElementChild.setAttribute('aria-expanded', 'false'); }); }
+function positionMenu(list) {
+  list.style.transform = '';
+  const r = list.getBoundingClientRect(), pad = 8;
+  if (r.left < pad) list.style.transform = `translateX(${Math.ceil(pad - r.left)}px)`;
+  else if (r.right > innerWidth - pad) list.style.transform = `translateX(${Math.floor(innerWidth - pad - r.right)}px)`;
+}
 document.querySelectorAll('.menu').forEach(m => {
   const btn = m.firstElementChild, list = m.querySelector('.menu-list');
-  btn.addEventListener('click', e => { e.stopPropagation(); const show = list.hidden; closeMenus(); list.hidden = !show; btn.setAttribute('aria-expanded', String(show)); if (show) list.firstElementChild.focus(); });
-  list.addEventListener('click', e => { const b = e.target.closest('[data-act]'); if (!b) return; closeMenus(); act(b.dataset.act); if (overlay.hidden) { if (S) focusGrid(); else btn.focus(); } else $('ovActs').firstChild.focus(); });
-  m.addEventListener('focusout', e => { if (!m.contains(e.relatedTarget) && !list.hidden) { list.hidden = true; btn.setAttribute('aria-expanded', 'false'); } });
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    const show = list.hidden; closeMenus();
+    if (!show) return;
+    list.hidden = false; btn.setAttribute('aria-expanded', 'true');
+    positionMenu(list);
+    if (e.detail === 0) list.firstElementChild.focus({ preventScroll: true });
+  });
+  list.addEventListener('click', e => {
+    const b = e.target.closest('[data-act]'); if (!b) return;
+    e.stopPropagation();
+    closeMenus(); act(b.dataset.act);
+    if (overlay.hidden) { if (S) focusGrid(); else btn.focus(); } else $('ovActs').firstChild.focus();
+  });
+  // Only close on focusout when focus moves to another element outside the menu; WebKit blurs tapped buttons with relatedTarget === null before click fires.
+  m.addEventListener('focusout', e => { if (e.relatedTarget && !m.contains(e.relatedTarget) && !list.hidden) closeMenus(); });
 });
-document.addEventListener('click', closeMenus);
+document.addEventListener('pointerdown', e => { if (!e.target.closest('.menu')) closeMenus(); });
+document.addEventListener('click', e => { if (!e.target.closest('.menu')) closeMenus(); });
+window.addEventListener('resize', () => { const open = document.querySelector('.menu-list:not([hidden])'); if (open) positionMenu(open); });
 $('levels').onclick = live(e => { const b = e.target.closest('[data-level]'); if (!b) return; setLevel(b.dataset.level); if (overlay.hidden) focusGrid(); });
 $('pause').onclick = live(pause);
 $('prevClue').onclick = live(() => { jumpClue(-1, false); render(); });
